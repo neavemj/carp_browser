@@ -39,23 +39,25 @@ class carp_browser:
         self.left_pane = Tkinter.Frame(root, height=800, width=300, bg="#333",
                                        bd=1, relief=Tkinter.SUNKEN)
         self.left_pane.grid(row=0, column=0, padx=20, pady=20, sticky="n")        
-                
-        self.chk1 = Tkinter.Checkbutton(self.left_pane, text="Cyprinus carpio",
+          
+        self.radio_var = Tkinter.IntVar()
+        
+        self.chk1 = Tkinter.Radiobutton(self.left_pane, text="Cyprinus carpio",
                                         bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
-                                        activebackground="#333")                               
+                                        activebackground="#333", variable=self.radio_var, value=1)                               
         self.chk1.grid(row=0, column=0, padx=20, pady=10, sticky="w")
         
-        self.chk2 = Tkinter.Checkbutton(self.left_pane, text="Danio Rerio",
+        self.chk2 = Tkinter.Radiobutton(self.left_pane, text="Danio Rerio",
                                         bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
-                                        activebackground="#333")                               
+                                        activebackground="#333", variable=self.radio_var, value=2)                               
         self.chk2.grid(row=1, column=0, padx=20, pady=10, sticky="w")
-        self.chk3 = Tkinter.Checkbutton(self.left_pane, text="Tilapia",
+        self.chk3 = Tkinter.Radiobutton(self.left_pane, text="Tilapia",
                                         bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
-                                        activebackground="#333")                               
+                                        activebackground="#333", variable=self.radio_var, value=3)                               
         self.chk3.grid(row=2, column=0, padx=20, pady=10, sticky="w")
-        self.chk4 = Tkinter.Checkbutton(self.left_pane, text="CyHV-3",
+        self.chk4 = Tkinter.Radiobutton(self.left_pane, text="CyHV-3",
                                         bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
-                                        activebackground="#333")                               
+                                        activebackground="#333", variable=self.radio_var, value=4)                               
         self.chk4.grid(row=3, column=0, padx=20, pady=10, sticky="w")        
 
         #### add middle search screens ####
@@ -67,7 +69,7 @@ class carp_browser:
         # create swiss text box
         self.swiss_text = Tkinter.Text(self.middle_pane, width=120, height=20,
                                        font=("Consolas", 8), padx=5, pady=5, spacing1=5,
-                                        bg="#3f3f3f", fg="#dcdccc")         
+                                        bg="#3f3f3f", fg="#dcdccc", insertbackground="#dcdccc")         
         self.swiss_text.grid(row=0, column=0, padx=20, pady=10, 
                               sticky=Tkinter.N+Tkinter.E+Tkinter.W)
                  
