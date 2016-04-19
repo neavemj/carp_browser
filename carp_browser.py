@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Spyder Editor
+Genome browser for carp
 
 """
 
@@ -8,16 +8,34 @@ import Tkinter
 import ttk
 
 
-class App:
+class carp_browser:
 
     def __init__(self, master):
-
+        
+        #self.master = root
+        #master.title(" Carp Genome Browser ")
+        # self.root.iconbitmap('newicon') # change little TK icon
+        
+        # add a menu bar, then items within it
+        menu_bar = Tkinter.Menu(master)
+        
+        file_menu = Tkinter.Menu(menu_bar, tearoff=0)
+        file_menu.add_command(label="Open")
+        
+        edit_menu = Tkinter.Menu(menu_bar, tearoff=0)        
+        edit_menu.add_command(label="Undo", accelerator="Ctrl + Z", 
+                              compound="left")        
+        
+        menu_bar.add_cascade(label="File", menu=file_menu)
+        menu_bar.add_cascade(label="Edit", menu=edit_menu)
+        master.config(menu=menu_bar)        
+        
         frame = Tkinter.Frame(master)
         frame.grid()
-        master.configure(background="black")  
+        master.configure(background="#333")  
         f2 = Tkinter.Frame(master, width=800, height=500)
         f2.grid(row=0, column=0, rowspan=4, columnspan=8)
-        f2.configure(background="#333")
+        f2.configure(background="#334")
         
         #style = ttk.Style()
         #style.theme_use("clam")
@@ -37,7 +55,10 @@ class App:
     def but_test(self):
         print "button pressed"
 
-root = Tkinter.Tk()
-app = App(root)
-root.mainloop()
+
+if __name__ == "__main__":
+    root = Tkinter.Tk()
+    root.geometry("+100+100")
+    app = carp_browser(root)
+    root.mainloop()
 
