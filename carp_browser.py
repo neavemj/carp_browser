@@ -6,6 +6,7 @@ Genome browser for carp
 
 import Tkinter
 import ttk
+import re
 
 
 class carp_browser:
@@ -78,20 +79,34 @@ class carp_browser:
         # load swiss annotations and update text accordingly
     
         swiss_file = open("./data/swiss.genome_browser")
-        swiss_data = swiss_file.read()
-        self.swiss_text.insert(1.0, swiss_data) 
+        swiss_data = ""        
+        tab_pat = re.compile(r"\t")
+        tab_dict = {}
+        line_count = 0
         
+        for line in swiss_file:
+            line_count += 1
+            swiss_data += line
+            tmp_match = []
+            for matches in re.finditer(tab_pat, line):
+                tmp_match.append(matches.start())
+            tab_dict[line_count] = tmp_match
+            
+        #swiss_data = swiss_file.read()
+        self.swiss_text.insert(1.0, swiss_data) 
+
         # add color to first column
         self.swiss_text.tag_configure("id_column", foreground="#cc9393")
-#        swiss_lines = int(self.swiss_text.index("end-1c").split(".")[0])
-#        for lines in range(swiss_lines):
-#            colour_start = str(lines) + ".0"
-#            colour_end = str(lines) + ".11"
-#            self.swiss_text.tag_add("id_column", colour_start, colour_end)
-        for index, lines in enumerate(swiss_data):
-             colour_start = str(index) + ".0"
-             colour_end = str(index) + ".11"
-             self.swiss_text.tag_add("id_column", colour_start, colour_end)
+        self.swiss_text.tag_configure("gene_column", foreground="#7f9f7f")
+        
+        swiss_lines = int(self.swiss_text.index("end-1c").split(".")[0])
+        for lines, tab_keys in zip(range(swiss_lines), tab_dict.keys()):
+
+            id_start = str(tab_keys) + ".0"
+            id_end = str(tab_keys) + "." + str(tab_dict[tab_keys][0])
+            gene_end = str(tab_keys) + "." + str(tab_dict[tab_keys][1])
+            self.swiss_text.tag_add("id_column", id_start, id_end)
+            self.swiss_text.tag_add("gene_column", id_end, gene_end)
  
 
 if __name__ == "__main__":
