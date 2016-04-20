@@ -6,7 +6,7 @@ Genome browser for carp
 
 import Tkinter
 import re
-
+from pyfaidx import Fasta
 
 class carp_browser:
 
@@ -43,20 +43,24 @@ class carp_browser:
         
         self.chk1 = Tkinter.Radiobutton(self.left_pane, text="Cyprinus carpio",
                                         bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
-                                        activebackground="#333", variable=self.radio_var, value=1)                               
+                                        activebackground="#333", variable=self.radio_var, value=1,
+                                        cursor="hand2", command=self.load_carp)                               
         self.chk1.grid(row=0, column=0, padx=20, pady=10, sticky="w")
         
         self.chk2 = Tkinter.Radiobutton(self.left_pane, text="Danio Rerio",
                                         bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
-                                        activebackground="#333", variable=self.radio_var, value=2)                               
+                                        activebackground="#333", variable=self.radio_var, value=2,
+                                        cursor="hand2")                               
         self.chk2.grid(row=1, column=0, padx=20, pady=10, sticky="w")
         self.chk3 = Tkinter.Radiobutton(self.left_pane, text="Tilapia",
                                         bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
-                                        activebackground="#333", variable=self.radio_var, value=3)                               
+                                        activebackground="#333", variable=self.radio_var, value=3,
+                                        cursor="hand2")                               
         self.chk3.grid(row=2, column=0, padx=20, pady=10, sticky="w")
         self.chk4 = Tkinter.Radiobutton(self.left_pane, text="CyHV-3",
                                         bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
-                                        activebackground="#333", variable=self.radio_var, value=4)                               
+                                        activebackground="#333", variable=self.radio_var, value=4,
+                                        cursor="hand2")                               
         self.chk4.grid(row=3, column=0, padx=20, pady=10, sticky="w")        
 
         #### add middle search screens ####
@@ -73,11 +77,10 @@ class carp_browser:
         self.swiss_text.grid(row=0, column=0, padx=20, pady=0, 
                               sticky=Tkinter.N+Tkinter.E+Tkinter.W)
         
-        # add clicking ability
+        # add clicking and highlighting ability
         
+        self.swiss_text.tag_configure("highlight", background="#333")
         self.swiss_text.bind("<1>", self.on_text_click)
-                 
-        self.load_swiss()
         
         #### add right nucleotide and amino acid boxes ####
 
@@ -99,6 +102,11 @@ class carp_browser:
         self.amino_text.grid(row=1, column=0, padx=20, pady=20,
                             sticky=Tkinter.S)                           
                                   
+    def load_carp(self):
+        
+        self.load_swiss()                         
+        self.carp_amino_acids = Fasta("./data/V1.0.Commoncarp_gene.pep")
+        self.carp_nucleotides = Fasta("./data/genes.genome_browser")
         
     def load_swiss(self):
         
@@ -134,13 +142,37 @@ class carp_browser:
             gene_end = str(tab_keys) + "." + str(tab_dict[tab_keys][1])
             self.swiss_text.tag_add("id_column", id_start, id_end)
             self.swiss_text.tag_add("gene_column", id_end, gene_end)
+
+    def load_carp_amino_acid(self, aa_id):
+        
+        self.amino_text.delete(1.0, "end")
+        self.amino_text.insert(1.0, ">" + aa_id + "\n")
+        self.amino_text.insert(2.0, self.carp_amino_acids[aa_id])
+        
+    def load_carp_nucleotides(self, nucl_id):
+        
+        self.nucl_text.delete(1.0, "end")
+        self.nucl_text.insert(1.0, ">" + nucl_id + "\n")
+        self.nucl_text.insert(2.0, self.carp_nucleotides[nucl_id])
  
     def on_text_click(self, event):
         index = self.swiss_text.index("@%s,%s" % (event.x, event.y))
         line, char = index.split(".")
         print "you clicked line", line
-        self.swiss_text.tag_configure("select_row", background="#333")
-        self.swiss_text.tag_add("select_row", line + ".0", line + ".end")
+        
+        line_gene_id = self.swiss_text.get(line + ".0", line + ".11").strip()
+        self.load_carp_amino_acid(line_gene_id)     
+        self.load_carp_nucleotides(line_gene_id) 
+        
+        # if not highlighted, highlight, or else remove highlight
+        highlight_tags = self.swiss_text.tag_ranges("highlight")
+        print highlight_tags
+        if highlight_tags:
+            self.swiss_text.tag_remove("highlight", "0.0", "end")
+            self.swiss_text.tag_add("highlight", line + ".0", line + ".end")
+        else:
+            self.swiss_text.tag_add("highlight", line + ".0", line + ".end")
+
     
 
 if __name__ == "__main__":
