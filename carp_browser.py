@@ -5,7 +5,6 @@ Genome browser for carp
 """
 
 import Tkinter
-import ttk
 import re
 
 
@@ -64,28 +63,54 @@ class carp_browser:
 
         self.middle_pane = Tkinter.Frame(root, height=800, width=400, bg="#333",
                                          bd=1, relief=Tkinter.SUNKEN)
-        self.middle_pane.grid(row=0, column=1, padx=20, pady=20) 
+        self.middle_pane.grid(row=0, column=1, padx=20, pady=20, sticky="n") 
         
         # create swiss text box
-        self.swiss_text = Tkinter.Text(self.middle_pane, width=120, height=20,
-                                       font=("Consolas", 8), padx=5, pady=5, spacing1=5,
-                                        bg="#3f3f3f", fg="#dcdccc", insertbackground="#dcdccc")         
-        self.swiss_text.grid(row=0, column=0, padx=20, pady=10, 
+        self.swiss_text = Tkinter.Text(self.middle_pane, width=80, height=10,
+                                       font=("Consolas", 10), padx=5, pady=5, spacing1=5,
+                                        bg="#3f3f3f", fg="#dcdccc", insertbackground="#dcdccc",
+                                        cursor="hand2")         
+        self.swiss_text.grid(row=0, column=0, padx=20, pady=0, 
                               sticky=Tkinter.N+Tkinter.E+Tkinter.W)
+        
+        # add clicking ability
+        
+        self.swiss_text.bind("<1>", self.on_text_click)
                  
-
         self.load_swiss()
+        
+        #### add right nucleotide and amino acid boxes ####
+
+        self.right_pane = Tkinter.Frame(root, height=800, width=400, bg="#333",
+                                        bd=1, relief=Tkinter.SUNKEN)
+        self.right_pane.grid(row=0, column=2, padx=20, pady=20, sticky="ne")
+        
+        # create nucleotide text box
+        self.nucl_text = Tkinter.Text(self.right_pane, width = 50, height = 10,
+                                      font=("Consolas", 10), padx=5, pady=5, spacing1=5,
+                                        bg="#3f3f3f", fg="#dcdccc", insertbackground="#dcdccc")
+        self.nucl_text.grid(row=0, column=0, padx=20, pady=0,
+                            sticky=Tkinter.N)
+
+        # create amino acid text box
+        self.amino_text = Tkinter.Text(self.right_pane, width = 50, height = 10,
+                                      font=("Consolas", 10), padx=5, pady=5, spacing1=5,
+                                        bg="#3f3f3f", fg="#dcdccc", insertbackground="#dcdccc")
+        self.amino_text.grid(row=1, column=0, padx=20, pady=20,
+                            sticky=Tkinter.S)                           
+                                  
         
     def load_swiss(self):
         
         # load swiss annotations and update text accordingly
     
         swiss_file = open("./data/swiss.genome_browser")
+
+        # get a list of where tabs occur so can color columns later        
         swiss_data = ""        
         tab_pat = re.compile(r"\t")
         tab_dict = {}
         line_count = 0
-        
         for line in swiss_file:
             line_count += 1
             swiss_data += line
@@ -96,24 +121,31 @@ class carp_browser:
             
         #swiss_data = swiss_file.read()
         self.swiss_text.insert(1.0, swiss_data) 
-
-        # add color to first column
+        self.swiss_text.config(state=Tkinter.DISABLED)
+        
+        # add color to first and second column
         self.swiss_text.tag_configure("id_column", foreground="#cc9393")
         self.swiss_text.tag_configure("gene_column", foreground="#7f9f7f")
         
-        swiss_lines = int(self.swiss_text.index("end-1c").split(".")[0])
-        for lines, tab_keys in zip(range(swiss_lines), tab_dict.keys()):
-
+        #swiss_lines = int(self.swiss_text.index("end-1c").split(".")[0])
+        for tab_keys in tab_dict.keys():
             id_start = str(tab_keys) + ".0"
             id_end = str(tab_keys) + "." + str(tab_dict[tab_keys][0])
             gene_end = str(tab_keys) + "." + str(tab_dict[tab_keys][1])
             self.swiss_text.tag_add("id_column", id_start, id_end)
             self.swiss_text.tag_add("gene_column", id_end, gene_end)
  
+    def on_text_click(self, event):
+        index = self.swiss_text.index("@%s,%s" % (event.x, event.y))
+        line, char = index.split(".")
+        print "you clicked line", line
+        self.swiss_text.tag_configure("select_row", background="#333")
+        self.swiss_text.tag_add("select_row", line + ".0", line + ".end")
+    
 
 if __name__ == "__main__":
     root = Tkinter.Tk()
-    root.geometry("1200x800+100+100")
+    #root.geometry("+100+100")
     app = carp_browser(root)
     root.mainloop()
 
