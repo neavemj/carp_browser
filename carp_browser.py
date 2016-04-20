@@ -7,6 +7,10 @@ Genome browser for carp
 import Tkinter
 import re
 from pyfaidx import Fasta
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
+import pandas as pd
+import seaborn as sb
 
 class carp_browser:
 
@@ -74,13 +78,28 @@ class carp_browser:
                                        font=("Consolas", 10), padx=5, pady=5, spacing1=5,
                                         bg="#3f3f3f", fg="#dcdccc", insertbackground="#dcdccc",
                                         cursor="hand2")         
-        self.swiss_text.grid(row=0, column=0, padx=20, pady=0, 
+        self.swiss_text.grid(row=1, column=0, padx=0, pady=0, 
                               sticky=Tkinter.N+Tkinter.E+Tkinter.W)
+                              
+        # add entry widget for searching annotations (above text widget)
+        self.swiss_search = Tkinter.Entry(self.middle_pane, width=40,
+                                          font=("Consolas", 10), bg="gray")
+        self.swiss_search.grid(row=0, column=0, sticky="w", padx=5)                     
+                              
+        # add scroll bar to swiss text box
+        swiss_scroll = Tkinter.Scrollbar(self.middle_pane)
+        swiss_scroll.grid(row=1, column=0, sticky="nse")
+        
+        self.swiss_text.config(yscrollcommand=swiss_scroll.set)
+        swiss_scroll.config(command=self.swiss_text.yview)
         
         # add clicking and highlighting ability
         
         self.swiss_text.tag_configure("highlight", background="#333")
         self.swiss_text.bind("<1>", self.on_text_click)
+        
+        # add figure canvas to bottom of middle pane
+       
         
         #### add right nucleotide and amino acid boxes ####
 
@@ -106,8 +125,9 @@ class carp_browser:
         
         self.load_swiss()                         
         self.carp_amino_acids = Fasta("./data/V1.0.Commoncarp_gene.pep")
-        self.carp_nucleotides = Fasta("./data/genes.genome_browser")
-        
+        self.carp_nucleotides = Fasta("./data/genes.genome_browser")      
+        self.exp_df = pd.read_csv("./data/genome_browser_melt_treat.htseq", delimiter="\t", index_col=0)
+                
     def load_swiss(self):
         
         # load swiss annotations and update text accordingly
@@ -127,7 +147,6 @@ class carp_browser:
                 tmp_match.append(matches.start())
             tab_dict[line_count] = tmp_match
             
-        #swiss_data = swiss_file.read()
         self.swiss_text.insert(1.0, swiss_data) 
         self.swiss_text.config(state=Tkinter.DISABLED)
         
@@ -154,6 +173,18 @@ class carp_browser:
         self.nucl_text.delete(1.0, "end")
         self.nucl_text.insert(1.0, ">" + nucl_id + "\n")
         self.nucl_text.insert(2.0, self.carp_nucleotides[nucl_id])
+        
+    def load_expression_figure(self, gene_id):
+        
+        f = Figure(figsize=(7,3), dpi=100)
+        a = f.add_subplot(111)        
+        gene_data = self.exp_df.loc[gene_id]
+        sb.set_style("dark", {"figure.facecolor": "white"})
+        sb.barplot(ax=a, data=gene_data, x="sample", y="RPKM", hue="treatment")        
+        #gene_data.plot(ax=a, kind="bar")
+        
+        canvas = FigureCanvasTkAgg(f, master=self.middle_pane)
+        canvas.get_tk_widget().grid(row=2, column=0, padx=20, pady=20, sticky="s") 
  
     def on_text_click(self, event):
         index = self.swiss_text.index("@%s,%s" % (event.x, event.y))
@@ -162,11 +193,11 @@ class carp_browser:
         
         line_gene_id = self.swiss_text.get(line + ".0", line + ".11").strip()
         self.load_carp_amino_acid(line_gene_id)     
-        self.load_carp_nucleotides(line_gene_id) 
+        #self.load_carp_nucleotides(line_gene_id) 
+        self.load_expression_figure(line_gene_id)  
         
         # if not highlighted, highlight, or else remove highlight
         highlight_tags = self.swiss_text.tag_ranges("highlight")
-        print highlight_tags
         if highlight_tags:
             self.swiss_text.tag_remove("highlight", "0.0", "end")
             self.swiss_text.tag_add("highlight", line + ".0", line + ".end")
@@ -174,7 +205,6 @@ class carp_browser:
             self.swiss_text.tag_add("highlight", line + ".0", line + ".end")
 
     
-
 if __name__ == "__main__":
     root = Tkinter.Tk()
     #root.geometry("+100+100")
