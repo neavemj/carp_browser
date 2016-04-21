@@ -91,7 +91,12 @@ class carp_browser:
         self.search_button = Tkinter.Button(self.middle_pane, text="Search",
                                             font=("Consolas", 8), width=12,
                                             command=self.search_text)
-        self.search_button.grid(row=0, column=0, sticky="", pady=5)                     
+        self.search_button.grid(row=0, column=0, sticky="", pady=5)
+        
+        self.result_count_var = Tkinter.StringVar()
+        self.word_count = Tkinter.Label(self.middle_pane, width = 20, bg="#333", fg="#dcdccc",
+                                        font=("Consolas", 10), textvariable=self.result_count_var)
+        self.word_count.grid(row=0, column=0, sticky="e")
                               
         # add scroll bar to swiss text box
         swiss_scroll = Tkinter.Scrollbar(self.middle_pane)
@@ -138,6 +143,7 @@ class carp_browser:
         self.carp_amino_acids = Fasta("./data/V1.0.Commoncarp_gene.pep")
         #self.carp_nucleotides = Fasta("./data/genes.genome_browser")      
         self.exp_df = pd.read_csv("./data/genome_browser_melt_treat.htseq", delimiter="\t", index_col=0)
+        self.count_lines_in_textbox()        
         self.data_loaded = True
                 
     def load_swiss(self):
@@ -206,21 +212,22 @@ class carp_browser:
         canvas.get_tk_widget().grid(row=2, column=0, padx=0, pady=20, sticky="s") 
  
     def on_text_click(self, event):
-        index = self.swiss_text.index("@%s,%s" % (event.x, event.y))
-        line, char = index.split(".")
-        
-        line_gene_id = self.swiss_text.get(line + ".0", line + ".11").strip()
-        self.load_carp_amino_acid(line_gene_id)     
-        #self.load_carp_nucleotides(line_gene_id) 
-        self.load_expression_figure(line_gene_id)  
-        
-        # if not highlighted, highlight, or else remove highlight
-        highlight_tags = self.swiss_text.tag_ranges("highlight")
-        if highlight_tags:
-            self.swiss_text.tag_remove("highlight", "0.0", "end")
-            self.swiss_text.tag_add("highlight", line + ".0", line + ".end")
-        else:
-            self.swiss_text.tag_add("highlight", line + ".0", line + ".end")
+        if self.data_loaded:
+            index = self.swiss_text.index("@%s,%s" % (event.x, event.y))
+            line, char = index.split(".")
+            
+            line_gene_id = self.swiss_text.get(line + ".0", line + ".11").strip()
+            self.load_carp_amino_acid(line_gene_id)     
+            #self.load_carp_nucleotides(line_gene_id) 
+            self.load_expression_figure(line_gene_id)  
+            
+            # if not highlighted, highlight, or else remove highlight
+            highlight_tags = self.swiss_text.tag_ranges("highlight")
+            if highlight_tags:
+                self.swiss_text.tag_remove("highlight", "0.0", "end")
+                self.swiss_text.tag_add("highlight", line + ".0", line + ".end")
+            else:
+                self.swiss_text.tag_add("highlight", line + ".0", line + ".end")
 
     def clear_text_box(self):
         self.swiss_text.delete(1.0, "end")
@@ -236,6 +243,14 @@ class carp_browser:
                 if re.findall(pat, line):
                     self.swiss_text.insert(Tkinter.INSERT, line + "\n")
             self.color_text_columns()
+            self.count_lines_in_textbox()
+
+    def count_lines_in_textbox(self):
+        swiss_lines = int(self.swiss_text.index("end-1c").split(".")[0]) - 1
+        if swiss_lines == 1:
+            self.result_count_var.set(str(swiss_lines) + " result")
+        else:
+            self.result_count_var.set(str(swiss_lines) + " results")
     
 if __name__ == "__main__":
     root = Tkinter.Tk()
