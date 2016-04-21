@@ -40,7 +40,7 @@ class carp_browser:
         #### add left option pane ####
 
         self.left_pane = Tkinter.Frame(root, height=800, width=300, bg="#333",
-                                       bd=1, relief=Tkinter.SUNKEN)
+                                       bd=0, relief=Tkinter.SUNKEN)
         self.left_pane.grid(row=0, column=0, padx=20, pady=20, sticky="n")        
           
         self.radio_var = Tkinter.IntVar()
@@ -69,9 +69,9 @@ class carp_browser:
 
         #### add middle search screens ####
 
-        self.middle_pane = Tkinter.Frame(root, height=800, width=400, bg="#333",
-                                         bd=1, relief=Tkinter.SUNKEN)
-        self.middle_pane.grid(row=0, column=1, padx=20, pady=20, sticky="n") 
+        self.middle_pane = Tkinter.Frame(root, height=400, width=400, bg="#333",
+                                         bd=0, relief=Tkinter.SUNKEN)
+        self.middle_pane.grid(row=0, column=1, padx=0, pady=10, sticky="n") 
         
         # create swiss text box
         self.swiss_text = Tkinter.Text(self.middle_pane, width=80, height=10,
@@ -81,10 +81,17 @@ class carp_browser:
         self.swiss_text.grid(row=1, column=0, padx=0, pady=0, 
                               sticky=Tkinter.N+Tkinter.E+Tkinter.W)
                               
-        # add entry widget for searching annotations (above text widget)
-        self.swiss_search = Tkinter.Entry(self.middle_pane, width=40,
-                                          font=("Consolas", 10), bg="gray")
-        self.swiss_search.grid(row=0, column=0, sticky="w", padx=5)                     
+        # add entry widget for searching annotations (above text widget)                            
+                              
+        self.search = Tkinter.Entry(self.middle_pane, width=30,
+                                          font=("Consolas", 11), bg="gray")
+        self.search.bind("<Return>", self.search_text)
+        self.search.grid(row=0, column=0, sticky="w", pady=5)
+        
+        self.search_button = Tkinter.Button(self.middle_pane, text="Search",
+                                            font=("Consolas", 8), width=12,
+                                            command=self.search_text)
+        self.search_button.grid(row=0, column=0, sticky="", pady=5)                     
                               
         # add scroll bar to swiss text box
         swiss_scroll = Tkinter.Scrollbar(self.middle_pane)
@@ -104,7 +111,7 @@ class carp_browser:
         #### add right nucleotide and amino acid boxes ####
 
         self.right_pane = Tkinter.Frame(root, height=800, width=400, bg="#333",
-                                        bd=1, relief=Tkinter.SUNKEN)
+                                        bd=0, relief=Tkinter.SUNKEN)
         self.right_pane.grid(row=0, column=2, padx=20, pady=20, sticky="ne")
         
         # create nucleotide text box
@@ -119,14 +126,19 @@ class carp_browser:
                                       font=("Consolas", 10), padx=5, pady=5, spacing1=5,
                                         bg="#3f3f3f", fg="#dcdccc", insertbackground="#dcdccc")
         self.amino_text.grid(row=1, column=0, padx=20, pady=20,
-                            sticky=Tkinter.S)                           
+                            sticky=Tkinter.S)      
+        
+        # boolean variable ensuring nothing happens until some data is loaded
+        self.data_loaded = False
                                   
     def load_carp(self):
         
+        self.clear_text_box()
         self.load_swiss()                         
         self.carp_amino_acids = Fasta("./data/V1.0.Commoncarp_gene.pep")
-        self.carp_nucleotides = Fasta("./data/genes.genome_browser")      
+        #self.carp_nucleotides = Fasta("./data/genes.genome_browser")      
         self.exp_df = pd.read_csv("./data/genome_browser_melt_treat.htseq", delimiter="\t", index_col=0)
+        self.data_loaded = True
                 
     def load_swiss(self):
         
@@ -148,19 +160,26 @@ class carp_browser:
             tab_dict[line_count] = tmp_match
             
         self.swiss_text.insert(1.0, swiss_data) 
-        self.swiss_text.config(state=Tkinter.DISABLED)
-        
-        # add color to first and second column
+        #self.swiss_text.config(state=Tkinter.DISABLED)
+        swiss_file.close()        
+        self.color_text_columns()
+    
+    def color_text_columns(self):
         self.swiss_text.tag_configure("id_column", foreground="#cc9393")
         self.swiss_text.tag_configure("gene_column", foreground="#7f9f7f")
-        
-        #swiss_lines = int(self.swiss_text.index("end-1c").split(".")[0])
-        for tab_keys in tab_dict.keys():
-            id_start = str(tab_keys) + ".0"
-            id_end = str(tab_keys) + "." + str(tab_dict[tab_keys][0])
-            gene_end = str(tab_keys) + "." + str(tab_dict[tab_keys][1])
-            self.swiss_text.tag_add("id_column", id_start, id_end)
-            self.swiss_text.tag_add("gene_column", id_end, gene_end)
+        countVar = Tkinter.StringVar()
+        swiss_lines = int(self.swiss_text.index("end-1c").split(".")[0])       
+        for line in range(1, swiss_lines):
+            line_str = str(line)
+            first_tab = self.swiss_text.search(r"\t", line_str + ".0", line_str + ".end",
+                                               regexp=True)
+            second_tab_search = self.swiss_text.search(r"\t.*\t", line_str + ".0", line_str + ".end",
+                                                regexp=True, count=countVar)
+             
+            second_tab_split = second_tab_search.split(".")            
+            second_tab = second_tab_split[0] + "." + str(int(second_tab_split[1]) + int(countVar.get()))          
+            self.swiss_text.tag_add("id_column", line_str + ".0", first_tab)
+            self.swiss_text.tag_add("gene_column", first_tab, second_tab)
 
     def load_carp_amino_acid(self, aa_id):
         
@@ -184,12 +203,11 @@ class carp_browser:
         #gene_data.plot(ax=a, kind="bar")
         
         canvas = FigureCanvasTkAgg(f, master=self.middle_pane)
-        canvas.get_tk_widget().grid(row=2, column=0, padx=20, pady=20, sticky="s") 
+        canvas.get_tk_widget().grid(row=2, column=0, padx=0, pady=20, sticky="s") 
  
     def on_text_click(self, event):
         index = self.swiss_text.index("@%s,%s" % (event.x, event.y))
         line, char = index.split(".")
-        print "you clicked line", line
         
         line_gene_id = self.swiss_text.get(line + ".0", line + ".11").strip()
         self.load_carp_amino_acid(line_gene_id)     
@@ -204,6 +222,20 @@ class carp_browser:
         else:
             self.swiss_text.tag_add("highlight", line + ".0", line + ".end")
 
+    def clear_text_box(self):
+        self.swiss_text.delete(1.0, "end")
+        
+    def search_text(self, *args):
+        if self.data_loaded:
+            self.clear_text_box()
+            search_word = self.search.get()
+            pat = re.compile(search_word)
+            swiss_file = open("./data/swiss.genome_browser")
+            for line in swiss_file:
+                line = line.strip()
+                if re.findall(pat, line):
+                    self.swiss_text.insert(Tkinter.INSERT, line + "\n")
+            self.color_text_columns()
     
 if __name__ == "__main__":
     root = Tkinter.Tk()
