@@ -207,9 +207,11 @@ class carp_browser:
         sb.set_style("dark", {"figure.facecolor": "white"})
         sb.barplot(ax=a, data=gene_data, x="sample", y="RPKM", hue="treatment")        
         #gene_data.plot(ax=a, kind="bar")
-        
-        canvas = FigureCanvasTkAgg(f, master=self.middle_pane)
-        canvas.get_tk_widget().grid(row=2, column=0, padx=0, pady=20, sticky="s") 
+        if hasattr(self, "canvas"):
+            self.canvas.get_tk_widget().grid_forget()
+            
+        self.canvas = FigureCanvasTkAgg(f, master=self.middle_pane)
+        self.canvas.get_tk_widget().grid(row=2, column=0, padx=0, pady=20, sticky="s") 
  
     def on_text_click(self, event):
         if self.data_loaded:
@@ -217,9 +219,10 @@ class carp_browser:
             line, char = index.split(".")
             
             line_gene_id = self.swiss_text.get(line + ".0", line + ".11").strip()
-            self.load_carp_amino_acid(line_gene_id)     
-            #self.load_carp_nucleotides(line_gene_id) 
-            self.load_expression_figure(line_gene_id)  
+            if line_gene_id:
+                self.load_carp_amino_acid(line_gene_id)     
+                #self.load_carp_nucleotides(line_gene_id) 
+                self.load_expression_figure(line_gene_id)  
             
             # if not highlighted, highlight, or else remove highlight
             highlight_tags = self.swiss_text.tag_ranges("highlight")
@@ -231,6 +234,10 @@ class carp_browser:
 
     def clear_text_box(self):
         self.swiss_text.delete(1.0, "end")
+        self.amino_text.delete(1.0, "end")
+
+        if hasattr(self, "canvas"):
+            self.canvas.get_tk_widget().grid_forget()
         
     def search_text(self, *args):
         if self.data_loaded:
@@ -244,6 +251,7 @@ class carp_browser:
                     self.swiss_text.insert(Tkinter.INSERT, line + "\n")
             self.color_text_columns()
             self.count_lines_in_textbox()
+            swiss_file.close()
 
     def count_lines_in_textbox(self):
         swiss_lines = int(self.swiss_text.index("end-1c").split(".")[0]) - 1
