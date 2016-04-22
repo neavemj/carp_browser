@@ -74,7 +74,7 @@ class carp_browser:
         self.middle_pane.grid(row=0, column=1, padx=0, pady=10, sticky="n") 
         
         # create swiss text box
-        self.swiss_text = Tkinter.Text(self.middle_pane, width=80, height=10,
+        self.swiss_text = Tkinter.Text(self.middle_pane, width=70, height=10,
                                        font=("Consolas", 10), padx=5, pady=5, spacing1=5,
                                         bg="#3f3f3f", fg="#dcdccc", insertbackground="#dcdccc",
                                         cursor="hand2")         
@@ -83,7 +83,7 @@ class carp_browser:
                               
         # add entry widget for searching annotations (above text widget)                            
                               
-        self.search = Tkinter.Entry(self.middle_pane, width=30,
+        self.search = Tkinter.Entry(self.middle_pane, width=28,
                                           font=("Consolas", 11), bg="gray")
         self.search.bind("<Return>", self.search_text)
         self.search.grid(row=0, column=0, sticky="w", pady=5)
@@ -110,8 +110,11 @@ class carp_browser:
         self.swiss_text.tag_configure("highlight", background="#333")
         self.swiss_text.bind("<1>", self.on_text_click)
         
-        # add figure canvas to bottom of middle pane
-       
+        # add figure placeholder to bottom of middle pane
+        self.f = Figure(figsize=(7,3), dpi=100)
+        self.f.set_facecolor("#3f3f3f")
+        self.canvas = FigureCanvasTkAgg(self.f, master=self.middle_pane)
+        self.canvas.get_tk_widget().grid(row=2, column=0, padx=0, pady=20, sticky="ns")
         
         #### add right nucleotide and amino acid boxes ####
 
@@ -120,17 +123,17 @@ class carp_browser:
         self.right_pane.grid(row=0, column=2, padx=20, pady=20, sticky="ne")
         
         # create nucleotide text box
-        self.nucl_text = Tkinter.Text(self.right_pane, width = 50, height = 10,
-                                      font=("Consolas", 10), padx=5, pady=5, spacing1=5,
-                                        bg="#3f3f3f", fg="#dcdccc", insertbackground="#dcdccc")
-        self.nucl_text.grid(row=0, column=0, padx=20, pady=0,
-                            sticky=Tkinter.N)
+#        self.nucl_text = Tkinter.Text(self.right_pane, width = 50, height = 10,
+#                                      font=("Consolas", 10), padx=5, pady=5, spacing1=5,
+#                                        bg="#3f3f3f", fg="#dcdccc", insertbackground="#dcdccc")
+#        self.nucl_text.grid(row=0, column=0, padx=20, pady=0,
+#                            sticky=Tkinter.N)
 
         # create amino acid text box
         self.amino_text = Tkinter.Text(self.right_pane, width = 50, height = 10,
                                       font=("Consolas", 10), padx=5, pady=5, spacing1=5,
                                         bg="#3f3f3f", fg="#dcdccc", insertbackground="#dcdccc")
-        self.amino_text.grid(row=1, column=0, padx=20, pady=20,
+        self.amino_text.grid(row=0, column=0, padx=20, pady=20,
                             sticky=Tkinter.S)      
         
         # boolean variable ensuring nothing happens until some data is loaded
@@ -201,17 +204,24 @@ class carp_browser:
         
     def load_expression_figure(self, gene_id):
         
-        f = Figure(figsize=(7,3), dpi=100)
-        a = f.add_subplot(111)        
+        self.f = Figure(figsize=(7,3), dpi=100)
+        a = self.f.add_subplot(111)        
         gene_data = self.exp_df.loc[gene_id]
-        sb.set_style("dark", {"figure.facecolor": "white"})
-        sb.barplot(ax=a, data=gene_data, x="sample", y="RPKM", hue="treatment")        
-        #gene_data.plot(ax=a, kind="bar")
+        sb.set_style("whitegrid")
+        
+        treat_colors = {"acute": "#e41a1c", "persistent": "#377eb8", "reactivation": "#984ea3",
+                "mock": "#4daf4a"}
+
+        sb.barplot(ax=a, data=gene_data, x="sample", y="RPKM", hue="treatment",
+                   palette=treat_colors)
+        #for item in p.get_xticklabels():
+        #    item.set_rotation(30)
+
         if hasattr(self, "canvas"):
             self.canvas.get_tk_widget().grid_forget()
             
-        self.canvas = FigureCanvasTkAgg(f, master=self.middle_pane)
-        self.canvas.get_tk_widget().grid(row=2, column=0, padx=0, pady=20, sticky="s") 
+        self.canvas = FigureCanvasTkAgg(self.f, master=self.middle_pane)
+        self.canvas.get_tk_widget().grid(row=2, column=0, padx=0, pady=20, sticky="ns") 
  
     def on_text_click(self, event):
         if self.data_loaded:
@@ -237,8 +247,11 @@ class carp_browser:
         self.amino_text.delete(1.0, "end")
 
         if hasattr(self, "canvas"):
-            self.canvas.get_tk_widget().grid_forget()
-        
+            self.f = Figure(figsize=(7,3), dpi=100)
+            self.f.set_facecolor("#3f3f3f")
+            self.canvas = FigureCanvasTkAgg(self.f, master=self.middle_pane)
+            self.canvas.get_tk_widget().grid(row=2, column=0, padx=0, pady=20, sticky="ns") 
+            
     def search_text(self, *args):
         if self.data_loaded:
             self.clear_text_box()
