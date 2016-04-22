@@ -11,9 +11,8 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 import pandas as pd
 import seaborn as sb
-from Bio import SeqIO, AlignIO
-from StringIO import StringIO
-from Bio.Align.Applications import MuscleCommandline
+from Bio import AlignIO, Phylo
+from Bio.Align.Applications import ClustalwCommandline
 
 class carp_browser:
 
@@ -127,8 +126,8 @@ class carp_browser:
         
         # add label for amino acid box
         self.amino_label = Tkinter.Label(self.right_pane, width = 20, bg="#333", fg="#dcdccc",
-                                        font=("Consolas", 10), text="amino acid")
-        self.amino_label.grid(row=0, column=0, sticky="ens", pady=5)    
+                                        font=("Consolas", 10), text="Amino acid box")
+        self.amino_label.grid(row=0, column=0, sticky="n", pady=5)    
         
         # create amino acid text box
         self.amino_text = Tkinter.Text(self.right_pane, width = 80, height = 10,
@@ -143,16 +142,22 @@ class carp_browser:
         self.amino_text.config(yscrollcommand=amino_scroll.set)
         amino_scroll.config(command=self.amino_text.yview)
         
-        # add button for amino acid box
+        # add button to copy from amino acid box to alignment box
         self.amino_add_button = Tkinter.Button(self.right_pane, width = 25, bg="gray",
-                                        font=("Consolas", 8), text="copy to alignment box",
+                                        font=("Consolas", 8), text="Copy to alignment box",
                                         command=self.copy_to_alignment_box)
-        self.amino_add_button.grid(row=2, column=0, sticky="wn", pady=5)   
+        self.amino_add_button.grid(row=2, column=0, sticky="wn", pady=5)  
+        
+        # add button to clear amino acid box
+        self.amino_clear = Tkinter.Button(self.right_pane, width = 15, bg="gray",
+                                        font=("Consolas", 8), text="Clear",
+                                        command=self.clear_amino_window)
+        self.amino_clear.grid(row=2, column=0, sticky="en", pady=5)        
 
         # add label for alignment box
         self.align_label = Tkinter.Label(self.right_pane, width = 20, bg="#333", fg="#dcdccc",
-                                        font=("Consolas", 10), text="alignment box")
-        self.align_label.grid(row=3, column=0, sticky="e", pady=5)                            
+                                        font=("Consolas", 10), text="Alignment box")
+        self.align_label.grid(row=3, column=0, sticky="s", pady=5)                            
                             
         # create alignment text box
         self.align_text = Tkinter.Text(self.right_pane, width = 80, height = 11,
@@ -169,9 +174,9 @@ class carp_browser:
         self.align_button.grid(row=5, column=0, sticky="wn", pady=5)  
         
         # add button to clear alignment window
-        self.align_clear = Tkinter.Label(self.right_pane, width = 15, bg="#3f3f3f",
-                                        font=("Consolas", 8), text="Clear", fg="#dcdccc")
-        self.align_clear.bind("<1>", self.clear_align_window)
+        self.align_clear = Tkinter.Button(self.right_pane, width = 15, bg="gray",
+                                        font=("Consolas", 8), text="Clear",
+                                        command=self.clear_align_window)
         self.align_clear.grid(row=5, column=0, sticky="en", pady=5)
         
         # add scroll bar for alignment textbox
@@ -297,9 +302,13 @@ class carp_browser:
             self.canvas = FigureCanvasTkAgg(self.f, master=self.middle_pane)
             self.canvas.get_tk_widget().grid(row=2, column=0, padx=0, pady=35, sticky="ns") 
      
-    def clear_align_window(self, *args):
+    def clear_align_window(self):
         self.align_text.delete(1.0, "end")
-       
+        self.alignment_in_window = False
+
+    def clear_amino_window(self):
+        self.amino_text.delete(1.0, "end")   
+    
     def search_text(self, *args):
         if self.data_loaded:
             self.clear_text_box()
@@ -333,18 +342,26 @@ class carp_browser:
         if self.alignment_in_window == False:
             amino_acids = self.align_text.get(1.0, "end")
             # seems ridiculous to have to write file just so can read into SeqOject
-            tmp_amino_output = open("tmp_amino_acids.txt", "w")
+            tmp_amino_output = open("./tmp_files/tmp_amino_acids.txt", "w")
             tmp_amino_output.write(amino_acids)  
             tmp_amino_output.close()
-            # clw means output in clustal format
-            align_file = MuscleCommandline(r".\dependencies\muscle3.8.31_i86win32.exe",
-                                           input="tmp_amino_acids.txt", clw=True)                                    
+            
+            align_file = ClustalwCommandline(r".\dependencies\clustalw2.exe",
+                                             infile="./tmp_files/tmp_amino_acids.txt")
             stdout, stderr = align_file()
             
             self.align_text.delete(1.0, "end")
-            self.align_text.insert(Tkinter.INSERT, stdout)
+            clustal_align_file = open(r"./tmp_files/tmp_amino_acids.aln")
+            for line in clustal_align_file:            
+                self.align_text.insert(Tkinter.INSERT, line)
             
             self.alignment_in_window = True
+            self.draw_tree_alignment()
+            
+    def draw_tree_alignment(self):
+        if self.alignment_in_window == True:
+            tree = Phylo.read(r"./tmp_files/tmp_amino_acids.dnd", "newick")
+            Phylo.draw_ascii(tree)
     
 if __name__ == "__main__":
     root = Tkinter.Tk()
