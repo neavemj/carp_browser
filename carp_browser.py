@@ -11,7 +11,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 import pandas as pd
 import seaborn as sb
-from Bio import AlignIO, Phylo
+from Bio import Phylo
 from Bio.Align.Applications import ClustalwCommandline
 
 class carp_browser:
@@ -22,7 +22,7 @@ class carp_browser:
         root.configure(background="#333")
         root.title(" Carp Genome Browser ")
         
-        # self.root.iconbitmap('newicon') # change little TK icon     
+        self.root.iconbitmap(r"./data/kitchen_fish_icon.ico") # change little TK icon     
         
         ## initialize GUI ##
         
@@ -171,7 +171,14 @@ class carp_browser:
         self.align_button = Tkinter.Button(self.right_pane, width = 15, bg="gray",
                                         font=("Consolas", 8), text="Align",
                                         command=self.align_amino_acids)
-        self.align_button.grid(row=5, column=0, sticky="wn", pady=5)  
+        self.align_button.grid(row=5, column=0, sticky="wn", pady=5) 
+        
+        # add button to draw phylogenetic tree
+        self.align_button = Tkinter.Button(self.right_pane, width = 15, bg="gray",
+                                        font=("Consolas", 8), text="Draw tree",
+                                        command=self.draw_tree_alignment)
+        self.align_button.grid(row=5, column=0, sticky="n", pady=5) 
+        self.tree_in_window = False
         
         # add button to clear alignment window
         self.align_clear = Tkinter.Button(self.right_pane, width = 15, bg="gray",
@@ -240,20 +247,17 @@ class carp_browser:
             self.swiss_text.tag_add("id_column", line_str + ".0", first_tab)
             self.swiss_text.tag_add("gene_column", first_tab, second_tab)
 
-    def load_carp_amino_acid(self, aa_id):
-        
+    def load_carp_amino_acid(self, aa_id):        
         self.amino_text.delete(1.0, "end")
         self.amino_text.insert(1.0, ">" + aa_id + "\n")
         self.amino_text.insert(2.0, self.carp_amino_acids[aa_id])
         
-    def load_carp_nucleotides(self, nucl_id):
-        
+    def load_carp_nucleotides(self, nucl_id):        
         self.nucl_text.delete(1.0, "end")
         self.nucl_text.insert(1.0, ">" + nucl_id + "\n")
         self.nucl_text.insert(2.0, self.carp_nucleotides[nucl_id])
         
-    def load_expression_figure(self, gene_id):
-        
+    def load_expression_figure(self, gene_id):        
         self.f = Figure(figsize=(7,3), dpi=100)
         a = self.f.add_subplot(111)        
         gene_data = self.exp_df.loc[gene_id]
@@ -266,7 +270,8 @@ class carp_browser:
                    palette=treat_colors)
         #for item in p.get_xticklabels():
         #    item.set_rotation(30)
-
+                   
+        # remove previous figure
         if hasattr(self, "canvas"):
             self.canvas.get_tk_widget().grid_forget()
             
@@ -305,6 +310,7 @@ class carp_browser:
     def clear_align_window(self):
         self.align_text.delete(1.0, "end")
         self.alignment_in_window = False
+        self.tree_in_window = False
 
     def clear_amino_window(self):
         self.amino_text.delete(1.0, "end")   
@@ -332,19 +338,32 @@ class carp_browser:
             self.result_count_var.set(str(swiss_lines) + " results")
             
     def copy_to_alignment_box(self):
-        if self.alignment_in_window == True:
-            self.align_text.delete(1.0, "end")
-            self.alignment_in_window = False
+        if self.alignment_in_window == True or self.tree_in_window == True:
+            self.clear_align_window()
         amino_acid = self.amino_text.get(1.0, "end")
         self.align_text.insert(1.0, amino_acid)
         
     def align_amino_acids(self):
-        if self.alignment_in_window == False:
-            amino_acids = self.align_text.get(1.0, "end")
-            # seems ridiculous to have to write file just so can read into SeqOject
-            tmp_amino_output = open("./tmp_files/tmp_amino_acids.txt", "w")
-            tmp_amino_output.write(amino_acids)  
-            tmp_amino_output.close()
+        # if statments at the start check: 
+        # a) if the same sequence ids are there twice (clustal errors when this happens)
+        # b) if an alignment is already present in the window
+        # c) if data from a genome has been loaded
+        # d) if more than 1 sequence is available for alignment
+
+        if len(self.sequences_present()) == len(set(self.sequences_present())):
+            duplicates_absent = True
+        else:
+            duplicates_absent = False
+            print "cannot align sequences with duplicate IDs"
+    
+        if self.alignment_in_window == False and self.data_loaded:
+            # this part does new alignment            
+            if self.tree_in_window == False and len(self.sequences_present()) > 1 and duplicates_absent:
+                amino_acids = self.align_text.get(1.0, "end")
+                # seems ridiculous to have to write file just so can read into SeqOject
+                tmp_amino_output = open("./tmp_files/tmp_amino_acids.txt", "w")
+                tmp_amino_output.write(amino_acids)  
+                tmp_amino_output.close()
             
             align_file = ClustalwCommandline(r".\dependencies\clustalw2.exe",
                                              infile="./tmp_files/tmp_amino_acids.txt")
@@ -356,13 +375,26 @@ class carp_browser:
                 self.align_text.insert(Tkinter.INSERT, line)
             
             self.alignment_in_window = True
-            self.draw_tree_alignment()
             
     def draw_tree_alignment(self):
-        if self.alignment_in_window == True:
+        if self.alignment_in_window == True and self.data_loaded:
+            self.clear_align_window()
             tree = Phylo.read(r"./tmp_files/tmp_amino_acids.dnd", "newick")
-            Phylo.draw_ascii(tree)
-    
+            with open(r"./tmp_files/tmp_ascii_tree", "w") as fh:
+                Phylo.draw_ascii(tree, file=fh, column_width=70)
+            
+            for line in open(r"./tmp_files/tmp_ascii_tree"):
+                self.align_text.insert(Tkinter.INSERT, line)
+            self.tree_in_window = True
+            
+    def sequences_present(self):
+        text_present = self.align_text.get(1.0, "end")
+        sequences = []
+        for line in text_present.split("\n"):
+            if line.startswith(">"):
+                sequences.append(line)
+        return sequences
+            
 if __name__ == "__main__":
     root = Tkinter.Tk()
     #root.geometry("+100+100")

@@ -1,26 +1,77 @@
 CLUSTAL 2.1 multiple sequence alignment
 
 
-cycg020672      ---------------MRKFTTSAFVLLTC-MMLLSITEDISARPPIQ---QLRCQCVKTY
-cycg010293      MSELYCSCAYALIFTMRKFTTSAFVLLTC-MMLLSITEDISARPPIQ---QLRCQCVKTY
-cycg019052      ---------------MTKFTAAAFVFLTC-MTLLFTTEVISARLQLRCQCVLRCQCVKMY
-cycg050070      ----------------MKLTVSAFMLLICTAALLSTTE---GRPKSQ---QLSCRCPRMH
-cycg045634      ----------------MHCKIFLVSVIVF-LGFLTTGEGMSLRGLGV---DPRCRCIETE
-cycg000117      ----------------MHFKIF--SVIVF-LGFLTIGEGMSLRGLGV---DPRCRCIETE
-                                 : .     .:     :*   *    *          *:* .  
+cycg007565      MDMGLGHDPGLLLNQNQSVTVAASRCVLLTAKEKVFYGAAKCCIPRIIGWLEQNSASQAR
+cycg002521      ------------------------------------------------------------
+cycg007566      ----------MAEESEFDLDYITERIIGISFHQSCTEQTYQHNLHSITQMLQSKHADRYM
+                                                                            
 
-cycg020672      SGKPINPKLIQKVQMISAGPQCRNVEIIATLKNG--LTCLNPTDEWVKNILEA-------
-cycg010293      SGKPINPKLIQKVQMISAGPQCRNVEIIATLKNG--LTCLNPTDEWVKNILEA-------
-cycg019052      SGKPINPKLIQTVQKIPAGAQCKNMEIIATLKNG--QMCLNPENEWVKEITKDNFPSVFE
-cycg050070      SEPAIPANKVLSLRVIPAGPICKNENIIATMKKG--QVCLDPTKDWVISLNEEIKKRNLK
-cycg045634      SRR-IG-KHIESVELFPPSSHCKDTEITATLKISGKEICLDPTAPWVKKVIEKIIA----
-cycg000117      SQR-IG-KLIESVELFPPSPHCKDTEIIATLKVSRKEICLDPTAPWVKKVIEKIIANKTP
-                *   *  : : .:. :.... *:: :* **:* .    **:*   ** .: :        
+cycg007565      IFPYTQEGHLKGVTYTFGVWFERVFLESIRFVMLRAFLKRCRVVGYAFSSNTLDLFSKQK
+cycg002521      ------------------------------------------------------------
+cycg007566      VINLTERSDDLSRMNHRVVDLGWPERHAPSLHLLCSVCKNMDRWLRAYSENVLLLHCKGC
+                                                                            
 
-cycg020672      -------------------------
-cycg010293      -------------------------
-cycg019052      CMPLLKNGQMCLNPENEWVKEITKE
-cycg050070      SQP----------------------
-cycg045634      -------------------------
-cycg000117      AA-----------------------
-                                         
+cycg007565      EGTHSLSSDSGLSSSSQWTGGQASGLPISYSSEEHPQLPRVNPGLSMEEEQPSDPKANQD
+cycg002521      ------------------------------------------------------------
+cycg007566      KDRVGVVISSYIQLANVSTS--EEHALDLYSMKKFCRDKMVN---LMTPSQKRYVQVFGR
+                                                                            
+
+cycg007565      AFDHSSHLNGKAMFIERETDIIDDDDDIIVPNDAHAAVSDSKYTLSSKEMSGLSSGECQN
+cycg002521      ------------------------------------------------------------
+cycg007566      LLTRQIHINSSPLFLHGIN--------IHPIPDFHPTVCQLFIRVYQDTQTVYTSGVQQV
+                                                                            
+
+cycg007565      SVQSDD--CQSKAPPAMFREDVNSSNTLIHTSVPAGYQTHIWVKQQQSTSYMHTSSDRLE
+cycg002521      ------------------------------------------------------------
+cycg007566      AVNQTDRVCFVLEPPQMLKGDFMSSFTLVSIQDPR--------------------FPEDG
+                                                                            
+
+cycg007565      HREEMELQKGANKPSLPDNGFPEAQSEPDKDNEFETLALDVDQSIEQLNQLILDLDPDFE
+cycg002521      ------------------------------------------------------------
+cycg007566      VVEVLFSEIANRGPSLASDGGHWNSSAVDIENDPLTSLLTQWDFTENLTAAALQLHPAEL
+                                                                            
+
+cycg007565      PVPTGQGLLTGLLKKIKSFLSFLCVRVCWRHKQLSDVSEYSLLRSAAGDPTQNKQIFVFD
+cycg002521      ----------------------------------------MVQQKKVGDITNELVRHFLI
+cycg007566      EIVAKGSELGGAGSISATFG---------PQCTSAFPPEQCDVIALAVGISQLQDFFIFD
+                                                              . . ::    ..: 
+
+cycg007565      KPSLRGLYRTDAVDIGDLPPEADSPPWVGLDQVPPTPAFPVTPPTPYVKSGHDFITSRPG
+cycg002521      ETSAKGVR---------------------LKGCPNEPYFGCLS-----------------
+cycg007566      EVNVLDVED-------------------ALETSLVESIYPLDN-----------------
+                : .  .:                      *.     . :                     
+
+cycg007565      SQTSRHYMNSPIWQESRGYVDSMTHTSMSSDGELYHADVTGSPASCQRMFGSMHSISTPS
+cycg002521      -------------------------------ALVYQHAITPLALPCKLMIPTRDPNEEAL
+cycg007566      --------------------------------VCCYLPRFACTDCGWDDNGGMFRVYSDI
+                                                          .                 
+
+cycg007565      PLVNTDSPTLAHSWLEGGSSTPLSHYTPQPSPPLTLSSPNSHSSPRGAHRGLSSSLDVEG
+cycg002521      ELATPTSSTMDLLKQGAGPPKPTEDFYACNVLYINSVDMESLTGPQAVAKAITETLAAK-
+cycg007566      DWHGCMSGLHDLRFFRADTQGELTGFVAVSQLCLKAEFHLRRIGPQVMQKDQQFKSVSIT
+                      *         ...      : .     :.        .*:   :    .     
+
+cycg007565      LESSLLEAVEGLEALGLDVAQPPLLPLKRRGTEGSETMFPLSRSGISTSYASHNTSPTRS
+cycg002521      -----------------------------SSPTATIVHFKVSTQGITLTDNQRKVFFRRH
+cycg007566      ---------------------------AQLCIEITKDNLEIMMRGAQRLPYHSQVSIRQG
+                                                  :   : :   *        :.   : 
+
+cycg007565      TPSPDFMASKPENV-KFVQDTSKFWYKPDISREQAIAILKDKEPGSFIIRDSHSFRGAYG
+cycg002521      YPMNMITYCN-------LDPQDRKWNKAEGGVAKLFGFVARKQ-GSTTDNVSHLFA----
+cycg007566      IQLLVCSGQFRHLVGDMPEEQDDLAITGQLFTTNPPYFTNSQCIEMIIVEFLDELGKAAG
+                                  :  .    . :    :   :   :       .  . :     
+
+cycg007565      LAMKVATPPPSILQQSRKMGDLSSELVRHFLMECTPKGVRLKGCPNEPYFGSLTALVCQH
+cycg002521      -ELEPDQPASTIVH-----------FVSKFMLNIQKP-----------------------
+cycg007566      LMKCVDVPGAKSHN--------RFGRENRILLQASDPIAGLLQCGHLAGI----------
+                       * ..  :              :::::                           
+
+cycg007565      SITPMALPCRLIIPKRVFPSLHINIDCTSDGRWSILTMTFIPSMDLDTVIYLAVLWDSHM
+cycg002521      ------------------------------------------------------------
+cycg007566      ------------------------------------------------------------
+                                                                            
+
+cycg007565      PPGFHPN
+cycg002521      -------
+cycg007566      -------
+                       
