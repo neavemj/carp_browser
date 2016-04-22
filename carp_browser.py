@@ -11,6 +11,9 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 import pandas as pd
 import seaborn as sb
+from Bio import SeqIO, AlignIO
+from StringIO import StringIO
+from Bio.Align.Applications import MuscleCommandline
 
 class carp_browser:
 
@@ -49,27 +52,27 @@ class carp_browser:
                                         bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
                                         activebackground="#333", variable=self.radio_var, value=1,
                                         cursor="hand2", command=self.load_carp)                               
-        self.chk1.grid(row=0, column=0, padx=20, pady=10, sticky="w")
+        self.chk1.grid(row=0, column=0, padx=20, pady=5, sticky="w")
         
         self.chk2 = Tkinter.Radiobutton(self.left_pane, text="Danio Rerio",
                                         bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
                                         activebackground="#333", variable=self.radio_var, value=2,
                                         cursor="hand2")                               
-        self.chk2.grid(row=1, column=0, padx=20, pady=10, sticky="w")
+        self.chk2.grid(row=1, column=0, padx=20, pady=5, sticky="w")
         self.chk3 = Tkinter.Radiobutton(self.left_pane, text="Tilapia",
                                         bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
                                         activebackground="#333", variable=self.radio_var, value=3,
                                         cursor="hand2")                               
-        self.chk3.grid(row=2, column=0, padx=20, pady=10, sticky="w")
+        self.chk3.grid(row=2, column=0, padx=20, pady=5, sticky="w")
         self.chk4 = Tkinter.Radiobutton(self.left_pane, text="CyHV-3",
                                         bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
                                         activebackground="#333", variable=self.radio_var, value=4,
                                         cursor="hand2")                               
-        self.chk4.grid(row=3, column=0, padx=20, pady=10, sticky="w")        
+        self.chk4.grid(row=3, column=0, padx=20, pady=5, sticky="w")        
 
         #### add middle search screens ####
 
-        self.middle_pane = Tkinter.Frame(root, height=400, width=400, bg="#333",
+        self.middle_pane = Tkinter.Frame(root, height=800, width=400, bg="#333",
                                          bd=0, relief=Tkinter.SUNKEN)
         self.middle_pane.grid(row=0, column=1, padx=0, pady=10, sticky="n") 
         
@@ -80,7 +83,14 @@ class carp_browser:
                                         cursor="hand2")         
         self.swiss_text.grid(row=1, column=0, padx=0, pady=0, 
                               sticky=Tkinter.N+Tkinter.E+Tkinter.W)
-                              
+        
+        # add scroll bar to swiss text box
+        swiss_scroll = Tkinter.Scrollbar(self.middle_pane)       
+        swiss_scroll.grid(row=1, column=1, sticky="nse")
+        
+        self.swiss_text.config(yscrollcommand=swiss_scroll.set)
+        swiss_scroll.config(command=self.swiss_text.yview)
+              
         # add entry widget for searching annotations (above text widget)                            
                               
         self.search = Tkinter.Entry(self.middle_pane, width=28,
@@ -88,7 +98,7 @@ class carp_browser:
         self.search.bind("<Return>", self.search_text)
         self.search.grid(row=0, column=0, sticky="w", pady=5)
         
-        self.search_button = Tkinter.Button(self.middle_pane, text="Search",
+        self.search_button = Tkinter.Button(self.middle_pane, text="Search", bg="gray",
                                             font=("Consolas", 8), width=12,
                                             command=self.search_text)
         self.search_button.grid(row=0, column=0, sticky="", pady=5)
@@ -96,14 +106,7 @@ class carp_browser:
         self.result_count_var = Tkinter.StringVar()
         self.word_count = Tkinter.Label(self.middle_pane, width = 20, bg="#333", fg="#dcdccc",
                                         font=("Consolas", 10), textvariable=self.result_count_var)
-        self.word_count.grid(row=0, column=0, sticky="e")
-                              
-        # add scroll bar to swiss text box
-        swiss_scroll = Tkinter.Scrollbar(self.middle_pane)
-        swiss_scroll.grid(row=1, column=0, sticky="nse")
-        
-        self.swiss_text.config(yscrollcommand=swiss_scroll.set)
-        swiss_scroll.config(command=self.swiss_text.yview)
+        self.word_count.grid(row=0, column=0, sticky="e")                            
         
         # add clicking and highlighting ability
         
@@ -114,27 +117,69 @@ class carp_browser:
         self.f = Figure(figsize=(7,3), dpi=100)
         self.f.set_facecolor("#3f3f3f")
         self.canvas = FigureCanvasTkAgg(self.f, master=self.middle_pane)
-        self.canvas.get_tk_widget().grid(row=2, column=0, padx=0, pady=20, sticky="ns")
+        self.canvas.get_tk_widget().grid(row=2, column=0, padx=0, pady=35, sticky="ns")
         
         #### add right nucleotide and amino acid boxes ####
 
         self.right_pane = Tkinter.Frame(root, height=800, width=400, bg="#333",
                                         bd=0, relief=Tkinter.SUNKEN)
-        self.right_pane.grid(row=0, column=2, padx=20, pady=20, sticky="ne")
+        self.right_pane.grid(row=0, column=2, padx=30, pady=10, sticky="n")
         
-        # create nucleotide text box
-#        self.nucl_text = Tkinter.Text(self.right_pane, width = 50, height = 10,
-#                                      font=("Consolas", 10), padx=5, pady=5, spacing1=5,
-#                                        bg="#3f3f3f", fg="#dcdccc", insertbackground="#dcdccc")
-#        self.nucl_text.grid(row=0, column=0, padx=20, pady=0,
-#                            sticky=Tkinter.N)
-
+        # add label for amino acid box
+        self.amino_label = Tkinter.Label(self.right_pane, width = 20, bg="#333", fg="#dcdccc",
+                                        font=("Consolas", 10), text="amino acid")
+        self.amino_label.grid(row=0, column=0, sticky="ens", pady=5)    
+        
         # create amino acid text box
-        self.amino_text = Tkinter.Text(self.right_pane, width = 50, height = 10,
+        self.amino_text = Tkinter.Text(self.right_pane, width = 80, height = 10,
                                       font=("Consolas", 10), padx=5, pady=5, spacing1=5,
                                         bg="#3f3f3f", fg="#dcdccc", insertbackground="#dcdccc")
-        self.amino_text.grid(row=0, column=0, padx=20, pady=20,
-                            sticky=Tkinter.S)      
+        self.amino_text.grid(row=1, column=0, padx=0, pady=0, sticky="")
+        
+        # add scroll bar for amino acid textbox
+        amino_scroll = Tkinter.Scrollbar(self.right_pane)       
+        amino_scroll.grid(row=1, column=1, sticky="nse")
+        
+        self.amino_text.config(yscrollcommand=amino_scroll.set)
+        amino_scroll.config(command=self.amino_text.yview)
+        
+        # add button for amino acid box
+        self.amino_add_button = Tkinter.Button(self.right_pane, width = 25, bg="gray",
+                                        font=("Consolas", 8), text="copy to alignment box",
+                                        command=self.copy_to_alignment_box)
+        self.amino_add_button.grid(row=2, column=0, sticky="wn", pady=5)   
+
+        # add label for alignment box
+        self.align_label = Tkinter.Label(self.right_pane, width = 20, bg="#333", fg="#dcdccc",
+                                        font=("Consolas", 10), text="alignment box")
+        self.align_label.grid(row=3, column=0, sticky="e", pady=5)                            
+                            
+        # create alignment text box
+        self.align_text = Tkinter.Text(self.right_pane, width = 80, height = 11,
+                                      font=("Consolas", 10), padx=5, pady=5, spacing1=5,
+                                        bg="#3f3f3f", fg="#dcdccc", insertbackground="#dcdccc")
+        self.align_text.grid(row=4, column=0, padx=0, pady=0,
+                            sticky="s")
+        self.alignment_in_window = False
+        
+        # add button to initiate alignment
+        self.align_button = Tkinter.Button(self.right_pane, width = 15, bg="gray",
+                                        font=("Consolas", 8), text="Align",
+                                        command=self.align_amino_acids)
+        self.align_button.grid(row=5, column=0, sticky="wn", pady=5)  
+        
+        # add button to clear alignment window
+        self.align_clear = Tkinter.Label(self.right_pane, width = 15, bg="#3f3f3f",
+                                        font=("Consolas", 8), text="Clear", fg="#dcdccc")
+        self.align_clear.bind("<1>", self.clear_align_window)
+        self.align_clear.grid(row=5, column=0, sticky="en", pady=5)
+        
+        # add scroll bar for alignment textbox
+        align_scroll = Tkinter.Scrollbar(self.right_pane)       
+        align_scroll.grid(row=4, column=1, sticky="nse")
+        
+        self.align_text.config(yscrollcommand=align_scroll.set)
+        align_scroll.config(command=self.align_text.yview)
         
         # boolean variable ensuring nothing happens until some data is loaded
         self.data_loaded = False
@@ -221,7 +266,7 @@ class carp_browser:
             self.canvas.get_tk_widget().grid_forget()
             
         self.canvas = FigureCanvasTkAgg(self.f, master=self.middle_pane)
-        self.canvas.get_tk_widget().grid(row=2, column=0, padx=0, pady=20, sticky="ns") 
+        self.canvas.get_tk_widget().grid(row=2, column=0, padx=0, pady=35, sticky="ns") 
  
     def on_text_click(self, event):
         if self.data_loaded:
@@ -250,17 +295,21 @@ class carp_browser:
             self.f = Figure(figsize=(7,3), dpi=100)
             self.f.set_facecolor("#3f3f3f")
             self.canvas = FigureCanvasTkAgg(self.f, master=self.middle_pane)
-            self.canvas.get_tk_widget().grid(row=2, column=0, padx=0, pady=20, sticky="ns") 
-            
+            self.canvas.get_tk_widget().grid(row=2, column=0, padx=0, pady=35, sticky="ns") 
+     
+    def clear_align_window(self, *args):
+        self.align_text.delete(1.0, "end")
+       
     def search_text(self, *args):
         if self.data_loaded:
             self.clear_text_box()
-            search_word = self.search.get()
+            search_word = self.search.get().lower()
             pat = re.compile(search_word)
             swiss_file = open("./data/swiss.genome_browser")
             for line in swiss_file:
                 line = line.strip()
-                if re.findall(pat, line):
+                line_lower = line.lower()
+                if re.findall(pat, line_lower):
                     self.swiss_text.insert(Tkinter.INSERT, line + "\n")
             self.color_text_columns()
             self.count_lines_in_textbox()
@@ -272,6 +321,30 @@ class carp_browser:
             self.result_count_var.set(str(swiss_lines) + " result")
         else:
             self.result_count_var.set(str(swiss_lines) + " results")
+            
+    def copy_to_alignment_box(self):
+        if self.alignment_in_window == True:
+            self.align_text.delete(1.0, "end")
+            self.alignment_in_window = False
+        amino_acid = self.amino_text.get(1.0, "end")
+        self.align_text.insert(1.0, amino_acid)
+        
+    def align_amino_acids(self):
+        if self.alignment_in_window == False:
+            amino_acids = self.align_text.get(1.0, "end")
+            # seems ridiculous to have to write file just so can read into SeqOject
+            tmp_amino_output = open("tmp_amino_acids.txt", "w")
+            tmp_amino_output.write(amino_acids)  
+            tmp_amino_output.close()
+            # clw means output in clustal format
+            align_file = MuscleCommandline(r".\dependencies\muscle3.8.31_i86win32.exe",
+                                           input="tmp_amino_acids.txt", clw=True)                                    
+            stdout, stderr = align_file()
+            
+            self.align_text.delete(1.0, "end")
+            self.align_text.insert(Tkinter.INSERT, stdout)
+            
+            self.alignment_in_window = True
     
 if __name__ == "__main__":
     root = Tkinter.Tk()
