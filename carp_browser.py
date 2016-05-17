@@ -356,7 +356,7 @@ class carp_browser:
             duplicates_absent = False
             print "cannot align sequences with duplicate IDs"
     
-        if self.alignment_in_window == False and self.data_loaded:
+        if self.alignment_in_window == False and self.data_loaded and duplicates_absent:
             # this part does new alignment            
             if self.tree_in_window == False and len(self.sequences_present()) > 1 and duplicates_absent:
                 amino_acids = self.align_text.get(1.0, "end")
