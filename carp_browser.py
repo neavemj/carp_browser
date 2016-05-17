@@ -198,9 +198,10 @@ class carp_browser:
                                   
     def load_carp(self):
         
-        self.clear_text_box()
-        self.load_swiss()                         
+        self.clear_text_box()                             
         self.carp_amino_acids = Fasta("./data/V1.0.Commoncarp_gene.pep")
+        self.swiss_file = open("./data/swiss.genome_browser")        
+        self.load_swiss()  
         #self.carp_nucleotides = Fasta("./data/genes.genome_browser")      
         self.exp_df = pd.read_csv("./data/genome_browser_melt_treat.htseq", delimiter="\t", index_col=0)
         self.count_lines_in_textbox()        
@@ -208,16 +209,12 @@ class carp_browser:
                 
     def load_swiss(self):
         
-        # load swiss annotations and update text accordingly
-    
-        swiss_file = open("./data/swiss.genome_browser")
-
         # get a list of where tabs occur so can color columns later        
         swiss_data = ""        
         tab_pat = re.compile(r"\t")
         tab_dict = {}
         line_count = 0
-        for line in swiss_file:
+        for line in self.swiss_file:
             line_count += 1
             swiss_data += line
             tmp_match = []
@@ -227,7 +224,7 @@ class carp_browser:
             
         self.swiss_text.insert(1.0, swiss_data) 
         #self.swiss_text.config(state=Tkinter.DISABLED)
-        swiss_file.close()        
+        self.swiss_file.close()        
         self.color_text_columns()
     
     def color_text_columns(self):
