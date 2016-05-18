@@ -211,16 +211,16 @@ class carp_browser:
         
         # get a list of where tabs occur so can color columns later        
         swiss_data = ""        
-        tab_pat = re.compile(r"\t")
-        tab_dict = {}
+        #tab_pat = re.compile(r"\t")
+        #tab_dict = {}
         line_count = 0
         for line in self.swiss_file:
             line_count += 1
             swiss_data += line
-            tmp_match = []
-            for matches in re.finditer(tab_pat, line):
-                tmp_match.append(matches.start())
-            tab_dict[line_count] = tmp_match
+            #tmp_match = []
+            #for matches in re.finditer(tab_pat, line):
+            #    tmp_match.append(matches.start())
+            #tab_dict[line_count] = tmp_match
             
         self.swiss_text.insert(1.0, swiss_data) 
         #self.swiss_text.config(state=Tkinter.DISABLED)

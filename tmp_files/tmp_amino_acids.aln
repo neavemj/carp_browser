@@ -1,22 +1,66 @@
 CLUSTAL 2.1 multiple sequence alignment
 
 
-cycg002318      MIRHICVGMVLTLLINTEGTFCLNPPQDVKIVRSNLQWKPPDDDDSLLYSLQYKPSSKTG
-cycg029498      -------------MIRSEPAACACDCNYLRCPEN----VSTVDSLNTRYVLRWDWPHET-
-                             :*.:* : *    : ::  ..     .. *. .  * *::. . :* 
+cycg000007      MERCTFLLLLTTAGEGKLEILSLTTNAHTSALHKCHSSRFSHGVLSLCVQIVSCAPELSC
+cycg000008      ------------------------------------------------------------
+                                                                            
 
-cycg002318      DEWYNVTSHNGTQLRFQITPEFYGAVFRVRTEKGINVSEWQYSDSVKCANTN-TCVPVLK
-cycg029498      -----AVHQNVTFTAQYIAERLYRKPRHEKYWTTVCVDVLEHRCDFTGAELQYLALYLLR
-                     .. :* *     *: .:*    : :  . : *.  ::  ... *: :  .: :*:
+cycg000007      VLRDDATMILSGSALPGGTAVPLVFGTNSDSALHTSAMSPNPQDPFGKNQQMGRGPPQRN
+cycg000008      ------------------------------------------------------------
+                                                                            
 
-cycg002318      LSVKPEMAYVTMAHMDKSLEREYGENVAFNLSFWKVNNGGYSKAEFVITKSKNEHIFKLE
-cycg029498      VCTNTPQQSSKWIQIRFCPDKHAALGPPSSVRLRSVK--EHLEINIIDPLTSTNQSMKTL
-                :..:.     .  ::  . ::. . . . .: : .*:   : : ::: . :..:: :*  
+cycg000007      ASIELKQRWTVLEMVSVLSKQRWTVLEMVMFSFPAVPNEENLLGVNKPLPKQLWEAKKVQ
+cycg000008      ------------------------------------------------------------
+                                                                            
 
-cycg002318      SGENYCFQVQYLLFEKPYGNVSNQICAIIPETPETIKSRALLYSILTSFLVTAICGVCIF
-cycg029498      LDNNLSYLIQYWRRS---------------EEPQLDPHIAPCCKNKEQLLCNGCKIMCWL
-                 .:* .: :**   .               * *:     *   .   .:* ..   :* :
+cycg000007      SLSSRPKSCEVPGINIFPSPEQNAGLSHYQGTLNTGGSLPDLSNLHFPSPLPTPLDPDEA
+cycg000008      ----------------------------------------------------------MS
+                                                                           :
 
-cycg002318      LLFKHHKKAKQLFQPLRLEIPHHYQE
-cycg029498      GDFSHFCAFGKYYISLR---------
-                  *.*.    : : .**         
+cycg000007      GYPNLSGGSSTGNLPAAMMHLGIGNSQGLSSSLSNPSIQASLTNSQLHSSLSNPSIHTSL
+cycg000008      GSP----GSSGSNPRKFSEKIALHNQKQAEETRAFEQLMTDLTVSRVSTAKFSNYLAPSI
+                * *    *** .*      ::.: *.:  ..: :  .: :.** *:: ::  .  : .*:
+
+cycg000007      RLSSLSNPPPTGMASSPRRRPPPISPLTLSPGGDQRRSLGKQLSPTMSPSLSPITQHNNM
+cycg000008      SYIKCGCLCGPTMSGSPG-----------SSGSNPRK-----------------------
+                   . .    . *:.**            *.*.: *:                       
+
+cycg000007      GGFFNDPFMELQFSGRQSKCSSYQQDQYNMLENVMSSVAGGFDPSSNLYYSQAALMGLGG
+cycg000008      ------------FSEKIALHNQKQAEETRAFEQLMTDLT-----VSRVQFQKIQQLRLSQ
+                            ** : :  .. * :: . :*::*:.::      *.: :.:   : *. 
+
+cycg000007      SHGNLQDHLQMRPNTLYSNCGGGVPNIILTDDSNPSLSKDFSSVLSAVPGCLDSEGVFPL
+cycg000008      NR--------------AQYYGGSLPNVNQIGN----ASTDFQLLVCPYFAYSFSTRLSPQ
+                .:               .  **.:**:   .:     *.**. ::..  .   *  : * 
+
+cycg000007      EDELRIEPLSLDGLSMLSDPDMLLLDHQDAIAPDHNDPIHELLDDLGEVPTIESLIGESP
+cycg000008      VHQIQRCAPRAEELYLCLSP------------------------MENSVVYLQSFMTDSC
+                 .:::  .   : * :  .*                          ..*  ::*:: :* 
+
+cycg000007      LPPDDPNKEMMGKTEVSLTLTNKFDVPDEANVEMDAKTLLLNTKRLIVDVIRFQPGETLT
+cycg000008      ICEENVNQEGVS------------------------------------------PQGNFP
+                :  :: *:* :.                                          *  .:.
+
+cycg000007      EILETVASPEQETEYQRAMQRRAIRDAKTPEKMKQAKPVVDDSLTLQGKKDKIKSNLQRL
+cycg000008      SGLDSVRG----------------------------------------------------
+                . *::* .                                                    
+
+cycg000007      GELGKVHPEKKYQDLINDISKDIRNQRRYRQRRKAELVKLQQTNAALNSKTNFYNVQIDY
+cycg000008      ---------TRHHGLVERVHRDR-----------------NRINSPHRRPIDKHGRQISF
+                         .:::.*:: : :*                  :: *:. .   : :. **.:
+
+cycg000007      YNQYIKTCMDNLASKGKVSKKPGDNKAKKSKQVSQKYTAARLHEKGVLIDIEDLQPNQYK
+cycg000008      KFTSVKTFVEEKK-----------------------------------------------
+                    :** :::                                                 
+
+cycg000007      NVIFEISPSEVVGAFEVKAKLMGVHLETLMLEYQRGARGTVVEQIHNQKQAEETRAFEQL
+cycg000008      ------------------------------------------------------------
+                                                                            
+
+cycg000007      MTDLTVSRVQFQKVQQLRLSQNRAQYYGGSLPNVNQIGNASTDFQGLVCGASLFLMLKAA
+cycg000008      ------------------------------------------------------------
+                                                                            
+
+cycg000007      FTKATYIAYMLYILPVDPCFELQECVPSVTLLVEKLAVTFLSDHT
+cycg000008      ---------------------------------------------
+                                                             
