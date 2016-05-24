@@ -1,66 +1,77 @@
 CLUSTAL 2.1 multiple sequence alignment
 
 
-cycg000007      MERCTFLLLLTTAGEGKLEILSLTTNAHTSALHKCHSSRFSHGVLSLCVQIVSCAPELSC
-cycg000008      ------------------------------------------------------------
+ORF60           ---------------------------------MFHAEYASLAVDLTVDHKADQLSEGDY
+ORF61           MGIRSAGVFTYLNTARWLRALGVPTGPKTLRFKKADSRYGCCILDLTLTIHTICLSQASE
+ORF57           --------------------------------------MAARDIAMNQRGAAGDGGEDEE
+                                                       ..  : :.    :   .: . 
+
+ORF60           VQFTG-------------------------------QFCLSDLLG---------------
+ORF61           MNKYNGMGMSMDDAVDVVLDKIRGLLLAKLKATNLVVFCLDSMAGGLKFAVSAQRAHHRE
+ORF57           STFDN---------------------------------SCEDLPD---------------
+                    .                                 . ..: .               
+
+ORF60           -------PCVDDGSEKDVVFLHRLGRVKGELDKYPGQGYFTITGHRDQSVVAGTHDAP--
+ORF61           AWDDSLFVSMLKDSRHKANLFARIVEYVGTLELRPKQTVVILQRHDEDVEASRTRVQDGG
+ORF57           ----FVEACLTEENRKRYNIQD------GDFPPYRVAVHLSQKAFTAWDEVDYAALAD--
+                        .: . ..:   :        * :        .    .     .  :      
+
+ORF60           ---------------RDRIYQALG---------------------------------CGP
+ORF61           DGHYVYGTAVTGVGGRGWFHMASGSASTDEDLARLRALFQKFLEDTDRELHYESDMLCFQ
+ORF57           ------------------------------------------------------------
                                                                             
 
-cycg000007      VLRDDATMILSGSALPGGTAVPLVFGTNSDSALHTSAMSPNPQDPFGKNQQMGRGPPQRN
-cycg000008      ------------------------------------------------------------
-                                                                            
+ORF60           WHEWLPG---MPLAKQRETIVKSIHSYLGSKLQKEFRT---------------------F
+ORF61           VAEMLPERGVLGCPNRTTVLIESKDTDMAAILVARYGSSCERDGGDSGKRDALARSDLLF
+ORF57           ----------CLCEGTHLQAVHTHKLYVLACGALLWGKG---------------------
+                                    :.: .  : :     : .                      
 
-cycg000007      ASIELKQRWTVLEMVSVLSKQRWTVLEMVMFSFPAVPNEENLLGVNKPLPKQLWEAKKVQ
-cycg000008      ------------------------------------------------------------
-                                                                            
+ORF60           RS--EYLELKQKGTIQCTWSGSEVSQVCYTKTQSGVGVVHFKNLSRAVYPNN------VS
+ORF61           RSYRKFVDVDMDASLSLALCWVDVGELRPAPFVSSDGRVNGCPDPAAGFEGERDALLWLL
+ORF57           --------AWMDPQMMSRLYVHDVVKIKLLERVVYGFMMALQKALRIQKQGCR--MVGLE
+                           .  :       :* ::           :           .       : 
 
-cycg000007      SLSSRPKSCEVPGINIFPSPEQNAGLSHYQGTLNTGGSLPDLSNLHFPSPLPTPLDPDEA
-cycg000008      ----------------------------------------------------------MS
-                                                                           :
+ORF60           DIASASSMFVKFLMSLRALHVAGASRTWIGYLSRITNSIDRGLLVDRNLVGQAFGG----
+ORF61           DFDSWTPLVDEFCVPVDGIKAFLEDEVWYGFLRACARTFTRGPLFRRTLLYMSSCMPAEK
+ORF57           DPEKVEDMKNFVLHKGFNHHYAFCDHHWQHWALGRSFEGELPDVVVKEMISDGLACT---
+                *  .   :   .       :    .. *  :    :       :. : ::  .       
 
-cycg000007      GYPNLSGGSSTGNLPAAMMHLGIGNSQGLSSSLSNPSIQASLTNSQLHSSLSNPSIHTSL
-cycg000008      GSP----GSSGSNPRKFSEKIALHNQKQAEETRAFEQLMTDLTVSRVSTAKFSNYLAPSI
-                * *    *** .*      ::.: *.:  ..: :  .: :.** *:: ::  .  : .*:
+ORF60           ----------------RFAGGALGPHFEGTETDTTGLRHYTHFFSSKAVDAVCEAFHTFE
+ORF61           LEELCRDVAKTGQPVYELVTASLGLSNLRLQNDGFCTTKDGAFFTFAGANKAAPAKDKRQ
+ORF57           ------------------LERAGPFSTLADWLESFSLRAYPQPMHKQIRQHLMEAFNNAQ
+                                     :          :          :     :    * .. :
 
-cycg000007      RLSSLSNPPPTGMASSPRRRPPPISPLTLSPGGDQRRSLGKQLSPTMSPSLSPITQHNNM
-cycg000008      SYIKCGCLCGPTMSGSPG-----------SSGSNPRK-----------------------
-                   . .    . *:.**            *.*.: *:                       
+ORF60           AVSNTFMADVLERLTLNVHIR------RELIKLKTATEIRFQLDTLVESFTVS-------
+ORF61           SVASIMDLTHLLYASGRVPLSSYQRYCEERYKMVDDTGVCMSVDPEATAAACCGAAVGLS
+ORF57           DVDFPMFKSSLKFLAS----------MHCLYKTPRWSFMPSAVNTTLDTFDDC-------
+                 *   :    *   :            .   *    : :   ::.   :   .       
 
-cycg000007      GGFFNDPFMELQFSGRQSKCSSYQQDQYNMLENVMSSVAGGFDPSSNLYYSQAALMGLGG
-cycg000008      ------------FSEKIALHNQKQAEETRAFEQLMTDLT-----VSRVQFQKIQQLRLSQ
-                            ** : :  .. * :: . :*::*:.::      *.: :.:   : *. 
+ORF60           --------------KKRCLADYPNLYLRHVEAVAKDISMDGVEVDEN------------F
+ORF61           MYGTDYTNGLPSVGEKQATAALCVQYLFRELCRFSTLSLFGVAAGDGDDNRTLLGMVSRF
+ORF57           --------------------ACDVHVLRHVEGQNSCDCLCCRRQGCH-------------
+                                          * :     .  .:     .               
 
-cycg000007      SHGNLQDHLQMRPNTLYSNCGGGVPNIILTDDSNPSLSKDFSSVLSAVPGCLDSEGVFPL
-cycg000008      NR--------------AQYYGGSLPNVNQIGN----ASTDFQLLVCPYFAYSFSTRLSPQ
-                .:               .  **.:**:   .:     *.**. ::..  .   *  : * 
+ORF60           SEDDPEGSPSKKDSG------------GGKASASSSVSKKSGSGSGGGDKGKAGD-----
+ORF61           FGVSPRPSLTESEAANLMRHLTLPYKLWTEDRVYADLKERVAKGDDLSDVCVEGATLVIV
+ORF57           ---------------------------DEDCRPTAALDAAELRGEGMSD-----------
+                                             .    : :.     *.. .*           
 
-cycg000007      EDELRIEPLSLDGLSMLSDPDMLLLDHQDAIAPDHNDPIHELLDDLGEVPTIESLIGESP
-cycg000008      VHQIQRCAPRAEELYLCLSP------------------------MENSVVYLQSFMTDSC
-                 .:::  .   : * :  .*                          ..*  ::*:: :* 
+ORF60           ------KGDKGADETEDPGKDGWSVQLDTLDSVP------FRKACLYFPCAVARNTLESV
+ORF61           NIKNDFQTTRGRPHYSLRVEDGEPFLAEPTHTVNRQVCGVLDKALGQLDLKVIRDTAVTV
+ORF57           ---------DDDIESEEEALGAVKLDVGRMKQKR------MQKAMRYASAAAAADAADGQ
+                          .  . .    ..  .     .         : **       .  ::    
 
-cycg000007      LPPDDPNKEMMGKTEVSLTLTNKFDVPDEANVEMDAKTLLLNTKRLIVDVIRFQPGETLT
-cycg000008      ICEENVNQEGVS------------------------------------------PQGNFP
-                :  :: *:* :.                                          *  .:.
+ORF60           ILATATETFAKKHKQKINVYAPAQQAMGRG----VPIDLLQRQLDILKEGQSQPQNSQQQ
+ORF61           RKSETAANGRKRAPPRPKADQPRLSLSTRPPPAKRPSPEPRRGEEEKEEAKAEEEEEEKE
+ORF57           KMYSVKEPKVVAVKAQLVGVGDTDAPSSSTAAKDCADGKCQGPCNCERPPGPPTDYDKRV
+                    .          :                   .    :   :  .   .  : .:: 
 
-cycg000007      EILETVASPEQETEYQRAMQRRAIRDAKTPEKMKQAKPVVDDSLTLQGKKDKIKSNLQRL
-cycg000008      SGLDSVRG----------------------------------------------------
-                . *::* .                                                    
+ORF60           LLAQLQKQLAQLQQQQQQW-----------------------------------------
+ORF61           KEEEVRSRFFQPQTLQPQQPKLACSTPSTPHSPSTLPSTTKPTSSPRETTSSSRDSSACQ
+ORF57           KAKKIRKPKNLPKTKS--------------------------------------------
+                   :::.     :  .                                            
 
-cycg000007      GELGKVHPEKKYQDLINDISKDIRNQRRYRQRRKAELVKLQQTNAALNSKTNFYNVQIDY
-cycg000008      ---------TRHHGLVERVHRDR-----------------NRINSPHRRPIDKHGRQISF
-                         .:::.*:: : :*                  :: *:. .   : :. **.:
-
-cycg000007      YNQYIKTCMDNLASKGKVSKKPGDNKAKKSKQVSQKYTAARLHEKGVLIDIEDLQPNQYK
-cycg000008      KFTSVKTFVEEKK-----------------------------------------------
-                    :** :::                                                 
-
-cycg000007      NVIFEISPSEVVGAFEVKAKLMGVHLETLMLEYQRGARGTVVEQIHNQKQAEETRAFEQL
-cycg000008      ------------------------------------------------------------
-                                                                            
-
-cycg000007      MTDLTVSRVQFQKVQQLRLSQNRAQYYGGSLPNVNQIGNASTDFQGLVCGASLFLMLKAA
-cycg000008      ------------------------------------------------------------
-                                                                            
-
-cycg000007      FTKATYIAYMLYILPVDPCFELQECVPSVTLLVEKLAVTFLSDHT
-cycg000008      ---------------------------------------------
-                                                             
+ORF60           --------------
+ORF61           TSWVPVWMTARKRM
+ORF57           --------------
+                              

@@ -66,7 +66,7 @@ class carp_browser:
         self.chk4 = Tkinter.Radiobutton(self.left_pane, text="CyHV-3",
                                         bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
                                         activebackground="#333", variable=self.radio_var, value=4,
-                                        cursor="hand2")                               
+                                        cursor="hand2", command=self.load_khv)                               
         self.chk4.grid(row=3, column=0, padx=20, pady=5, sticky="w")        
 
         #### add middle search screens ####
@@ -199,29 +199,32 @@ class carp_browser:
     def load_carp(self):
         
         self.clear_text_box()                             
-        self.carp_amino_acids = Fasta("./data/V1.0.Commoncarp_gene.pep")
-        self.swiss_file = open("./data/swiss.genome_browser")        
-        self.load_swiss()  
-        #self.carp_nucleotides = Fasta("./data/genes.genome_browser")      
+        self.amino_acids = Fasta("./data/V1.0.Commoncarp_gene.pep")
+        self.swiss_handle = "./data/swiss.genome_browser"        
+        self.load_swiss()       
         self.exp_df = pd.read_csv("./data/genome_browser_melt_treat.htseq", delimiter="\t", index_col=0)
+        self.count_lines_in_textbox()        
+        self.data_loaded = True
+        
+    def load_khv(self):
+        
+        self.clear_text_box()                             
+        self.amino_acids = Fasta("./data/KHV3dq657948.faa")
+        self.swiss_handle = "./data/KHV3dq657948.uniq.products"       
+        self.load_swiss()       
+        #self.exp_df = pd.read_csv("./data/genome_browser_melt_treat.htseq", delimiter="\t", index_col=0)
         self.count_lines_in_textbox()        
         self.data_loaded = True
                 
     def load_swiss(self):
         
         # get a list of where tabs occur so can color columns later        
+        self.swiss_file = open(self.swiss_handle)        
         swiss_data = ""        
-        #tab_pat = re.compile(r"\t")
-        #tab_dict = {}
         line_count = 0
         for line in self.swiss_file:
             line_count += 1
-            swiss_data += line
-            #tmp_match = []
-            #for matches in re.finditer(tab_pat, line):
-            #    tmp_match.append(matches.start())
-            #tab_dict[line_count] = tmp_match
-            
+            swiss_data += line         
         self.swiss_text.insert(1.0, swiss_data) 
         #self.swiss_text.config(state=Tkinter.DISABLED)
         self.swiss_file.close()        
@@ -244,12 +247,12 @@ class carp_browser:
             self.swiss_text.tag_add("id_column", line_str + ".0", first_tab)
             self.swiss_text.tag_add("gene_column", first_tab, second_tab)
 
-    def load_carp_amino_acid(self, aa_id):        
+    def load_amino_acid(self, aa_id):        
         self.amino_text.delete(1.0, "end")
         self.amino_text.insert(1.0, ">" + aa_id + "\n")
-        self.amino_text.insert(2.0, self.carp_amino_acids[aa_id])
+        self.amino_text.insert(2.0, self.amino_acids[aa_id])
         
-    def load_carp_nucleotides(self, nucl_id):        
+    def load_nucleotides(self, nucl_id):        
         self.nucl_text.delete(1.0, "end")
         self.nucl_text.insert(1.0, ">" + nucl_id + "\n")
         self.nucl_text.insert(2.0, self.carp_nucleotides[nucl_id])
@@ -278,12 +281,13 @@ class carp_browser:
     def on_text_click(self, event):
         if self.data_loaded:
             index = self.swiss_text.index("@%s,%s" % (event.x, event.y))
-            line, char = index.split(".")
+            line, char = index.split(".")            
+            line_text = self.swiss_text.get(line + ".0", line + ".end").strip()           
+            line_gene_id = line_text.split("\t")[0]
             
-            line_gene_id = self.swiss_text.get(line + ".0", line + ".11").strip()
             if line_gene_id:
-                self.load_carp_amino_acid(line_gene_id)     
-                #self.load_carp_nucleotides(line_gene_id) 
+                self.load_amino_acid(line_gene_id)     
+                #self.load_nucleotides(line_gene_id) 
                 self.load_expression_figure(line_gene_id)  
             
             # if not highlighted, highlight, or else remove highlight
@@ -317,15 +321,17 @@ class carp_browser:
             self.clear_text_box()
             search_word = self.search.get().lower()
             pat = re.compile(search_word)
-            swiss_file = open("./data/swiss.genome_browser")
-            for line in swiss_file:
+            
+            swiss_data = open(self.swiss_handle)
+            
+            for line in swiss_data:
                 line = line.strip()
                 line_lower = line.lower()
                 if re.findall(pat, line_lower):
                     self.swiss_text.insert(Tkinter.INSERT, line + "\n")
             self.color_text_columns()
             self.count_lines_in_textbox()
-            swiss_file.close()
+            swiss_data.close()
 
     def count_lines_in_textbox(self):
         swiss_lines = int(self.swiss_text.index("end-1c").split(".")[0]) - 1
