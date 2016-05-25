@@ -1,77 +1,72 @@
 CLUSTAL 2.1 multiple sequence alignment
 
 
-ORF60           ---------------------------------MFHAEYASLAVDLTVDHKADQLSEGDY
-ORF61           MGIRSAGVFTYLNTARWLRALGVPTGPKTLRFKKADSRYGCCILDLTLTIHTICLSQASE
-ORF57           --------------------------------------MAARDIAMNQRGAAGDGGEDEE
-                                                       ..  : :.    :   .: . 
-
-ORF60           VQFTG-------------------------------QFCLSDLLG---------------
-ORF61           MNKYNGMGMSMDDAVDVVLDKIRGLLLAKLKATNLVVFCLDSMAGGLKFAVSAQRAHHRE
-ORF57           STFDN---------------------------------SCEDLPD---------------
-                    .                                 . ..: .               
-
-ORF60           -------PCVDDGSEKDVVFLHRLGRVKGELDKYPGQGYFTITGHRDQSVVAGTHDAP--
-ORF61           AWDDSLFVSMLKDSRHKANLFARIVEYVGTLELRPKQTVVILQRHDEDVEASRTRVQDGG
-ORF57           ----FVEACLTEENRKRYNIQD------GDFPPYRVAVHLSQKAFTAWDEVDYAALAD--
-                        .: . ..:   :        * :        .    .     .  :      
-
-ORF60           ---------------RDRIYQALG---------------------------------CGP
-ORF61           DGHYVYGTAVTGVGGRGWFHMASGSASTDEDLARLRALFQKFLEDTDRELHYESDMLCFQ
-ORF57           ------------------------------------------------------------
+cycg049855      ------------------------------------------------------------
+cycg008781      MNALSCLSWVLLFYIFCALAEKVPAPENVRGISLNMGLVLEWDPPQNTMNTLFNYTAEIK
+cycg020500      ------------------------------------------------------------
+cycg035130      ------------------------------------------------------------
+cycg006102      ------------------------------------------------------------
+cycg002318      MIRHICVGMVLTLLINTEGTFCLNPPQDVKIVRSN----LQWKPPDDDDSLLYSLQYKPS
+ORF134          ------------------------------------------------------------
+cycg029498      -------------MIRSEPAACACDCNYLR------------------------------
                                                                             
 
-ORF60           WHEWLPG---MPLAKQRETIVKSIHSYLGSKLQKEFRT---------------------F
-ORF61           VAEMLPERGVLGCPNRTTVLIESKDTDMAAILVARYGSSCERDGGDSGKRDALARSDLLF
-ORF57           ----------CLCEGTHLQAVHTHKLYVLACGALLWGKG---------------------
-                                    :.: .  : :     : .                      
+cycg049855      ------------------------------------------------------------
+cycg008781      GWNMYEPVCLSSSSLSCDFTDKVSSFGTYQLRVRAELHGETSDWVQTETLSLDLITEISA
+cycg020500      ------------------------------------------------------------
+cycg035130      ------------------------------------------------------------
+cycg006102      ------------------------------------------------------------
+cycg002318      --------------------------------------------------------SKTG
+ORF134          ------------------------------------------------------------
+cycg029498      ----------------------------------------------------------CP
+                                                                            
 
-ORF60           RS--EYLELKQKGTIQCTWSGSEVSQVCYTKTQSGVGVVHFKNLSRAVYPNN------VS
-ORF61           RSYRKFVDVDMDASLSLALCWVDVGELRPAPFVSSDGRVNGCPDPAAGFEGERDALLWLL
-ORF57           --------AWMDPQMMSRLYVHDVVKIKLLERVVYGFMMALQKALRIQKQGCR--MVGLE
-                           .  :       :* ::           :           .       : 
+cycg049855      ----LRSRKGQIEVDITDPPMKKRNLRDVFSNISYLIRFWKKDETKKEELITEQDRVMLP
+cycg008781      PHVELKSRKGQTEVDITDPPMKKKNLRDVFGNISYLIRYWKYGETKKEELIREQNRVVLP
+cycg020500      --------------------------MTVLSCLTVVLLFHIVCVRTEKVPAPENVRVISL
+cycg035130      -----------MVCAQGDDTVAQCRRVDCKTDCCSFVEGFPVRLKELRSAYREIQNFYES
+cycg006102      -MIFTGVILSALVMLLLTDS-AQCRRVDCKSDCCTFVEGFPVRLKELRSAYREIQRFYES
+cycg002318      DEWYNVTSHNGTQLRFQITPEFYGAVFRVRTEKGINVSEWQYSDSVKCANTNTCVPVLKL
+ORF134          ------MFLAVLLTATIFFEARGAPATTPKDSCVYLIGQTPQLLRQLRNAYQAIIGADGS
+cycg029498      ENVSTVDSLNTRYVLRWDWPHETAVHQNVTFTAQYIAERLYRKPRHEKYWTTVCVDVLEH
+                                                                            
 
-ORF60           DIASASSMFVKFLMSLRALHVAGASRTWIGYLSRITNSIDRGLLVDRNLVGQAFGG----
-ORF61           DFDSWTPLVDEFCVPVDGIKAFLEDEVWYGFLRACARTFTRGPLFRRTLLYMSSCMPAEK
-ORF57           DPEKVEDMKNFVLHKGFNHHYAFCDHHWQHWALGRSFEGELPDVVVKEMISDGLACT---
-                *  .   :   .       :    .. *  :    :       :. : ::  .       
+cycg049855      RLEPL--VNYC-VEVEILYLKNKSSQSSNITCLTNTPSNEVESWLIAVVLLVS---FLVV
+cycg008781      RLEPL--VKYC-VEVEILYSKNKS-QTSNITCLTNTPSNEVEPWLIAVVLLVS---FLLV
+cycg020500      NMG--------------LVLEWDPPQSTMYKPFTYTAEKKGWDKYEPVCLSSS---SLSC
+cycg035130      NDD-------------MEPLLDENVEQNINSPYGCHVMNEILRFYLDTILPTA---VQKD
+cycg006102      NDD-------------LEPLLNENVQQNINSPYGCNVMNEILHFYLDTILPTA---VQKN
+cycg002318      SVKPE--MAYVTMAHMDKSLEREYGENVAFNLSFWKVNNGGYSKAEFVITKSKNEHIFKL
+ORF134          GVD----------EDDMPIYPSDVMNELASTSVACDAIKKVLTMNIGILPNVT-----AA
+cycg029498      RCDFTGAELQYLALYLLRVCTNTPQQSSKWIQIRFCPDKHAALGPPSSVRLRSVKEHLEI
+                                         :            :                     
 
-ORF60           ----------------RFAGGALGPHFEGTETDTTGLRHYTHFFSSKAVDAVCEAFHTFE
-ORF61           LEELCRDVAKTGQPVYELVTASLGLSNLRLQNDGFCTTKDGAFFTFAGANKAAPAKDKRQ
-ORF57           ------------------LERAGPFSTLADWLESFSLRAYPQPMHKQIRQHLMEAFNNAQ
-                                     :          :          :     :    * .. :
+cycg049855      LVAVVLIFLAVWYGYKGFRIMFPDADLPEDLKKFLSQRSQSSILQAMQESTLMKEHFCEL
+cycg008781      LVAVVLIFLAVWFGYRGCRIIFPDADLPEDLKKFLSQRSQSSILSAMQENTPVKEDFCEL
+cycg020500      DFTDSVSIFGTYQ-----------------------LRVRAELHGETSDWVKTKELTVDL
+cycg035130      HLHSKTPINSIGN---------------------IFQDLKRDILKCRNYFFCQNPFEFAS
+cycg006102      HLRSTTPIDSIGN---------------------IFQDLKRDMRKCRNYFSCQNPFEIAS
+cycg002318      ESGENYCFQVQYL---------------------LFEKPYGNVSNQICAIIPETPETIKS
+ORF134          YPDKKSEVDEIGDN---------------------LSRLHQNIVNCRDFLKCEDLPHWHQ
+cycg029498      NIIDPLTSTNQS----------------------MKTLLDNNLSYLIQYWRRSEEPQLDP
+                                                         .:                 
 
-ORF60           AVSNTFMADVLERLTLNVHIR------RELIKLKTATEIRFQLDTLVESFTVS-------
-ORF61           SVASIMDLTHLLYASGRVPLSSYQRYCEERYKMVDDTGVCMSVDPEATAAACCGAAVGLS
-ORF57           DVDFPMFKSSLKFLAS----------MHCLYKTPRWSFMPSAVNTTLDTFDDC-------
-                 *   :    *   :            .   *    : :   ::.   :   .       
+cycg049855      RILHKEPNSSQDNQWIEGPIGIQTHKNECCIGANVKQNNEEKSEMIIITTEQKPLLAEIR
+cycg008781      RILHKEPISSLDNQQIEGPIRIQTHKNECCIGANVKQSSEEKS-KMIITTEQKPLLLE--
+cycg020500      IRDILKSYSSRSIQEIKSIVVLYSNK--------------CNTNWIVFYECIRTLAL---
+cycg035130      IKNSYEKMKEKGVYKAMGELDMLFKY----------------IEQYLASKRGKH------
+cycg006102      IKNSYEKMKEKGVSKAMGELDILFKY----------------IEQYLASKRVKHL-----
+cycg002318      RALLYSILTSFLVTAICGVCIFLLFK-------------HHKKAKQLFQPLRLEIPHHYQ
+ORF134          MAENYKEKPMQG----FSEMDFVFQS----------------VEKFLVAKDVKNMKTKRK
+cycg029498      HIAPCCKNKEQLLCNGCKIMCWLGDF----------------SHFCAFGKYYISLR----
+                                                                            
 
-ORF60           --------------KKRCLADYPNLYLRHVEAVAKDISMDGVEVDEN------------F
-ORF61           MYGTDYTNGLPSVGEKQATAALCVQYLFRELCRFSTLSLFGVAAGDGDDNRTLLGMVSRF
-ORF57           --------------------ACDVHVLRHVEGQNSCDCLCCRRQGCH-------------
-                                          * :     .  .:     .               
-
-ORF60           SEDDPEGSPSKKDSG------------GGKASASSSVSKKSGSGSGGGDKGKAGD-----
-ORF61           FGVSPRPSLTESEAANLMRHLTLPYKLWTEDRVYADLKERVAKGDDLSDVCVEGATLVIV
-ORF57           ---------------------------DEDCRPTAALDAAELRGEGMSD-----------
-                                             .    : :.     *.. .*           
-
-ORF60           ------KGDKGADETEDPGKDGWSVQLDTLDSVP------FRKACLYFPCAVARNTLESV
-ORF61           NIKNDFQTTRGRPHYSLRVEDGEPFLAEPTHTVNRQVCGVLDKALGQLDLKVIRDTAVTV
-ORF57           ---------DDDIESEEEALGAVKLDVGRMKQKR------MQKAMRYASAAAAADAADGQ
-                          .  . .    ..  .     .         : **       .  ::    
-
-ORF60           ILATATETFAKKHKQKINVYAPAQQAMGRG----VPIDLLQRQLDILKEGQSQPQNSQQQ
-ORF61           RKSETAANGRKRAPPRPKADQPRLSLSTRPPPAKRPSPEPRRGEEEKEEAKAEEEEEEKE
-ORF57           KMYSVKEPKVVAVKAQLVGVGDTDAPSSSTAAKDCADGKCQGPCNCERPPGPPTDYDKRV
-                    .          :                   .    :   :  .   .  : .:: 
-
-ORF60           LLAQLQKQLAQLQQQQQQW-----------------------------------------
-ORF61           KEEEVRSRFFQPQTLQPQQPKLACSTPSTPHSPSTLPSTTKPTSSPRETTSSSRDSSACQ
-ORF57           KAKKIRKPKNLPKTKS--------------------------------------------
-                   :::.     :  .                                            
-
-ORF60           --------------
-ORF61           TSWVPVWMTARKRM
-ORF57           --------------
-                              
+cycg049855      L
+cycg008781      -
+cycg020500      -
+cycg035130      -
+cycg006102      -
+cycg002318      E
+ORF134          H
+cycg029498      -
+                 

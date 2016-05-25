@@ -202,8 +202,9 @@ class carp_browser:
         self.amino_acids = Fasta("./data/V1.0.Commoncarp_gene.pep")
         self.swiss_handle = "./data/swiss.genome_browser"        
         self.load_swiss()       
-        self.exp_df = pd.read_csv("./data/genome_browser_melt_treat.htseq", delimiter="\t", index_col=0)
-        self.count_lines_in_textbox()        
+        self.exp_df = pd.read_csv("./data/carp.genome_browser.fpkm", delimiter="\t", index_col=0)
+        self.count_lines_in_textbox()
+        self.expression_y_label = "RPKM"
         self.data_loaded = True
         
     def load_khv(self):
@@ -212,8 +213,9 @@ class carp_browser:
         self.amino_acids = Fasta("./data/KHV3dq657948.faa")
         self.swiss_handle = "./data/KHV3dq657948.uniq.products"       
         self.load_swiss()       
-        #self.exp_df = pd.read_csv("./data/genome_browser_melt_treat.htseq", delimiter="\t", index_col=0)
-        self.count_lines_in_textbox()        
+        self.exp_df = pd.read_csv("./data/khv.genome_browser.fpkm", delimiter="\t", index_col=0)
+        self.count_lines_in_textbox()
+        self.expression_y_label = "RPKM (log10)"        
         self.data_loaded = True
                 
     def load_swiss(self):
@@ -266,10 +268,10 @@ class carp_browser:
         treat_colors = {"acute": "#e41a1c", "persistent": "#377eb8", "reactivation": "#984ea3",
                 "mock": "#4daf4a"}
 
-        sb.barplot(ax=a, data=gene_data, x="sample", y="RPKM", hue="treatment",
+        p = sb.barplot(ax=a, data=gene_data, x="sample", y="RPKM", hue="treatment",
                    palette=treat_colors)
-        #for item in p.get_xticklabels():
-        #    item.set_rotation(30)
+                   
+        p.set(ylabel=self.expression_y_label)
                    
         # remove previous figure
         if hasattr(self, "canvas"):
