@@ -1,0 +1,163 @@
+ORF1_1	protein ORF1	contains a potential transmembrane domain
+ORF2_1	protein ORF2	ORF2 family
+ORF3_1	protein ORF3	possibly ORF2 family
+ORF4_1	protein ORF4	contains a signal peptide possibly involved in immune regulation TNFR family
+ORF5_1	protein ORF5	contains a potential transmembrane domain
+ORF6_1	protein ORF6	contains a potential transmembrane domain
+ORF8_1	protein ORF8	contains a potential transmembrane domain
+ORF7_1	protein ORF7	contains a potential transmembrane domain
+ORF9	protein ORF9	ORF2 family
+ORF10	protein ORF10	ORF2 family
+ORF12	protein ORF12	contains a signal peptide possibly involved in immune regulation TNFR family
+ORF11	protein ORF11	contains a signal peptide possibly involved in immune regulation TNFR family
+ORF15	protein ORF15	contains a potential transmembrane domain
+ORF14	protein ORF14	contains a potential transmembrane domain
+ORF13	protein ORF13	contains a potential transmembrane domain
+ORF16	membrane protein ORF16	type 3 membrane protein contains a signal peptide 7 transmembrane domains similar to GPCRs possibly involved in intracellular signalling
+ORF17	protein ORF17	type 3 membrane protein contains a signal peptide 7 transmembrane domains similar to GPCRs possibly involved in intracellular signalling
+ORF18	protein ORF18	type 3 membrane protein contains a signal peptide 7 transmembrane domains similar to GPCRs possibly involved in intracellular signalling
+ORF19	deoxyguanosine kinase	involved in nucleotide metabolism
+ORF20	protein ORF20	involved in nucleotide metabolism
+ORF21	protein ORF21	involved in nucleotide metabolism
+ORF22	protein ORF22	ORF22 family
+ORF23	ribonucleotide reductase subunit 2	involved in nucleotide metabolism
+ORF24	protein ORF24	ORF22 family
+ORF25	membrane protein ORF25	type 1 membrane protein contains an Ig domain ORF25 family
+ORF26	truncated membrane protein ORF26	type 1 membrane protein ORF25 family frameshifted
+ORF27	truncated membrane protein ORF27	type 1 membrane protein contains an Ig domain ORF25 family frameshifted
+ORF28	protein ORF28	contains an NAD(P)-binding Rossmann-fold domain similar to bacterial NAD-dependent epimerase/dehydratase
+ORF29	membrane protein ORF29	type 3 membrane protein 8 transmembrane domains
+ORF30	truncated membrane protein ORF30	type 1 membrane protein frameshifted by a 23 bp deletion
+ORF33	DNA packaging terminase subunit 1	contains an ATPase domain involved in DNA encapsidation
+ORF31	protein ORF31	similar to eukaryotic PLAC8 proteins
+ORF32	protein ORF32	contains a signal peptide similar to a family of Singapore grouper iridovirus proteins
+ORF34	protein ORF34	contains a signal peptide
+ORF35	protein ORF35	contains a signal peptide
+ORF36	protein ORF36	contains a signal peptide
+ORF37	protein ORF37	contains a potential transmembrane domain
+ORF39	membrane protein ORF39	type 3 membrane protein 2 transmembrane domains contains a signal peptide
+ORF38	protein ORF38	contains a potential transmembrane domain
+ORF41	protein ORF41	RING family
+ORF40	truncated membrane protein ORF40	type 1 membrane protein contains an Ig domain frameshifted
+ORF42	protein ORF42	type 1 membrane protein contains an Ig domain frameshifted
+ORF43	protein ORF43	type 1 membrane protein contains an Ig domain frameshifted
+ORF44	protein ORF44	type 1 membrane protein contains an Ig domain frameshifted
+ORF45	protein ORF45	type 1 membrane protein contains an Ig domain frameshifted
+ORF46	helicase-primase primase subunit	putative involved in DNA replication
+ORF47	protein Allo64	weakly similar to herpesvirus DNA packaging terminase subunit 2 possibly involved in DNA replication
+ORF48	protein ORF48	similar to protein kinases possibly involved in protein phosphorylation
+ORF49	protein ORF49	similar to protein kinases possibly involved in protein phosphorylation
+ORF51	protein ORF51	similar to protein kinases possibly involved in protein phosphorylation
+ORF50	protein ORF50	similar to protein kinases possibly involved in protein phosphorylation
+ORF52	protein ORF52	contains a signal peptide
+ORF53	protein ORF53	contains a signal peptide
+ORF54	protein ORF54	contains a putative zinc-binding domain
+ORF55	thymidine kinase	involved in nucleotide metabolism
+ORF56	protein ORF56	involved in nucleotide metabolism
+ORF57	protein ORF57	similar to crocodilepox virus protein CRV155
+ORF61	protein Allo54	similar to crocodilepox virus protein CRV155
+ORF60	protein ORF60	similar to crocodilepox virus protein CRV155
+ORF59	protein ORF59	contains a potential transmembrane domain
+ORF62	protein ORF62	contains an OTU-like cysteine protease domain
+ORF63	protein ORF63	contains an OTU-like cysteine protease domain
+ORF64	membrane protein ORF64	type 3 membrane protein 12 transmembrane domains contains a signal peptide similar to equilibrative nucleoside transporter ENT1
+ORF65	membrane protein ORF65	type 1 membrane protein contains an Ig domain ORF25 family
+ORF69	protein ORF69	type 1 membrane protein contains an Ig domain ORF25 family
+ORF68	protein ORF68	similar to myosin and related proteins
+ORF67	protein ORF67	similar to myosin and related proteins
+ORF66	capsid triplex subunit 1	putative involved in capsid morphogenesis
+ORF70	protein ORF70	putative involved in capsid morphogenesis
+ORF71	helicase-primase helicase subunit	putative involved in DNA replication
+ORF72	capsid triplex subunit 2	putative involved in capsid morphogenesis
+ORF76	protein ORF76	putative involved in capsid morphogenesis
+ORF74	protein ORF74	putative involved in capsid morphogenesis
+ORF73	protein ORF73	putative involved in capsid morphogenesis
+ORF75	protein ORF75	putative involved in capsid morphogenesis
+ORF77	protein ORF77	putative involved in capsid morphogenesis
+ORF78	capsid maturation protease	putative involved in capsid morphogenesis
+ORF79	DNA polymerase catalytic subunit	involved in DNA replication
+ORF83	membrane protein ORF83	type 3 membrane protein 4 transmembrane domains
+ORF82	membrane protein ORF82	type 3 membrane protein 4 transmembrane domains
+ORF80	protein Allo60	type 3 membrane protein 4 transmembrane domains
+ORF81	membrane protein ORF81	type 3 membrane protein 4 transmembrane domains
+ORF85	protein ORF85	type 3 membrane protein 4 transmembrane domains
+ORF84	protein ORF84	type 3 membrane protein 4 transmembrane domains
+ORF87	protein ORF87	type 3 membrane protein 4 transmembrane domains
+ORF86	protein ORF86	type 3 membrane protein 4 transmembrane domains
+ORF88	protein ORF88	type 3 membrane protein 4 transmembrane domains
+ORF89	protein ORF89	type 3 membrane protein 4 transmembrane domains
+ORF90	protein Allo37	type 3 membrane protein 4 transmembrane domains
+ORF91	protein ORF91	type 3 membrane protein 4 transmembrane domains
+ORF92	major capsid protein	involved in capsid morphogenesis
+ORF93	protein ORF93	involved in capsid morphogenesis
+ORF94	truncated protein ORF94	similar to trypsin-like serine proteases contains a signal anchor frameshifted
+ORF97	protein ORF97	similar to trypsin-like serine proteases contains a signal anchor frameshifted
+ORF96	protein ORF96	similar to trypsin-like serine proteases contains a signal anchor frameshifted
+ORF95	protein ORF95	similar to trypsin-like serine proteases contains a signal anchor frameshifted
+ORF98	uracil-DNA glycosylase	involved in DNA repair
+ORF99	membrane protein Allo46	type 1 membrane protein
+ORF100	protein ORF100	type 1 membrane protein
+ORF101	protein ORF101	type 1 membrane protein
+ORF102	protein ORF102	type 1 membrane protein
+ORF103	protein ORF103	type 1 membrane protein
+ORF104	protein ORF104	similar to protein kinases possibly involved in protein phosphorylation
+ORF105	protein ORF105	marginal CDS
+ORF106	protein ORF106	contains a potential transmembrane domain
+ORF107	protein Allo56	contains a potential transmembrane domain
+ORF108	protein ORF108	contains a potential transmembrane domain
+ORF109	protein ORF109	contains a potential transmembrane domain
+ORF110	protein ORF110	contains a potential transmembrane domain
+ORF111	protein ORF111	contains a potential transmembrane domain
+ORF112	protein ORF112	contains a double-stranded nucleic acid-binding domain (helix-turn-helix)
+ORF113	protein ORF113	contains a double-stranded nucleic acid-binding domain (helix-turn-helix)
+ORF114	membrane protein ORF114	type 3 membrane protein 8 transmembrane domains similar to Danio rerio LOC569866
+ORF115	membrane protein ORF115	type 1 membrane protein
+ORF117	protein ORF117	contains a potential transmembrane domain
+ORF116	membrane protein ORF116	type 1 membrane protein
+ORF118	protein ORF118	type 1 membrane protein
+ORF119	protein ORF119	contains a signal peptide
+ORF120	protein ORF120	contains a signal peptide
+ORF121	protein ORF121	contains a signal peptide
+ORF122	protein ORF122	contains a signal peptide
+ORF123	deoxyuridine triphosphatase	involved in nucleotide metabolism
+ORF124	membrane protein ORF124	type 1 membrane protein
+ORF125	protein ORF125	contains a signal peptide
+ORF126	membrane protein ORF126	type 1 membrane protein
+ORF127	protein ORF127	contains a signal peptide
+ORF129	protein ORF129	possibly ORF2 family
+ORF128	protein ORF128	similar to SPRY and TRIM proteins RING family
+ORF131	membrane protein ORF131	type 1 membrane protein exons 1 and 2 are similar to exons 1 and 2 of Danio rerio LOC562542
+ORF130	protein ORF130	ORF2 family
+ORF132	membrane protein ORF132	type 1 membrane protein
+ORF133	protein ORF133	type 1 membrane protein
+ORF134	interleukin-10	contains a signal peptide involved in immune regulation
+ORF135	protein ORF135	possibly ORF2 family
+ORF136	membrane protein ORF136	type 1 membrane protein
+ORF138	membrane protein ORF138	type 1 membrane protein
+ORF137	protein ORF137	ORF22 family
+ORF139	membrane protein ORF139	type 1 membrane protein similar to poxvirus B22R proteins
+ORF140	thymidylate kinase	involved in nucleotide metabolism
+ORF141	ribonucleotide reductase subunit 1	involved in nucleotide metabolism
+ORF142	protein ORF142	involved in nucleotide metabolism
+ORF144	protein ORF144	RING family
+ORF143	protein ORF143	RING family
+ORF145	protein ORF145	RING family
+ORF148	membrane protein ORF148	type 1 membrane protein contains an Ig domain ORF25 family
+ORF147	protein ORF147	contains a signal peptide
+ORF146	membrane protein ORF146	type 1 membrane protein contains an Ig domain
+ORF149	membrane protein ORF149	type 1 membrane protein contains an Ig domain ORF25 family
+ORF150	protein ORF150	RING family
+ORF151	protein ORF151	RING family
+ORF152	protein ORF152	RING family
+ORF153	membrane protein ORF153	type 3 membrane protein 4 transmembrane domains ORF153 family
+ORF154	protein ORF154	contains a potential transmembrane domain
+ORF155	protein ORF155	contains a potential transmembrane domain
+ORF156	protein ORF156	contains a potential transmembrane domain
+ORF1_2	protein ORF1	contains a potential transmembrane domain
+ORF2_2	protein ORF2	ORF2 family
+ORF3_2	protein ORF3	possibly ORF2 family
+ORF4_2	protein ORF4	contains a signal peptide possibly involved in immune regulation TNFR family
+ORF5_2	protein ORF5	contains a potential transmembrane domain
+ORF6_2	protein ORF6	contains a potential transmembrane domain
+ORF8_2	protein ORF8	contains a potential transmembrane domain
+ORF7_2	protein ORF7	contains a potential transmembrane domain

@@ -17,17 +17,17 @@ from Bio.Align.Applications import ClustalwCommandline
 
 ## define global color palette
 
-root_background = "#95a5a6"
+root_background = "#d9dddd"
 side_bar_color = "#34495e"
 side_bar_text_color = "#bdc3c7"
 global_font = "Verdana"
-window_background = "#ecf0f1"
+window_background = "#eef1f2"
 window_text_gray = "#626e6f"
 window_text_red = "#e74c3c"
 window_text_green = "#2ecc71"
 highlight_color = "#e1e3e5"
-header_background_blue = "#2980b9"
-entry_background = "#7f8c8d"
+header_background_blue = "#3498db"
+entry_background = "#dce0e0"
 
 class carp_browser:
 
@@ -56,7 +56,7 @@ class carp_browser:
         
         #### add left option pane ####
 
-        self.left_pane = Tkinter.Frame(root, height=800, width=300, bg=side_bar_color,
+        self.left_pane = Tkinter.Frame(root, height=800, width=200, bg=side_bar_color,
                                        bd=0)
         self.left_pane.grid(row=0, column=0, padx=0, pady=0, sticky="nes")        
         
@@ -72,8 +72,8 @@ class carp_browser:
         self.chk1 = Tkinter.Label(self.carp_frame, text="Cyprinus carpio",
                                         bg=side_bar_color, fg=side_bar_text_color, 
                                         activebackground="#333",
-                                        cursor="hand2", font=(global_font, 12))
-        self.chk1.grid(row=0, column=1, padx=20, pady=5, sticky="w")        
+                                        cursor="hand2", font=(global_font, 10))
+        self.chk1.grid(row=0, column=1, padx=10, pady=5, sticky="w")        
         self.fish_icon = Tkinter.PhotoImage(file="./data/kitchen_fish_icon_2.gif") # image is 60 x 42 pixels
         self.carp_icon_label = Tkinter.Label(self.carp_frame, image=self.fish_icon,
                                         borderwidth=0) 
@@ -88,8 +88,8 @@ class carp_browser:
         self.chk2 = Tkinter.Label(self.dRerio_frame, text="Danio rerio",
                                         bg=side_bar_color, fg=side_bar_text_color, 
                                         activebackground="#333",
-                                        cursor="hand2", font=(global_font, 12))                               
-        self.chk2.grid(row=0, column=1, padx=20, pady=5, sticky="w")
+                                        cursor="hand2", font=(global_font, 10))                               
+        self.chk2.grid(row=0, column=1, padx=10, pady=5, sticky="w")
         self.dRerio_icon_label = Tkinter.Label(self.dRerio_frame, image=self.fish_icon,
                                         borderwidth=0) 
         self.dRerio_icon_label.grid(row=0, column=0, sticky="w") 
@@ -103,8 +103,8 @@ class carp_browser:
         self.chk3 = Tkinter.Label(self.tilapia_frame, text="Tilapia",
                                         bg=side_bar_color, fg=side_bar_text_color, 
                                         activebackground="#333",
-                                        cursor="hand2", font=(global_font, 12))                                       
-        self.chk3.grid(row=0, column=1, padx=20, pady=5, sticky="w")
+                                        cursor="hand2", font=(global_font, 10))                                       
+        self.chk3.grid(row=0, column=1, padx=10, pady=5, sticky="w")
         self.tilapia_icon_label = Tkinter.Label(self.tilapia_frame, image=self.fish_icon,
                                         borderwidth=0) 
         self.tilapia_icon_label.grid(row=0, column=0, sticky="w") 
@@ -117,8 +117,8 @@ class carp_browser:
         self.chk4 = Tkinter.Label(self.khv_frame, text="Cyprinid herpesvirus 3",
                                         bg=side_bar_color, fg=side_bar_text_color, 
                                         activebackground="#333",
-                                        cursor="hand2", font=(global_font, 12))                                                                      
-        self.chk4.grid(row=0, column=1, padx=20, pady=5, sticky="w")
+                                        cursor="hand2", font=(global_font, 10))                                                                      
+        self.chk4.grid(row=0, column=1, padx=10, pady=5, sticky="w")
         self.khv_icon = Tkinter.PhotoImage(file="./data/Virus2c.gif") # image is 36 x 42 pixels
         self.khv_icon_label = Tkinter.Label(self.khv_frame, image=self.khv_icon,
                                         borderwidth=0) 
@@ -134,8 +134,8 @@ class carp_browser:
         self.middle_pane.grid(row=0, column=1, padx=20, pady=10, sticky="n") 
         
         # create swiss text box
-        self.swiss_text = Tkinter.Text(self.middle_pane, width=80, height=10,
-                                       font=("Consolas", 12), padx=5, pady=5, spacing1=5,
+        self.swiss_text = Tkinter.Text(self.middle_pane, width=70, height=10,
+                                       font=(global_font, 10), padx=5, pady=5, spacing1=5,
                                         bg=window_background, fg=window_text_gray, insertbackground="#dcdccc",
                                         cursor="hand2", relief=Tkinter.FLAT)         
         self.swiss_text.grid(row=2, column=0, padx=0, pady=0, sticky="nsew") 
@@ -170,15 +170,20 @@ class carp_browser:
         self.search.bind("<Return>", self.search_text)
         self.search.grid(row=0, column=0, sticky="wns", pady=0)
         
-        self.search_button = Tkinter.Button(self.middle_pane_anot, text="Search", bg=entry_background,
-                                            font=("Consolas", 8), width=12,
-                                            command=self.search_text)
-        self.search_button.grid(row=0, column=1, sticky="ns", pady=0)
+        self.search_icon = Tkinter.PhotoImage(file="./data/search_icon.gif") # image is 25 x 25 pixels       
+        self.search_button = Tkinter.Button(self.middle_pane_anot, image=self.search_icon, bg=window_background,
+                                            font=(global_font, 10, "underline"), width=50,
+                                            command=self.search_text, relief=Tkinter.FLAT)
+        self.search_button.grid(row=0, column=1, sticky="ns", pady=0, padx=0)
+        
+ 
+
+        
         
         self.result_count_var = Tkinter.StringVar()
         self.word_count = Tkinter.Label(self.middle_pane_anot, width = 20, 
                                         bg=window_background, fg=window_text_gray,
-                                        font=(global_font, 12), textvariable=self.result_count_var)
+                                        font=(global_font, 10), textvariable=self.result_count_var)
         self.word_count.grid(row=0, column=3, sticky="e", padx=30)                            
         
         # add clicking and highlighting ability
@@ -188,7 +193,7 @@ class carp_browser:
         
         # add figure placeholder to bottom of middle pane
         self.f = Figure(figsize=(7,3), dpi=100)
-        self.f.set_facecolor("#3f3f3f")
+        self.f.set_facecolor(window_background)
         self.canvas = FigureCanvasTkAgg(self.f, master=self.middle_pane)
         self.canvas.get_tk_widget().grid(row=3, column=0, padx=0, pady=35, sticky="ns")
         
@@ -391,7 +396,7 @@ class carp_browser:
 
         if hasattr(self, "canvas"):
             self.f = Figure(figsize=(7,3), dpi=100)
-            self.f.set_facecolor("#3f3f3f")
+            self.f.set_facecolor(window_background)
             self.canvas = FigureCanvasTkAgg(self.f, master=self.middle_pane)
             self.canvas.get_tk_widget().grid(row=3, column=0, padx=0, pady=35, sticky="ns") 
      
