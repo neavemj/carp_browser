@@ -14,12 +14,21 @@ import seaborn as sb
 from Bio import Phylo
 from Bio.Align.Applications import ClustalwCommandline
 
+
+## define global color palette
+
+root_background = "#ecf0f1"
+side_bar_color = "#34495e"
+side_bar_text_color = "#bdc3c7"
+global_font = "Verdana"
+
+
 class carp_browser:
 
     def __init__(self, root):
         
         self.root = root
-        root.configure(background="#333")
+        root.configure(background=root_background)
         root.title(" Carp Genome Browser ")
         
         self.root.iconbitmap(r"./data/kitchen_fish_icon.ico") # change little TK icon     
@@ -41,33 +50,56 @@ class carp_browser:
         
         #### add left option pane ####
 
-        self.left_pane = Tkinter.Frame(root, height=800, width=300, bg="#333",
-                                       bd=0, relief=Tkinter.SUNKEN)
-        self.left_pane.grid(row=0, column=0, padx=20, pady=20, sticky="n")        
-          
-        self.radio_var = Tkinter.IntVar()
+        self.left_pane = Tkinter.Frame(root, height=800, width=300, bg=side_bar_color,
+                                       bd=0)
+        self.left_pane.grid(row=0, column=0, padx=0, pady=0, sticky="nes")        
+
+        # add frame for each label so can "highlight" species box in left side-bar        
         
-        self.chk1 = Tkinter.Radiobutton(self.left_pane, text="Cyprinus carpio",
-                                        bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
-                                        activebackground="#333", variable=self.radio_var, value=1,
-                                        cursor="hand2", command=self.load_carp)                               
+        self.carp_frame = Tkinter.Frame(self.left_pane, bg=side_bar_color, bd=1, 
+                                        relief=Tkinter.GROOVE, padx=30, pady=30, cursor="hand2")                                      
+        self.carp_frame.grid(row=0, column=0, padx=0, pady=0, sticky="nesw")      
+        self.chk1 = Tkinter.Label(self.carp_frame, text="Cyprinus carpio",
+                                        bg=side_bar_color, fg=side_bar_text_color, 
+                                        activebackground="#333",
+                                        cursor="hand2", font=(global_font, 12))
         self.chk1.grid(row=0, column=0, padx=20, pady=5, sticky="w")
+        self.carp_frame.bind("<1>", self.load_carp)        
+        self.chk1.bind("<1>", self.load_carp)  
         
-        self.chk2 = Tkinter.Radiobutton(self.left_pane, text="Danio Rerio",
-                                        bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
-                                        activebackground="#333", variable=self.radio_var, value=2,
-                                        cursor="hand2")                               
+        self.dRerio_frame = Tkinter.Frame(self.left_pane, bg=side_bar_color, bd=1, 
+                                        relief=Tkinter.GROOVE, padx=30, pady=30, cursor="hand2")                                      
+        self.dRerio_frame.grid(row=1, column=0, padx=0, pady=0, sticky="nesw")          
+        self.chk2 = Tkinter.Label(self.dRerio_frame, text="Danio rerio",
+                                        bg=side_bar_color, fg=side_bar_text_color, 
+                                        activebackground="#333",
+                                        cursor="hand2", font=(global_font, 12))                               
         self.chk2.grid(row=1, column=0, padx=20, pady=5, sticky="w")
-        self.chk3 = Tkinter.Radiobutton(self.left_pane, text="Tilapia",
-                                        bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
-                                        activebackground="#333", variable=self.radio_var, value=3,
-                                        cursor="hand2")                               
+        self.dRerio_frame.bind("<1>", self.load_dRerio) 
+        self.chk2.bind("<1>", self.load_dRerio)
+        
+        self.tilapia_frame = Tkinter.Frame(self.left_pane, bg=side_bar_color, bd=1, 
+                                        relief=Tkinter.GROOVE, padx=30, pady=30, cursor="hand2")                                      
+        self.tilapia_frame.grid(row=2, column=0, padx=0, pady=0, sticky="nesw")
+        self.chk3 = Tkinter.Label(self.tilapia_frame, text="Tilapia",
+                                        bg=side_bar_color, fg=side_bar_text_color, 
+                                        activebackground="#333",
+                                        cursor="hand2", font=(global_font, 12))                                       
         self.chk3.grid(row=2, column=0, padx=20, pady=5, sticky="w")
-        self.chk4 = Tkinter.Radiobutton(self.left_pane, text="CyHV-3",
-                                        bg="#333", fg="#efef8f", selectcolor="#3f3f3f", 
-                                        activebackground="#333", variable=self.radio_var, value=4,
-                                        cursor="hand2", command=self.load_khv)                               
-        self.chk4.grid(row=3, column=0, padx=20, pady=5, sticky="w")        
+        #self.tilapia_frame.bind("<1>", self.load_tilapia)
+        #self.chk3.bind("<1>", self.load_tilapia)
+        
+        self.khv_frame = Tkinter.Frame(self.left_pane, bg=side_bar_color, bd=1, 
+                                        relief=Tkinter.GROOVE, padx=30, pady=30, cursor="hand2")                                      
+        self.khv_frame.grid(row=3, column=0, padx=0, pady=0, sticky="nesw")
+        self.chk4 = Tkinter.Label(self.khv_frame, text="Cyprinid herpesvirus 3",
+                                        bg=side_bar_color, fg=side_bar_text_color, 
+                                        activebackground="#333",
+                                        cursor="hand2", font=(global_font, 12)) 
+                                                                      
+        self.chk4.grid(row=3, column=0, padx=20, pady=5, sticky="w") 
+        self.khv_frame.bind("<1>", self.load_khv)
+        self.chk4.bind("<1>", self.load_khv)
 
         #### add middle search screens ####
 
@@ -196,22 +228,33 @@ class carp_browser:
         # boolean variable ensuring nothing happens until some data is loaded
         self.data_loaded = False
                                   
-    def load_carp(self):
+    def load_carp(self, *args):
         
         self.clear_text_box()                             
-        self.amino_acids = Fasta("./data/V1.0.Commoncarp_gene.pep")
-        self.swiss_handle = "./data/swiss.genome_browser"        
+        self.amino_acids = Fasta("./data/carp.genome_browser.faa")
+        self.swiss_handle = "./data/carp.genome_browser.swiss.annot"        
         self.load_swiss()       
         self.exp_df = pd.read_csv("./data/carp.genome_browser.fpkm", delimiter="\t", index_col=0)
         self.count_lines_in_textbox()
         self.expression_y_label = "RPKM"
         self.data_loaded = True
-        
-    def load_khv(self):
+ 
+    def load_dRerio(self, *args):
         
         self.clear_text_box()                             
-        self.amino_acids = Fasta("./data/KHV3dq657948.faa")
-        self.swiss_handle = "./data/KHV3dq657948.uniq.products"       
+        self.amino_acids = Fasta("./data/dRerio.genome_browser.faa")
+        self.swiss_handle = "./data/dRerio.genome_browser.annot"        
+        self.load_swiss()       
+        self.exp_df = None
+        self.count_lines_in_textbox()
+        self.expression_y_label = "RPKM"
+        self.data_loaded = True
+        
+    def load_khv(self, *args):
+        
+        self.clear_text_box()                             
+        self.amino_acids = Fasta("./data/khv.genome_browser.faa")
+        self.swiss_handle = "./data/khv.genome_browser.annot"       
         self.load_swiss()       
         self.exp_df = pd.read_csv("./data/khv.genome_browser.fpkm", delimiter="\t", index_col=0)
         self.count_lines_in_textbox()
