@@ -29,6 +29,7 @@ highlight_color = "#e1e3e5"
 header_background_blue = "#3498db"
 header_text_white = "white"
 entry_background = "#dce0e0"
+clouds = "#ecf0f1"
 
 ## other globals
 figure_size = (6.6, 3)
@@ -143,7 +144,7 @@ class carp_browser:
         self.swiss_frame = Tkinter.Frame(self.large_grid, bg=root_background, bd=0)
         self.swiss_frame.grid(row=0, column=0, padx=widget_padx, pady=widget_pady, sticky="n")
         
-        self.swiss_text = Tkinter.Text(self.swiss_frame, width=80, height=10,
+        self.swiss_text = Tkinter.Text(self.swiss_frame, width=80, height=11,
                                        font=(global_font, 10), padx=0, pady=5, spacing1=5,
                                         bg=window_background, fg=window_text_gray, insertbackground="#dcdccc",
                                         cursor="hand2", relief=Tkinter.FLAT)         
@@ -174,13 +175,13 @@ class carp_browser:
  
         
         self.search = Tkinter.Entry(self.swiss_search_frame, width=28,
-                                          font=(global_font, 11), bg=entry_background,
+                                          font=(global_font, 11), bg=clouds,
                                             relief=Tkinter.FLAT)
         self.search.bind("<Return>", self.search_text)
         self.search.grid(row=0, column=0, sticky="wns", pady=0)
         
         self.search_icon = Tkinter.PhotoImage(file="./data/search_icon.gif") # image is 25 x 25 pixels       
-        self.search_button = Tkinter.Button(self.swiss_search_frame, image=self.search_icon, bg=window_background,
+        self.search_button = Tkinter.Button(self.swiss_search_frame, image=self.search_icon, bg=clouds,
                                             font=(global_font, 10, "underline"), width=50,
                                             command=self.search_text, relief=Tkinter.FLAT)
         self.search_button.grid(row=0, column=1, sticky="ns", pady=0, padx=0)
@@ -199,14 +200,14 @@ class carp_browser:
         # add figure frame
         self.figure_frame = Tkinter.Frame(self.large_grid, bg=window_background,
                                          bd=0, relief=Tkinter.FLAT)
-        self.figure_frame.grid(row=1, column=0, padx=widget_padx, pady=widget_pady, sticky="ew")  
+        self.figure_frame.grid(row=1, column=0, padx=widget_padx, pady=widget_pady, sticky="")  
         
         # also add blue header for figure placeholder
         self.figure_header = Tkinter.Frame(self.figure_frame, bg=header_background_blue,
                                          bd=0)
         self.figure_header.grid(row=0, column=0, padx=0, pady=0, sticky="ew") 
         
-        self.figure_header_label = Tkinter.Label(self.figure_header, width = 20, 
+        self.figure_header_label = Tkinter.Label(self.figure_header, width = 13, 
                                         bg=header_background_blue, fg=header_text_white,
                                         font=(global_font, 12), text="Expression")
         self.figure_header_label.grid(row=0, column=0, sticky="w", padx=0, pady=10)
@@ -218,14 +219,14 @@ class carp_browser:
         
         #### add right nucleotide and amino acid boxes ####
 
-        self.amino_frame = Tkinter.Frame(self.large_grid, height=800, width=400, bg=root_background,
-                                        bd=0, relief=Tkinter.SUNKEN)
-        self.amino_frame.grid(row=0, column=1, padx=widget_padx, pady=widget_pady, sticky="n")
+        self.amino_frame = Tkinter.Frame(self.large_grid, bg=window_background,
+                                        bd=0, relief=Tkinter.FLAT)
+        self.amino_frame.grid(row=0, column=1, padx=widget_padx, pady=widget_pady, sticky="sn")
         
         # add blue header for annotation box
         self.amino_header = Tkinter.Frame(self.amino_frame, bg=header_background_blue,
                                          bd=0)
-        self.amino_header.grid(row=0, column=0, padx=0, pady=0, sticky="ew") 
+        self.amino_header.grid(row=0, column=0, columnspan=2, padx=0, pady=0, sticky="nsew") 
         
         self.amino_header_label = Tkinter.Label(self.amino_header, width = 20, 
                                         bg=header_background_blue, fg=header_text_white,
@@ -233,9 +234,10 @@ class carp_browser:
         self.amino_header_label.grid(row=0, column=0, sticky="w", padx=0, pady=10) 
         
         # create amino acid text box
-        self.amino_text = Tkinter.Text(self.amino_frame, width = 40, height = 10,
+        self.amino_text = Tkinter.Text(self.amino_frame, width = 50, height = 12,
                                       font=("Consolas", 10), padx=5, pady=5, spacing1=5,
-                                        bg=window_background, fg=window_text_gray, insertbackground="#dcdccc")
+                                        bg=window_background, fg=window_text_gray, insertbackground="#dcdccc",
+                                        relief=Tkinter.FLAT)
         self.amino_text.grid(row=1, column=0, padx=0, pady=0, sticky="")
         
         # add scroll bar for amino acid textbox
@@ -244,64 +246,78 @@ class carp_browser:
         
         self.amino_text.config(yscrollcommand=amino_scroll.set)
         amino_scroll.config(command=self.amino_text.yview)
-        
+      
         # add button to copy from amino acid box to alignment box
-        self.amino_add_button = Tkinter.Button(self.amino_frame, width = 25, bg="gray",
-                                        font=("Consolas", 8), text="Copy to alignment box",
-                                        command=self.copy_to_alignment_box)
-        self.amino_add_button.grid(row=2, column=0, sticky="wn", pady=5)  
+        self.amino_add_button = Tkinter.Button(self.amino_frame, width = 10, bg=window_background,
+                                        font=(global_font, 12, "bold"), text="COPY", fg=window_text_green,
+                                        command=self.copy_to_alignment_box, relief=Tkinter.FLAT)
+        self.amino_add_button.grid(row=2, column=0, sticky="wn", pady=0, padx=0)  
         
         # add button to clear amino acid box
-        self.amino_clear = Tkinter.Button(self.amino_frame, width = 15, bg="gray",
-                                        font=("Consolas", 8), text="Clear",
-                                        command=self.clear_amino_window)
-        self.amino_clear.grid(row=2, column=0, sticky="en", pady=5)        
+        self.amino_clear = Tkinter.Button(self.amino_frame, width = 10, bg=window_background,
+                                        font=(global_font, 12, "bold"), text="CLEAR", fg=window_text_red,
+                                        command=self.clear_amino_window, relief=Tkinter.FLAT)
+        self.amino_clear.grid(row=2, column=0, sticky="en", pady=0, padx=0)        
 
         ## add frame for alignment box
-        self.align_frame = Tkinter.Frame(self.large_grid, bg=root_background,
-                                        bd=0, relief=Tkinter.SUNKEN)
-        self.align_frame.grid(row=1, column=1, padx=0, pady=10, sticky="n")
+        self.align_frame = Tkinter.Frame(self.large_grid, bg=window_background,
+                                        bd=0, relief=Tkinter.FLAT)
+        self.align_frame.grid(row=1, column=1, padx=widget_padx, pady=widget_pady, sticky="ns")
         
-        # add label for alignment box
-        self.align_label = Tkinter.Label(self.align_frame, width = 20, bg="#333", fg="#dcdccc",
-                                        font=("Consolas", 10), text="Alignment box")
-        self.align_label.grid(row=0, column=0, sticky="s", pady=5)                            
+        # add blue header for alignment box
+        self.align_header = Tkinter.Frame(self.align_frame, bg=header_background_blue,
+                                         bd=0)
+        self.align_header.grid(row=0, column=0, columnspan=2, padx=0, pady=0, sticky="nsew") 
+        
+        self.align_header_label = Tkinter.Label(self.align_header, width = 15, 
+                                        bg=header_background_blue, fg=header_text_white,
+                                        font=(global_font, 12), text="Alignment box")
+                                        
+        self.align_header_label.grid(row=0, column=0, sticky="w", padx=0, pady=10)                                    
                             
-        # create alignment text box
-        self.align_text = Tkinter.Text(self.align_frame, width = 40, height = 11,
+        ## create alignment text box
+        self.align_text = Tkinter.Text(self.align_frame, width = 50, height = 13,
                                       font=("Consolas", 10), padx=5, pady=5, spacing1=5,
-                                        bg=window_background, fg=window_text_gray, insertbackground="#dcdccc")
+                                        bg=window_background, fg=window_text_gray, insertbackground="#dcdccc",
+                                        relief=Tkinter.FLAT)
         self.align_text.grid(row=1, column=0, padx=0, pady=0,
                             sticky="s")
         self.alignment_in_window = False
         
         # add button to initiate alignment
-        self.align_button = Tkinter.Button(self.align_frame, width = 15, bg="gray",
-                                        font=("Consolas", 8), text="Align",
-                                        command=self.align_amino_acids)
-        self.align_button.grid(row=2, column=0, sticky="wn", pady=5) 
+        self.align_button = Tkinter.Button(self.align_frame, width = 9, bg=window_background,
+                                        font=(global_font, 12, "bold"), text="ALIGN",
+                                        fg=window_text_green, command=self.align_amino_acids, 
+                                        relief=Tkinter.FLAT)
+        self.align_button.grid(row=2, column=0, sticky="wn", pady=0) 
         
         # add button to draw phylogenetic tree
-        self.align_button = Tkinter.Button(self.align_frame, width = 15, bg="gray",
-                                        font=("Consolas", 8), text="Draw tree",
-                                        command=self.draw_tree_alignment)
-        self.align_button.grid(row=2, column=0, sticky="n", pady=5) 
+        self.align_button = Tkinter.Button(self.align_frame, width = 9, bg=window_background,
+                                        font=(global_font, 12, "bold"), text="TREE",
+                                        fg=header_background_blue, command=self.draw_tree_alignment, 
+                                        relief=Tkinter.FLAT)
+        self.align_button.grid(row=2, column=0, sticky="n", pady=0) 
         self.tree_in_window = False
         
         # add button to clear alignment window
-        self.align_clear = Tkinter.Button(self.align_frame, width = 15, bg="gray",
-                                        font=("Consolas", 8), text="Clear",
-                                        command=self.clear_align_window)
-        self.align_clear.grid(row=2, column=0, sticky="en", pady=5)
+        self.align_clear = Tkinter.Button(self.align_frame, width = 9, bg=window_background,
+                                        font=(global_font, 12, "bold"), text="CLEAR",
+                                        fg=window_text_red, command=self.clear_align_window, 
+                                        relief=Tkinter.FLAT)
+        self.align_clear.grid(row=2, column=0, sticky="en", pady=0)
         
         # add scroll bar for alignment textbox
         align_scroll = Tkinter.Scrollbar(self.align_frame)       
         align_scroll.grid(row=1, column=1, sticky="nse")
         
         self.align_text.config(yscrollcommand=align_scroll.set)
-        align_scroll.config(command=self.align_text.yview)
-        
-        #         
+        align_scroll.config(command=self.align_text.yview)   
+
+        # make widgets resize with window
+        self.large_grid.grid_columnconfigure(0, weight=1)  
+        self.large_grid.grid_columnconfigure(1, weight=1) 
+        self.large_grid.grid_rowconfigure(0, weight=1)
+        self.large_grid.grid_rowconfigure(1, weight=1)
         
         # boolean variable ensuring nothing happens until some data is loaded
         self.data_loaded = False
@@ -514,7 +530,7 @@ class carp_browser:
             self.clear_align_window()
             tree = Phylo.read(r"./tmp_files/tmp_amino_acids.dnd", "newick")
             with open(r"./tmp_files/tmp_ascii_tree", "w") as fh:
-                Phylo.draw_ascii(tree, file=fh, column_width=70)
+                Phylo.draw_ascii(tree, file=fh, column_width=45)
             
             for line in open(r"./tmp_files/tmp_ascii_tree"):
                 self.align_text.insert(Tkinter.INSERT, line)
