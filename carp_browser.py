@@ -32,7 +32,7 @@ entry_background = "#dce0e0"
 clouds = "#ecf0f1"
 
 ## other globals
-figure_size = (6.6, 3)
+figure_size = (8, 4)
 widget_padx = 10
 widget_pady = 10
 
@@ -66,7 +66,7 @@ class carp_browser:
 
         self.left_pane = Tkinter.Frame(root, height=800, width=200, bg=side_bar_color,
                                        bd=0)
-        self.left_pane.grid(row=0, column=0, padx=0, pady=0, sticky="nes")        
+        self.left_pane.grid(row=0, column=0, padx=0, pady=0, sticky="nes")   
         
         self.left_pane_label = Tkinter.Label(self.left_pane, text="",
                                         bg=side_bar_color, fg=side_bar_text_color, 
@@ -144,11 +144,13 @@ class carp_browser:
         self.swiss_frame = Tkinter.Frame(self.large_grid, bg=root_background, bd=0)
         self.swiss_frame.grid(row=0, column=0, padx=widget_padx, pady=widget_pady, sticky="n")
         
-        self.swiss_text = Tkinter.Text(self.swiss_frame, width=80, height=11,
+        self.swiss_text = Tkinter.Text(self.swiss_frame, width=80, height=12,
                                        font=(global_font, 10), padx=0, pady=5, spacing1=5,
                                         bg=window_background, fg=window_text_gray, insertbackground="#dcdccc",
                                         cursor="hand2", relief=Tkinter.FLAT)         
-        self.swiss_text.grid(row=2, column=0, padx=0, pady=0, sticky="nsew") 
+        self.swiss_text.grid(row=2, column=0, padx=0, pady=0, sticky="nsew")
+        
+        
                                       
         # add scroll bar to swiss text box
         swiss_scroll = Tkinter.Scrollbar(self.swiss_frame)       
@@ -197,15 +199,18 @@ class carp_browser:
         self.swiss_text.tag_configure("highlight", background=highlight_color)
         self.swiss_text.bind("<1>", self.on_text_click)
         
+        self.swiss_frame.grid_columnconfigure(0, weight=1) 
+        #self.swiss_frame.grid_rowconfigure(0, weight=1)
+        
         # add figure frame
         self.figure_frame = Tkinter.Frame(self.large_grid, bg=window_background,
                                          bd=0, relief=Tkinter.FLAT)
-        self.figure_frame.grid(row=1, column=0, padx=widget_padx, pady=widget_pady, sticky="")  
+        self.figure_frame.grid(row=1, column=0, padx=widget_padx, pady=widget_pady, sticky="nsew")  
         
         # also add blue header for figure placeholder
         self.figure_header = Tkinter.Frame(self.figure_frame, bg=header_background_blue,
                                          bd=0)
-        self.figure_header.grid(row=0, column=0, padx=0, pady=0, sticky="ew") 
+        self.figure_header.grid(row=0, column=0, padx=0, pady=0, sticky="nsew") 
         
         self.figure_header_label = Tkinter.Label(self.figure_header, width = 13, 
                                         bg=header_background_blue, fg=header_text_white,
@@ -215,7 +220,9 @@ class carp_browser:
         self.f = Figure(figsize=figure_size, dpi=100)
         self.f.set_facecolor(window_background)
         self.canvas = FigureCanvasTkAgg(self.f, master=self.figure_frame)
-        self.canvas.get_tk_widget().grid(row=1, column=0, padx=0, pady=0, sticky="ew")
+        self.canvas.get_tk_widget().grid(row=1, column=0, padx=0, pady=0, sticky="nsew")
+
+        self.figure_frame.grid_columnconfigure(0, weight=1)        
         
         #### add right nucleotide and amino acid boxes ####
 
@@ -258,6 +265,8 @@ class carp_browser:
                                         font=(global_font, 12, "bold"), text="CLEAR", fg=window_text_red,
                                         command=self.clear_amino_window, relief=Tkinter.FLAT)
         self.amino_clear.grid(row=2, column=0, sticky="en", pady=0, padx=0)        
+
+        self.amino_frame.grid_columnconfigure(0, weight=1)
 
         ## add frame for alignment box
         self.align_frame = Tkinter.Frame(self.large_grid, bg=window_background,
@@ -313,11 +322,13 @@ class carp_browser:
         self.align_text.config(yscrollcommand=align_scroll.set)
         align_scroll.config(command=self.align_text.yview)   
 
+        self.align_frame.grid_columnconfigure(0, weight=1)
+        
         # make widgets resize with window
         self.large_grid.grid_columnconfigure(0, weight=1)  
-        self.large_grid.grid_columnconfigure(1, weight=1) 
+        #self.large_grid.grid_columnconfigure(1, weight=1) 
         self.large_grid.grid_rowconfigure(0, weight=1)
-        self.large_grid.grid_rowconfigure(1, weight=1)
+        #self.large_grid.grid_rowconfigure(1, weight=1)
         
         # boolean variable ensuring nothing happens until some data is loaded
         self.data_loaded = False
@@ -416,6 +427,7 @@ class carp_browser:
                    palette=treat_colors, alpha=0.75)
                    
         p.set(ylabel=self.expression_y_label)
+        p.set(xlabel="")
                    
         # remove previous figure
         if hasattr(self, "canvas"):
@@ -546,7 +558,9 @@ class carp_browser:
             
 if __name__ == "__main__":
     root = Tkinter.Tk()
-    #root.geometry("+100+100")
+    root.columnconfigure(1, weight=1)
+    root.rowconfigure(1, weight=1)
+    root.geometry("+0+0")
     app = carp_browser(root)
     root.mainloop()
 

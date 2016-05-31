@@ -1,58 +1,42 @@
 CLUSTAL 2.1 multiple sequence alignment
 
 
-ORF7_1          MSSSEYDSETEQQRQQQVKAARKFASSTPRSARPPTAGTSSARVPVAKKSVRATDLSDYE
-ORF6_1          MRFYVHSYEGDAFWIKPRKNGDWEWKKFSAGARHRSTVKSFGPKLANPRKAFNDSKNDIE
-                *    :. * :    :  * .    .. . .**  :: .* .   .  :..   . .* *
+ORF12           ------------------------------------------------------------
+ORF9            MEGTHFSLYYEYEYDSSKTIPTIPTMAPVKRSSSSAASSASSVSSKRPKYEEDPDYSIVK
+                                                                            
 
-ORF7_1          PDEIERLHEQMRQRYRETD-LQGPLEHDNQPLTHGKTLVVLSGGEETEEEVVEEALAVEE
-ORF6_1          CYHVTCGNSGYLIRKRLTDGWWCAKNAEGTPYQRHAVACIRADLVDHAESHLYTEWWFEW
-                  .:   :.    * * **    . : :. *  :  .  : :.  :  *. :     .* 
+ORF12           ------------------------------------------------------------
+ORF9            PKRVRPKKAVAAVGTRKSARLGDRRTASETEAVLTDSRKKIIEKTRELQRYLLRRDMAVS
+                                                                            
 
-ORF7_1          EEDSEDVVVRRKSSKHGEKEKKKSKSKSKDKRERREKEKRDKKKKDKSKHKSKKHVVEEE
-ORF6_1          CSVPTGTLLNGRPNHFAPTHTLTAEEKFELG---TSPVKKPDPKLPKTQHQTLKPIYRVK
-                 . . ..::. :..:.. ... .::.* :      .  *: . *  *::*:: * : . :
+ORF12           ------------------------------------------------------------
+ORF9            EAGTPYPNVVTAPKDADGKIILDYVPKPHHESLDVEIQFMHDTEDDVFDEQTVLFRAYKK
+                                                                            
 
-ORF7_1          EDDVSVSGPSQPTPPPKHKPKRVRVELDESEIEQSDEEPRKRPESDSEFAPPLTEPERRS
-ORF6_1          ADGAAFFIVNRNAQQKFDWVQFTTLQPTGLSPQQQAYGPPVYDSESALSTRCPPLPFKGG
-                 *..:.   .: :    .  : . ::    . :*.   *    ...:  :   . * : .
+ORF12           -------MKLLVILGLGLCYLAVQAKPTRHSSCG--------------------------
+ORF9            MMPSRCRPHKLHMLGHAIYRIACSLVPSLGSNAGFAVKLNEIRLALLKGAHIYTLDDVII
+                        : * :** .:  :* .  *:  *..*                          
 
-ORF7_1          KWYKARRDRHYRARLKAKEQAAAAEMDMTVPDYRQYIKEHGTRRARPKQKPKTVRKDSRS
-ORF6_1          SWILHWRDTQH---CLYKKKGSDSDIWMRSTTSSLAFRLYKVKLCHITGADRTWWEWHVM
-                .*    ** ::      *::.: ::: *  .     :: : .: .: .   :*  :    
+ORF12           -----------ETEYYETELQKCCQKCQPGTK------FKSVCTKD-------------S
+ORF9            GYGYDLSEDLEKLALPEVDEDDECLEWLVKLRSVGLMCMRAACCSERLSESGKPYTVDGM
+                           :    *.: :. * :     :      :::.* .:              
 
-ORF7_1          RSRSTPPNSSGQQRLGESRTPVVMLDRSEVEMVPEERSPPRAKEGGKRKRKRSPSPSEPK
-ORF6_1          TKDEVPQGVQVRLFGKELEESVNQGRNYGKEEFLSDFDLEEEEDSSDEEEEEASTSTTAA
-                 . ..* . . :    * . .*    .   * . .: .  . ::....:.:.:.:.: . 
+ORF12           PTVCEACVAGS------------TYSATHNYYENCFSCDKCSGGRKVVKEQ-----CTPT
+ORF9            PGACASAFQTANWLGLPVFNSWMGYATFVDLWHHRLQQDTTDNFSTILVEADEHGSCKPS
+                * .* :..  :             *::  : :.: :. *. ..  .:: *      *.*:
 
-ORF7_1          SKQHKHSDKSDKGADKPWKQSADRWAADWKPQESSDEDAPGPSRRKHRRQERREKLGPYA
-ORF6_1          TTTTTPAPTSDAETEVPIKTEPQDTSCDEAATEDVKPDLAKLTAKPEEKPSKKPAKSTPP
-                :.  . : .**  :: * * ..:  :.*  . *. . * .  : : ..: .::   .. .
+ORF12           KNTVCGCQGDYEMKTVGGTNMCRKPKRS--------------------------------
+ORF9            EVLIFQANNRTTWSSVRESSFFRNQWRLGKRLTEMGFMQLMADASVASTDTTSTADLKAL
+                :  :  .:.    .:*  :.: *:  *                                 
 
-ORF7_1          ARESIPITHCKKAFMCLAMEMCYRFGSMGEMNKTGSMQKVCDLAAKRWDTVRRGFAPYDP
-ORF6_1          HQQPTPP-------------------------------------------------PHQP
-                 ::. *                                                  *::*
+ORF12           ------------------------------------------------------------
+ORF9            TLADFDKAYRWAKLLHRGDGAVPQRNWMTLVPEPEEPEWTAEELALVHPAEPKLKANESP
+                                                                            
 
-ORF7_1          SSLLLKKVKQYADNVTSSSDDEETAAAEVQQQTAPEPAPRTPTPPPPPPQHQVAQLSDGE
-ORF6_1          T----PQPPQQPTKPQQSAQIPQHPAAPAPRQMPSQVPATSQAEGPPTPEQNVMSMR--Y
-                :     :  * . :  .*::  : .** . :* ..: .. : :  **.*:::* .:    
+ORF12           ------------------------------------------------------------
+ORF9            LISDVHLQQESDHFNNRGTHPSYKLTDMGHALMLASHMNVRFELFEDVPLVKQRDLIDCL
+                                                                            
 
-ORF7_1          GEEESAPAPVTVTVPKQEQEDLYFSRLASREQRRAAKSTPPPQQTETILISDSDDDDEPA
-ORF6_1          YTTDWDPYWVIDRSTMGPTVWTWFRPPGITLFKSVGPPRLPPITGPMLPVHN--------
-                   :  *  *    .       :*   .    : .. .  **     : : :        
-
-ORF7_1          ADAGEEEVMSTADRDPQETADDAETADDAEEGEDAEEGEVPQDATAEPETPEPETETQVT
-ORF6_1          FTLGQTSFILKKSDWQDAICMDNQWYKWRFCTMDRQIPDGLNTASEWQEFAETSTPASVL
-                   *: ..: . .   :  . * :  .      * :  :  : *:   * .*..* :.* 
-
-ORF7_1          HVPETQRSSADADAGEPSTPNSTLLTPSLHQQLAVLAFIKQEPRGEEADDEEDEDADESD
-ORF6_1          AGVLEHSLFTSATSAEPHVP------APLHQAAPAIPKAKSKKRPAPSSASQSAEPSPKT
-                     :   :.* :.** .*      ..***  ..:.  *.: *   :. .:. :.. . 
-
-ORF7_1          GDEDACMFVRVVSEPLDPALLEAERVRRRSDREQRAERARESGLPEPEEPDAEEEEAAVV
-ORF6_1          PKSAERIELSPGSPPASPSHSAHS-----AHSAHSAHSAHSSHKEKEKKHKHKKHRSERE
-                 ..   : :   * * .*:    .     :.  : *. *:.*   : :: . ::..:   
-
-ORF7_1          AAVAAQVAKRGPGRPVGSKNKKRGRRARK
-ORF6_1          RSEKRDKSKKKSREYVEPDSDSDSD----
-                 :   : :*: . . * ..... .     
+ORF12           ----------------------------------------------------------
+ORF9            LAHFAKVGRRPWQVCMGVDLTRMDRERFYSVALRKTKHGVEPCTPALITGVHEYDLIA
+                                                                          
