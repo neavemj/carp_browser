@@ -1,42 +1,26 @@
 CLUSTAL 2.1 multiple sequence alignment
 
 
-ORF12           ------------------------------------------------------------
-ORF9            MEGTHFSLYYEYEYDSSKTIPTIPTMAPVKRSSSSAASSASSVSSKRPKYEEDPDYSIVK
-                                                                            
+cycg035130          ----------MVCAQGDDTVAQCRRVDCKTDCCSFVEGFPVRLKELRSAYREIQNFYES-
+cycg006102          MIFTGVILSALVMLLLTDS-AQCRRVDCKSDCCTFVEGFPVRLKELRSAYREIQRFYES-
+NP_001018621.2      MIFSGVILSALLTLLLCDC-AQSRRVECKTDCCSFVEGFPLRLRELRSAYKEIQKFYES-
+ORF134              -MFLAVLLTATIFFEARGAPATTP----KDSCVYLIGQTPQLLRQLRNAYQAIIGADGSG
+                               :     .  *       * .*  ::   *  *::**.**: *     * 
 
-ORF12           ------------------------------------------------------------
-ORF9            PKRVRPKKAVAAVGTRKSARLGDRRTASETEAVLTDSRKKIIEKTRELQRYLLRRDMAVS
-                                                                            
+cycg035130          -NDDMEPLLDENVEQNINSP-YGCHVMNEILRFYLDTILPTAVQKDHL-HSKTPINSIGN
+cycg006102          -NDDLEPLLNENVQQNINSP-YGCNVMNEILHFYLDTILPTAVQKNHL-RSTTPIDSIGN
+NP_001018621.2      -NDDLEPLLNEDIKHNINSP-YGCHVMNEILHFYLETILPTALQKNPLKHSTTPIDSIGN
+ORF134              VDEDDMPIYPSDVMNELASTSVACDAIKKVLTMNIG-ILPNVTAAYPD--KKSEVDEIGD
+                     ::*  *:  .:: ::: *.  .*..::::* : :  ***..        ..: ::.**:
 
-ORF12           ------------------------------------------------------------
-ORF9            EAGTPYPNVVTAPKDADGKIILDYVPKPHHESLDVEIQFMHDTEDDVFDEQTVLFRAYKK
-                                                                            
+cycg035130          IFQDLKRDILKCRNYFFCQNPFEFASIKNSYEKMKEKGVYKAMGELDMLFKYIEQYLASK
+cycg006102          IFQDLKRDMRKCRNYFSCQNPFEIASIKNSYEKMKEKGVSKAMGELDILFKYIEQYLASK
+NP_001018621.2      IFQELKRDMVKCKRYFSCQNPFEVNSLKNSYEKMKEKGVYKAMGELDLLFRYIEQYLASK
+ORF134              NLSRLHQNIVNCRDFLKCEDLPHWHQMAENYKEKPMQG----FSEMDFVFQSVEKFLVAK
+                     :. *:::: :*: :: *::  .  .: :.*::   :*    :.*:*::*: :*::*.:*
 
-ORF12           -------MKLLVILGLGLCYLAVQAKPTRHSSCG--------------------------
-ORF9            MMPSRCRPHKLHMLGHAIYRIACSLVPSLGSNAGFAVKLNEIRLALLKGAHIYTLDDVII
-                        : * :** .:  :* .  *:  *..*                          
-
-ORF12           -----------ETEYYETELQKCCQKCQPGTK------FKSVCTKD-------------S
-ORF9            GYGYDLSEDLEKLALPEVDEDDECLEWLVKLRSVGLMCMRAACCSERLSESGKPYTVDGM
-                           :    *.: :. * :     :      :::.* .:              
-
-ORF12           PTVCEACVAGS------------TYSATHNYYENCFSCDKCSGGRKVVKEQ-----CTPT
-ORF9            PGACASAFQTANWLGLPVFNSWMGYATFVDLWHHRLQQDTTDNFSTILVEADEHGSCKPS
-                * .* :..  :             *::  : :.: :. *. ..  .:: *      *.*:
-
-ORF12           KNTVCGCQGDYEMKTVGGTNMCRKPKRS--------------------------------
-ORF9            EVLIFQANNRTTWSSVRESSFFRNQWRLGKRLTEMGFMQLMADASVASTDTTSTADLKAL
-                :  :  .:.    .:*  :.: *:  *                                 
-
-ORF12           ------------------------------------------------------------
-ORF9            TLADFDKAYRWAKLLHRGDGAVPQRNWMTLVPEPEEPEWTAEELALVHPAEPKLKANESP
-                                                                            
-
-ORF12           ------------------------------------------------------------
-ORF9            LISDVHLQQESDHFNNRGTHPSYKLTDMGHALMLASHMNVRFELFEDVPLVKQRDLIDCL
-                                                                            
-
-ORF12           ----------------------------------------------------------
-ORF9            LAHFAKVGRRPWQVCMGVDLTRMDRERFYSVALRKTKHGVEPCTPALITGVHEYDLIA
-                                                                          
+cycg035130          RGKH-------
+cycg006102          RVKHL------
+NP_001018621.2      RVKH-------
+ORF134              DVKNMKTKRKH
+                      *:       

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Genome browser for carp
+Matthew J. Neave
 
 """
 
@@ -18,7 +19,9 @@ from Bio.Align.Applications import ClustalwCommandline
 ## define global color palette
 
 root_background = "#d9dddd"
-side_bar_color = "#34495e"
+side_bar_color = "#32404e"
+side_bar_select = "#465462"
+side_bar_hover = "#3C4A58"
 side_bar_text_color = "#bdc3c7"
 global_font = "Verdana"
 window_background = "white"
@@ -35,6 +38,8 @@ clouds = "#ecf0f1"
 figure_size = (8, 4)
 widget_padx = 10
 widget_pady = 10
+large_text = 11
+small_text = 9
 
 
 class carp_browser:
@@ -70,7 +75,7 @@ class carp_browser:
         
         self.left_pane_label = Tkinter.Label(self.left_pane, text="",
                                         bg=side_bar_color, fg=side_bar_text_color, 
-                                        font=(global_font, 10))                               
+                                        font=(global_font, small_text))                               
         self.left_pane_label.grid(row=0, column=0, padx=20, pady=5, sticky="we")
         # add frame for each label so can "highlight" species box in left side-bar        
         
@@ -80,23 +85,28 @@ class carp_browser:
         self.chk1 = Tkinter.Label(self.carp_frame, text="Cyprinus carpio",
                                         bg=side_bar_color, fg=side_bar_text_color, 
                                         activebackground="#333",
-                                        cursor="hand2", font=(global_font, 12))
+                                        cursor="hand2", font=(global_font, large_text))
         self.chk1.grid(row=0, column=1, padx=10, pady=5, sticky="w")        
-        self.fish_icon = Tkinter.PhotoImage(file="./data/kitchen_fish_icon_2.gif") # image is 60 x 42 pixels
+        self.fish_icon = Tkinter.PhotoImage(file="./data/kitchen_fish_icon_3.gif") # image is 60 x 42 pixels
         self.carp_icon_label = Tkinter.Label(self.carp_frame, image=self.fish_icon,
                                         borderwidth=0, bg=side_bar_color) 
         self.carp_icon_label.grid(row=0, column=0, sticky="w")                                
         self.carp_frame.bind("<1>", self.load_carp)        
         self.chk1.bind("<1>", self.load_carp)
         self.carp_icon_label.bind("<1>", self.load_carp)                                            
-        
+
+        self.carp_frame.bind("<Enter>", lambda event, arg=side_bar_hover:
+                            self.carp_hover(event, arg))
+        self.carp_frame.bind("<Leave>", lambda event, arg=side_bar_color:
+                            self.carp_hover(event, arg))
+                            
         self.dRerio_frame = Tkinter.Frame(self.left_pane, bg=side_bar_color, bd=0, 
                                         relief=Tkinter.GROOVE, padx=20, pady=20, cursor="hand2")                                      
         self.dRerio_frame.grid(row=2, column=0, padx=0, pady=0, sticky="nesw")          
         self.chk2 = Tkinter.Label(self.dRerio_frame, text="Danio rerio",
                                         bg=side_bar_color, fg=side_bar_text_color, 
                                         activebackground="#333",
-                                        cursor="hand2", font=(global_font, 12))                               
+                                        cursor="hand2", font=(global_font, large_text))                               
         self.chk2.grid(row=0, column=1, padx=10, pady=5, sticky="w")
         self.dRerio_icon_label = Tkinter.Label(self.dRerio_frame, image=self.fish_icon,
                                         borderwidth=0, bg=side_bar_color) 
@@ -104,14 +114,19 @@ class carp_browser:
         self.dRerio_frame.bind("<1>", self.load_dRerio) 
         self.chk2.bind("<1>", self.load_dRerio)
         self.dRerio_icon_label.bind("<1>", self.load_dRerio)
-        
+
+        self.dRerio_frame.bind("<Enter>", lambda event, arg=side_bar_hover:
+                            self.dRerio_hover(event, arg))
+        self.dRerio_frame.bind("<Leave>", lambda event, arg=side_bar_color:
+                            self.dRerio_hover(event, arg))
+                            
         self.tilapia_frame = Tkinter.Frame(self.left_pane, bg=side_bar_color, bd=0, 
                                         relief=Tkinter.GROOVE, padx=20, pady=20, cursor="hand2")                                      
         self.tilapia_frame.grid(row=3, column=0, padx=0, pady=0, sticky="nesw")
         self.chk3 = Tkinter.Label(self.tilapia_frame, text="Tilapia",
                                         bg=side_bar_color, fg=side_bar_text_color, 
                                         activebackground="#333",
-                                        cursor="hand2", font=(global_font, 12))                                       
+                                        cursor="hand2", font=(global_font, large_text))                                       
         self.chk3.grid(row=0, column=1, padx=10, pady=5, sticky="w")
         self.tilapia_icon_label = Tkinter.Label(self.tilapia_frame, image=self.fish_icon,
                                         borderwidth=0, bg=side_bar_color) 
@@ -119,22 +134,32 @@ class carp_browser:
         #self.tilapia_frame.bind("<1>", self.load_tilapia)
         #self.chk3.bind("<1>", self.load_tilapia)
         
+        self.tilapia_frame.bind("<Enter>", lambda event, arg=side_bar_hover:
+                            self.tilapia_hover(event, arg))
+        self.tilapia_frame.bind("<Leave>", lambda event, arg=side_bar_color:
+                            self.tilapia_hover(event, arg))
+        
         self.khv_frame = Tkinter.Frame(self.left_pane, bg=side_bar_color, bd=0, 
                                         relief=Tkinter.GROOVE, padx=20, pady=20, cursor="hand2")                                      
         self.khv_frame.grid(row=4, column=0, padx=0, pady=0, sticky="nesw")
         self.chk4 = Tkinter.Label(self.khv_frame, text="Cyprinid herpesvirus 3",
                                         bg=side_bar_color, fg=side_bar_text_color, 
                                         activebackground="#333",
-                                        cursor="hand2", font=(global_font, 12))                                                                      
+                                        cursor="hand2", font=(global_font, large_text))                                                                      
         self.chk4.grid(row=0, column=1, padx=10, pady=5, sticky="w")
-        self.khv_icon = Tkinter.PhotoImage(file="./data/Virus2c.gif") # image is 36 x 42 pixels
+        self.khv_icon = Tkinter.PhotoImage(file="./data/Virus3.gif") # image is 36 x 42 pixels
         self.khv_icon_label = Tkinter.Label(self.khv_frame, image=self.khv_icon,
                                         borderwidth=0, bg=side_bar_color) 
         self.khv_icon_label.grid(row=0, column=0, sticky="w")   
         self.khv_frame.bind("<1>", self.load_khv)
         self.chk4.bind("<1>", self.load_khv)
         self.khv_icon_label.bind("<1>", self.load_khv)
-
+        
+        self.khv_frame.bind("<Enter>", lambda event, arg=side_bar_hover:
+                            self.khv_hover(event, arg))
+        self.khv_frame.bind("<Leave>", lambda event, arg=side_bar_color:
+                            self.khv_hover(event, arg))
+        
         #### add large middle-right grid for containing all the widgets ####
         self.large_grid = Tkinter.Frame(root, bg=root_background, bd=0)
         self.large_grid.grid(row=0, column=1, padx=20, pady=10, sticky="")
@@ -145,7 +170,7 @@ class carp_browser:
         self.swiss_frame.grid(row=0, column=0, padx=widget_padx, pady=widget_pady, sticky="n")
         
         self.swiss_text = Tkinter.Text(self.swiss_frame, width=80, height=12,
-                                       font=(global_font, 10), padx=0, pady=5, spacing1=5,
+                                       font=(global_font, small_text), padx=0, pady=5, spacing1=5,
                                         bg=window_background, fg=window_text_gray, insertbackground="#dcdccc",
                                         cursor="hand2", relief=Tkinter.FLAT)         
         self.swiss_text.grid(row=2, column=0, padx=0, pady=0, sticky="nsew")
@@ -166,7 +191,7 @@ class carp_browser:
         
         self.swiss_header_label = Tkinter.Label(self.swiss_header, width = 20, 
                                         bg=header_background_blue, fg=header_text_white,
-                                        font=(global_font, 12), text="Annotated proteins")
+                                        font=(global_font, large_text), text="Annotated proteins")
         self.swiss_header_label.grid(row=0, column=0, sticky="w", padx=0, pady=10) 
         
         # add entry widget for searching annotations (above text widget)                            
@@ -177,21 +202,21 @@ class carp_browser:
  
         
         self.search = Tkinter.Entry(self.swiss_search_frame, width=28,
-                                          font=(global_font, 11), bg=clouds,
+                                          font=(global_font, large_text), bg=clouds,
                                             relief=Tkinter.FLAT)
         self.search.bind("<Return>", self.search_text)
         self.search.grid(row=0, column=0, sticky="wns", pady=0)
         
-        self.search_icon = Tkinter.PhotoImage(file="./data/search_icon.gif") # image is 25 x 25 pixels       
+        self.search_icon = Tkinter.PhotoImage(file="./data/search_icon2.gif") # image is 25 x 25 pixels       
         self.search_button = Tkinter.Button(self.swiss_search_frame, image=self.search_icon, bg=clouds,
-                                            font=(global_font, 10, "underline"), width=50,
+                                            font=(global_font, small_text, "underline"), width=50,
                                             command=self.search_text, relief=Tkinter.FLAT)
         self.search_button.grid(row=0, column=1, sticky="ns", pady=0, padx=0)
          
         self.result_count_var = Tkinter.StringVar()
         self.word_count = Tkinter.Label(self.swiss_search_frame, width = 20, 
                                         bg=window_background, fg=window_text_gray,
-                                        font=(global_font, 10), textvariable=self.result_count_var)
+                                        font=(global_font, small_text), textvariable=self.result_count_var)
         self.word_count.grid(row=0, column=3, sticky="e", padx=30)                            
         
         # add clicking and highlighting ability
@@ -200,7 +225,7 @@ class carp_browser:
         self.swiss_text.bind("<1>", self.on_text_click)
         
         self.swiss_frame.grid_columnconfigure(0, weight=1) 
-        #self.swiss_frame.grid_rowconfigure(0, weight=1)
+        self.swiss_frame.grid_rowconfigure(0, weight=1)
         
         # add figure frame
         self.figure_frame = Tkinter.Frame(self.large_grid, bg=window_background,
@@ -214,7 +239,7 @@ class carp_browser:
         
         self.figure_header_label = Tkinter.Label(self.figure_header, width = 13, 
                                         bg=header_background_blue, fg=header_text_white,
-                                        font=(global_font, 12), text="Expression")
+                                        font=(global_font, large_text), text="Expression")
         self.figure_header_label.grid(row=0, column=0, sticky="w", padx=0, pady=10)
         
         self.f = Figure(figsize=figure_size, dpi=100)
@@ -237,12 +262,12 @@ class carp_browser:
         
         self.amino_header_label = Tkinter.Label(self.amino_header, width = 20, 
                                         bg=header_background_blue, fg=header_text_white,
-                                        font=(global_font, 12), text="Amino Acid Sequence")
+                                        font=(global_font, large_text), text="Amino Acid Sequence")
         self.amino_header_label.grid(row=0, column=0, sticky="w", padx=0, pady=10) 
         
         # create amino acid text box
-        self.amino_text = Tkinter.Text(self.amino_frame, width = 50, height = 12,
-                                      font=("Consolas", 10), padx=5, pady=5, spacing1=5,
+        self.amino_text = Tkinter.Text(self.amino_frame, width = 80, height = 12,
+                                      font=("Consolas", small_text), padx=5, pady=5, spacing1=5,
                                         bg=window_background, fg=window_text_gray, insertbackground="#dcdccc",
                                         relief=Tkinter.FLAT)
         self.amino_text.grid(row=1, column=0, padx=0, pady=0, sticky="")
@@ -256,13 +281,13 @@ class carp_browser:
       
         # add button to copy from amino acid box to alignment box
         self.amino_add_button = Tkinter.Button(self.amino_frame, width = 10, bg=window_background,
-                                        font=(global_font, 12, "bold"), text="COPY", fg=window_text_green,
+                                        font=(global_font, large_text, "bold"), text="COPY", fg=window_text_green,
                                         command=self.copy_to_alignment_box, relief=Tkinter.FLAT)
         self.amino_add_button.grid(row=2, column=0, sticky="wn", pady=0, padx=0)  
         
         # add button to clear amino acid box
         self.amino_clear = Tkinter.Button(self.amino_frame, width = 10, bg=window_background,
-                                        font=(global_font, 12, "bold"), text="CLEAR", fg=window_text_red,
+                                        font=(global_font, large_text, "bold"), text="CLEAR", fg=window_text_red,
                                         command=self.clear_amino_window, relief=Tkinter.FLAT)
         self.amino_clear.grid(row=2, column=0, sticky="en", pady=0, padx=0)        
 
@@ -271,7 +296,7 @@ class carp_browser:
         ## add frame for alignment box
         self.align_frame = Tkinter.Frame(self.large_grid, bg=window_background,
                                         bd=0, relief=Tkinter.FLAT)
-        self.align_frame.grid(row=1, column=1, padx=widget_padx, pady=widget_pady, sticky="ns")
+        self.align_frame.grid(row=1, column=1, padx=widget_padx, pady=widget_pady, sticky="nsew")
         
         # add blue header for alignment box
         self.align_header = Tkinter.Frame(self.align_frame, bg=header_background_blue,
@@ -280,13 +305,13 @@ class carp_browser:
         
         self.align_header_label = Tkinter.Label(self.align_header, width = 15, 
                                         bg=header_background_blue, fg=header_text_white,
-                                        font=(global_font, 12), text="Alignment box")
+                                        font=(global_font, large_text), text="Alignment box")
                                         
         self.align_header_label.grid(row=0, column=0, sticky="w", padx=0, pady=10)                                    
                             
         ## create alignment text box
-        self.align_text = Tkinter.Text(self.align_frame, width = 50, height = 13,
-                                      font=("Consolas", 10), padx=5, pady=5, spacing1=5,
+        self.align_text = Tkinter.Text(self.align_frame, width = 80, height = 14,
+                                      font=("Consolas", small_text), padx=5, pady=5, spacing1=5,
                                         bg=window_background, fg=window_text_gray, insertbackground="#dcdccc",
                                         relief=Tkinter.FLAT)
         self.align_text.grid(row=1, column=0, padx=0, pady=0,
@@ -295,25 +320,25 @@ class carp_browser:
         
         # add button to initiate alignment
         self.align_button = Tkinter.Button(self.align_frame, width = 9, bg=window_background,
-                                        font=(global_font, 12, "bold"), text="ALIGN",
+                                        font=(global_font, large_text, "bold"), text="ALIGN",
                                         fg=window_text_green, command=self.align_amino_acids, 
                                         relief=Tkinter.FLAT)
-        self.align_button.grid(row=2, column=0, sticky="wn", pady=0) 
+        self.align_button.grid(row=2, column=0, sticky="ws", pady=0) 
         
         # add button to draw phylogenetic tree
         self.align_button = Tkinter.Button(self.align_frame, width = 9, bg=window_background,
-                                        font=(global_font, 12, "bold"), text="TREE",
+                                        font=(global_font, large_text, "bold"), text="TREE",
                                         fg=header_background_blue, command=self.draw_tree_alignment, 
                                         relief=Tkinter.FLAT)
-        self.align_button.grid(row=2, column=0, sticky="n", pady=0) 
+        self.align_button.grid(row=2, column=0, sticky="s", pady=0) 
         self.tree_in_window = False
         
         # add button to clear alignment window
         self.align_clear = Tkinter.Button(self.align_frame, width = 9, bg=window_background,
-                                        font=(global_font, 12, "bold"), text="CLEAR",
+                                        font=(global_font, large_text, "bold"), text="CLEAR",
                                         fg=window_text_red, command=self.clear_align_window, 
                                         relief=Tkinter.FLAT)
-        self.align_clear.grid(row=2, column=0, sticky="en", pady=0)
+        self.align_clear.grid(row=2, column=0, sticky="se", pady=0)
         
         # add scroll bar for alignment textbox
         align_scroll = Tkinter.Scrollbar(self.align_frame)       
@@ -332,9 +357,13 @@ class carp_browser:
         
         # boolean variable ensuring nothing happens until some data is loaded
         self.data_loaded = False
+        self.clear_side_bar()
                                   
     def load_carp(self, *args):
-        
+        self.clear_side_bar()
+        self.carp_frame.configure(bg=side_bar_select)   
+        self.chk1.configure(bg=side_bar_select)
+        self.carp_icon_label.configure(bg=side_bar_select)
         self.clear_text_box()                             
         self.amino_acids = Fasta("./data/carp.genome_browser.faa")
         self.swiss_handle = "./data/carp.genome_browser.swiss.annot"        
@@ -343,9 +372,13 @@ class carp_browser:
         self.count_lines_in_textbox()
         self.expression_y_label = "RPKM"
         self.data_loaded = True
+        self.carp_loaded = True
  
     def load_dRerio(self, *args):
-        
+        self.clear_side_bar()
+        self.dRerio_frame.configure(bg=side_bar_select)    
+        self.chk2.configure(bg=side_bar_select)
+        self.dRerio_icon_label.configure(bg=side_bar_select)
         self.clear_text_box()                             
         self.amino_acids = Fasta("./data/dRerio.genome_browser.faa")
         self.swiss_handle = "./data/dRerio.genome_browser.annot"        
@@ -354,9 +387,14 @@ class carp_browser:
         self.count_lines_in_textbox()
         self.expression_y_label = "RPKM"
         self.data_loaded = True
+        self.dRerio_loaded = True
         
     def load_khv(self, *args):
         
+        self.clear_side_bar()
+        self.khv_frame.configure(bg=side_bar_select)
+        self.chk4.configure(bg=side_bar_select)
+        self.khv_icon_label.configure(bg=side_bar_select)
         self.clear_text_box()                             
         self.amino_acids = Fasta("./data/khv.genome_browser.faa")
         self.swiss_handle = "./data/khv.genome_browser.annot"       
@@ -365,6 +403,7 @@ class carp_browser:
         self.count_lines_in_textbox()
         self.expression_y_label = "RPKM (log10)"        
         self.data_loaded = True
+        self.khv_loaded = True
                 
     def load_swiss(self):
         
@@ -542,7 +581,7 @@ class carp_browser:
             self.clear_align_window()
             tree = Phylo.read(r"./tmp_files/tmp_amino_acids.dnd", "newick")
             with open(r"./tmp_files/tmp_ascii_tree", "w") as fh:
-                Phylo.draw_ascii(tree, file=fh, column_width=45)
+                Phylo.draw_ascii(tree, file=fh, column_width=70)
             
             for line in open(r"./tmp_files/tmp_ascii_tree"):
                 self.align_text.insert(Tkinter.INSERT, line)
@@ -555,6 +594,47 @@ class carp_browser:
             if line.startswith(">"):
                 sequences.append(line)
         return sequences
+
+    def clear_side_bar(self):
+        self.carp_frame.configure(bg=side_bar_color)
+        self.dRerio_frame.configure(bg=side_bar_color)
+        self.tilapia_frame.configure(bg=side_bar_color)
+        self.khv_frame.configure(bg=side_bar_color)
+        self.chk1.configure(bg=side_bar_color)
+        self.chk2.configure(bg=side_bar_color)
+        self.chk3.configure(bg=side_bar_color)
+        self.chk4.configure(bg=side_bar_color)
+        self.carp_icon_label.configure(bg=side_bar_color)
+        self.dRerio_icon_label.configure(bg=side_bar_color)
+        self.khv_icon_label.configure(bg=side_bar_color)
+        self.carp_loaded = False
+        self.dRerio_loaded = False
+        self.tilapia_loaded = False
+        self.khv_loaded = False
+    
+    def carp_hover(self, event, new_color):
+        if self.carp_loaded == False:        
+            self.carp_frame.configure(bg=new_color)
+            self.chk1.configure(bg=new_color)
+            self.carp_icon_label.configure(bg=new_color)
+
+    def dRerio_hover(self, event, new_color):
+        if self.dRerio_loaded == False:        
+            self.dRerio_frame.configure(bg=new_color)
+            self.chk2.configure(bg=new_color)
+            self.dRerio_icon_label.configure(bg=new_color)
+        
+    def tilapia_hover(self, event, new_color):
+        if self.tilapia_loaded == False:        
+            self.tilapia_frame.configure(bg=new_color)
+            self.chk3.configure(bg=new_color)
+            self.tilapia_icon_label.configure(bg=new_color)
+
+    def khv_hover(self, event, new_color):
+        if self.khv_loaded == False:        
+            self.khv_frame.configure(bg=new_color)
+            self.chk4.configure(bg=new_color)
+            self.khv_icon_label.configure(bg=new_color)
             
 if __name__ == "__main__":
     root = Tkinter.Tk()
