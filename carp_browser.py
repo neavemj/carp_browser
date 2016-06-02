@@ -35,11 +35,11 @@ entry_background = "#dce0e0"
 clouds = "#ecf0f1"
 
 ## other globals
-figure_size = (8, 4)
+figure_size = (6, 3)
 widget_padx = 10
 widget_pady = 10
-large_text = 11
-small_text = 9
+large_text = 10
+small_text = 8
 
 
 class carp_browser:
@@ -85,28 +85,32 @@ class carp_browser:
         self.chk1 = Tkinter.Label(self.carp_frame, text="Cyprinus carpio",
                                         bg=side_bar_color, fg=side_bar_text_color, 
                                         activebackground="#333",
-                                        cursor="hand2", font=(global_font, large_text))
+                                        cursor="hand2", font=(global_font, large_text, "italic"))
         self.chk1.grid(row=0, column=1, padx=10, pady=5, sticky="w")        
-        self.fish_icon = Tkinter.PhotoImage(file="./data/kitchen_fish_icon_3.gif") # image is 60 x 42 pixels
+        self.fish_icon = Tkinter.PhotoImage(file="./data/kitchen_fish_icon_4.gif") # image is 60 x 42 pixels
         self.carp_icon_label = Tkinter.Label(self.carp_frame, image=self.fish_icon,
                                         borderwidth=0, bg=side_bar_color) 
         self.carp_icon_label.grid(row=0, column=0, sticky="w")                                
         self.carp_frame.bind("<1>", self.load_carp)        
         self.chk1.bind("<1>", self.load_carp)
-        self.carp_icon_label.bind("<1>", self.load_carp)                                            
-
+        self.carp_icon_label.bind("<1>", self.load_carp)
+        
+        self.carp_highlight_band = Tkinter.Label(self.left_pane, text="", bg=side_bar_color)
+        self.carp_highlight_band.grid(row=1, column=0, sticky = "nsw")
+                                                    
+        # highlight frame on mouse over
         self.carp_frame.bind("<Enter>", lambda event, arg=side_bar_hover:
                             self.carp_hover(event, arg))
         self.carp_frame.bind("<Leave>", lambda event, arg=side_bar_color:
                             self.carp_hover(event, arg))
-                            
+                                                                                  
         self.dRerio_frame = Tkinter.Frame(self.left_pane, bg=side_bar_color, bd=0, 
                                         relief=Tkinter.GROOVE, padx=20, pady=20, cursor="hand2")                                      
         self.dRerio_frame.grid(row=2, column=0, padx=0, pady=0, sticky="nesw")          
         self.chk2 = Tkinter.Label(self.dRerio_frame, text="Danio rerio",
                                         bg=side_bar_color, fg=side_bar_text_color, 
                                         activebackground="#333",
-                                        cursor="hand2", font=(global_font, large_text))                               
+                                        cursor="hand2", font=(global_font, large_text, "italic"))                               
         self.chk2.grid(row=0, column=1, padx=10, pady=5, sticky="w")
         self.dRerio_icon_label = Tkinter.Label(self.dRerio_frame, image=self.fish_icon,
                                         borderwidth=0, bg=side_bar_color) 
@@ -120,13 +124,16 @@ class carp_browser:
         self.dRerio_frame.bind("<Leave>", lambda event, arg=side_bar_color:
                             self.dRerio_hover(event, arg))
                             
+        self.dRerio_highlight_band = Tkinter.Label(self.left_pane, text="", bg=side_bar_color)
+        self.dRerio_highlight_band.grid(row=2, column=0, sticky = "nsw")  
+                          
         self.tilapia_frame = Tkinter.Frame(self.left_pane, bg=side_bar_color, bd=0, 
                                         relief=Tkinter.GROOVE, padx=20, pady=20, cursor="hand2")                                      
         self.tilapia_frame.grid(row=3, column=0, padx=0, pady=0, sticky="nesw")
         self.chk3 = Tkinter.Label(self.tilapia_frame, text="Tilapia",
                                         bg=side_bar_color, fg=side_bar_text_color, 
                                         activebackground="#333",
-                                        cursor="hand2", font=(global_font, large_text))                                       
+                                        cursor="hand2", font=(global_font, large_text, "italic"))                                       
         self.chk3.grid(row=0, column=1, padx=10, pady=5, sticky="w")
         self.tilapia_icon_label = Tkinter.Label(self.tilapia_frame, image=self.fish_icon,
                                         borderwidth=0, bg=side_bar_color) 
@@ -138,6 +145,9 @@ class carp_browser:
                             self.tilapia_hover(event, arg))
         self.tilapia_frame.bind("<Leave>", lambda event, arg=side_bar_color:
                             self.tilapia_hover(event, arg))
+                            
+        self.tilapia_highlight_band = Tkinter.Label(self.left_pane, text="", bg=side_bar_color)
+        self.tilapia_highlight_band.grid(row=3, column=0, sticky = "nsw") 
         
         self.khv_frame = Tkinter.Frame(self.left_pane, bg=side_bar_color, bd=0, 
                                         relief=Tkinter.GROOVE, padx=20, pady=20, cursor="hand2")                                      
@@ -145,9 +155,9 @@ class carp_browser:
         self.chk4 = Tkinter.Label(self.khv_frame, text="Cyprinid herpesvirus 3",
                                         bg=side_bar_color, fg=side_bar_text_color, 
                                         activebackground="#333",
-                                        cursor="hand2", font=(global_font, large_text))                                                                      
+                                        cursor="hand2", font=(global_font, large_text, "italic"))                                                                      
         self.chk4.grid(row=0, column=1, padx=10, pady=5, sticky="w")
-        self.khv_icon = Tkinter.PhotoImage(file="./data/Virus3.gif") # image is 36 x 42 pixels
+        self.khv_icon = Tkinter.PhotoImage(file="./data/Virus4.gif") # image is 36 x 42 pixels
         self.khv_icon_label = Tkinter.Label(self.khv_frame, image=self.khv_icon,
                                         borderwidth=0, bg=side_bar_color) 
         self.khv_icon_label.grid(row=0, column=0, sticky="w")   
@@ -159,6 +169,9 @@ class carp_browser:
                             self.khv_hover(event, arg))
         self.khv_frame.bind("<Leave>", lambda event, arg=side_bar_color:
                             self.khv_hover(event, arg))
+                            
+        self.khv_highlight_band = Tkinter.Label(self.left_pane, text="", bg=side_bar_color)
+        self.khv_highlight_band.grid(row=4, column=0, sticky = "nsw") 
         
         #### add large middle-right grid for containing all the widgets ####
         self.large_grid = Tkinter.Frame(root, bg=root_background, bd=0)
@@ -216,7 +229,7 @@ class carp_browser:
         self.result_count_var = Tkinter.StringVar()
         self.word_count = Tkinter.Label(self.swiss_search_frame, width = 20, 
                                         bg=window_background, fg=window_text_gray,
-                                        font=(global_font, small_text), textvariable=self.result_count_var)
+                                        font=(global_font, large_text), textvariable=self.result_count_var)
         self.word_count.grid(row=0, column=3, sticky="e", padx=30)                            
         
         # add clicking and highlighting ability
@@ -364,6 +377,7 @@ class carp_browser:
         self.carp_frame.configure(bg=side_bar_select)   
         self.chk1.configure(bg=side_bar_select)
         self.carp_icon_label.configure(bg=side_bar_select)
+        self.carp_highlight_band.configure(bg=header_background_blue)
         self.clear_text_box()                             
         self.amino_acids = Fasta("./data/carp.genome_browser.faa")
         self.swiss_handle = "./data/carp.genome_browser.swiss.annot"        
@@ -379,6 +393,7 @@ class carp_browser:
         self.dRerio_frame.configure(bg=side_bar_select)    
         self.chk2.configure(bg=side_bar_select)
         self.dRerio_icon_label.configure(bg=side_bar_select)
+        self.dRerio_highlight_band.configure(bg=header_background_blue)
         self.clear_text_box()                             
         self.amino_acids = Fasta("./data/dRerio.genome_browser.faa")
         self.swiss_handle = "./data/dRerio.genome_browser.annot"        
@@ -395,6 +410,7 @@ class carp_browser:
         self.khv_frame.configure(bg=side_bar_select)
         self.chk4.configure(bg=side_bar_select)
         self.khv_icon_label.configure(bg=side_bar_select)
+        self.khv_highlight_band.configure(bg=header_background_blue)
         self.clear_text_box()                             
         self.amino_acids = Fasta("./data/khv.genome_browser.faa")
         self.swiss_handle = "./data/khv.genome_browser.annot"       
@@ -607,6 +623,10 @@ class carp_browser:
         self.carp_icon_label.configure(bg=side_bar_color)
         self.dRerio_icon_label.configure(bg=side_bar_color)
         self.khv_icon_label.configure(bg=side_bar_color)
+        self.carp_highlight_band.configure(bg=side_bar_color)
+        self.dRerio_highlight_band.configure(bg=side_bar_color)
+        self.tilapia_highlight_band.configure(bg=side_bar_color)
+        self.khv_highlight_band.configure(bg=side_bar_color)
         self.carp_loaded = False
         self.dRerio_loaded = False
         self.tilapia_loaded = False
@@ -617,24 +637,28 @@ class carp_browser:
             self.carp_frame.configure(bg=new_color)
             self.chk1.configure(bg=new_color)
             self.carp_icon_label.configure(bg=new_color)
+            self.carp_highlight_band.configure(bg=new_color)
 
     def dRerio_hover(self, event, new_color):
         if self.dRerio_loaded == False:        
             self.dRerio_frame.configure(bg=new_color)
             self.chk2.configure(bg=new_color)
             self.dRerio_icon_label.configure(bg=new_color)
+            self.dRerio_highlight_band.configure(bg=new_color)
         
     def tilapia_hover(self, event, new_color):
         if self.tilapia_loaded == False:        
             self.tilapia_frame.configure(bg=new_color)
             self.chk3.configure(bg=new_color)
             self.tilapia_icon_label.configure(bg=new_color)
+            self.tilapia_highlight_band.configure(bg=new_color)
 
     def khv_hover(self, event, new_color):
         if self.khv_loaded == False:        
             self.khv_frame.configure(bg=new_color)
             self.chk4.configure(bg=new_color)
             self.khv_icon_label.configure(bg=new_color)
+            self.khv_highlight_band.configure(bg=new_color)
             
 if __name__ == "__main__":
     root = Tkinter.Tk()
