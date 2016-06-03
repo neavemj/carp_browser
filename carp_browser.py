@@ -23,10 +23,11 @@ side_bar_color = "#32404e"
 side_bar_select = "#465462"
 side_bar_hover = "#3C4A58"
 side_bar_text_color = "#bdc3c7"
+side_bar_header = "#3EA2E5"
 global_font = "Verdana"
 window_background = "white"
 window_text_gray = "#626e6f"
-window_text_red = "#e74c3c"
+window_text_red = "#c0392b"
 window_text_green = "#2ecc71"
 highlight_color = "#e1e3e5"
 header_background_blue = "#3498db"
@@ -71,12 +72,16 @@ class carp_browser:
 
         self.left_pane = Tkinter.Frame(root, height=800, width=200, bg=side_bar_color,
                                        bd=0)
-        self.left_pane.grid(row=0, column=0, padx=0, pady=0, sticky="nes")   
+        self.left_pane.grid(row=0, column=0, padx=0, pady=0, sticky="nes")  
         
-        self.left_pane_label = Tkinter.Label(self.left_pane, text="",
-                                        bg=side_bar_color, fg=side_bar_text_color, 
-                                        font=(global_font, small_text))                               
-        self.left_pane_label.grid(row=0, column=0, padx=20, pady=5, sticky="we")
+        # add label for information, i.e. loading, etc.
+        self.info_frame = Tkinter.Frame(self.left_pane, bg=side_bar_header,
+                                        padx=20, pady=20)
+        self.info_frame.grid(row=0, column=0, padx=0, sticky="nesw")                                
+        self.info_label = Tkinter.Label(self.info_frame, text="~ CHOOSE GENOME ~",
+                                        bg=side_bar_header, fg=header_text_white, 
+                                        font=(global_font, large_text))                               
+        self.info_label.grid(row=0, column=0, padx=10, pady=5, sticky="ew")
         # add frame for each label so can "highlight" species box in left side-bar        
         
         self.carp_frame = Tkinter.Frame(self.left_pane, bg=side_bar_color, bd=0, 
@@ -172,7 +177,7 @@ class carp_browser:
                             
         self.khv_highlight_band = Tkinter.Label(self.left_pane, text="", bg=side_bar_color)
         self.khv_highlight_band.grid(row=4, column=0, sticky = "nsw") 
-        
+                                        
         #### add large middle-right grid for containing all the widgets ####
         self.large_grid = Tkinter.Frame(root, bg=root_background, bd=0)
         self.large_grid.grid(row=0, column=1, padx=20, pady=10, sticky="")
@@ -188,8 +193,6 @@ class carp_browser:
                                         cursor="hand2", relief=Tkinter.FLAT)         
         self.swiss_text.grid(row=2, column=0, padx=0, pady=0, sticky="nsew")
         
-        
-                                      
         # add scroll bar to swiss text box
         swiss_scroll = Tkinter.Scrollbar(self.swiss_frame)       
         swiss_scroll.grid(row=2, column=1, sticky="nse")
@@ -260,7 +263,7 @@ class carp_browser:
         self.canvas = FigureCanvasTkAgg(self.f, master=self.figure_frame)
         self.canvas.get_tk_widget().grid(row=1, column=0, padx=0, pady=0, sticky="nsew")
 
-        self.figure_frame.grid_columnconfigure(0, weight=1)        
+        self.figure_frame.grid_columnconfigure(0, weight=1)      
         
         #### add right nucleotide and amino acid boxes ####
 
@@ -373,11 +376,12 @@ class carp_browser:
         self.clear_side_bar()
                                   
     def load_carp(self, *args):
+        self.loading()        
         self.clear_side_bar()
         self.carp_frame.configure(bg=side_bar_select)   
         self.chk1.configure(bg=side_bar_select)
         self.carp_icon_label.configure(bg=side_bar_select)
-        self.carp_highlight_band.configure(bg=header_background_blue)
+        self.carp_highlight_band.configure(bg=side_bar_header)
         self.clear_text_box()                             
         self.amino_acids = Fasta("./data/carp.genome_browser.faa")
         self.swiss_handle = "./data/carp.genome_browser.swiss.annot"        
@@ -387,13 +391,15 @@ class carp_browser:
         self.expression_y_label = "RPKM"
         self.data_loaded = True
         self.carp_loaded = True
+        self.done_loading()
  
     def load_dRerio(self, *args):
+        self.loading()
         self.clear_side_bar()
         self.dRerio_frame.configure(bg=side_bar_select)    
         self.chk2.configure(bg=side_bar_select)
         self.dRerio_icon_label.configure(bg=side_bar_select)
-        self.dRerio_highlight_band.configure(bg=header_background_blue)
+        self.dRerio_highlight_band.configure(bg=side_bar_header)
         self.clear_text_box()                             
         self.amino_acids = Fasta("./data/dRerio.genome_browser.faa")
         self.swiss_handle = "./data/dRerio.genome_browser.annot"        
@@ -403,14 +409,15 @@ class carp_browser:
         self.expression_y_label = "RPKM"
         self.data_loaded = True
         self.dRerio_loaded = True
+        self.done_loading()        
         
     def load_khv(self, *args):
-        
+        self.loading()
         self.clear_side_bar()
         self.khv_frame.configure(bg=side_bar_select)
         self.chk4.configure(bg=side_bar_select)
         self.khv_icon_label.configure(bg=side_bar_select)
-        self.khv_highlight_band.configure(bg=header_background_blue)
+        self.khv_highlight_band.configure(bg=side_bar_header)
         self.clear_text_box()                             
         self.amino_acids = Fasta("./data/khv.genome_browser.faa")
         self.swiss_handle = "./data/khv.genome_browser.annot"       
@@ -420,6 +427,7 @@ class carp_browser:
         self.expression_y_label = "RPKM (log10)"        
         self.data_loaded = True
         self.khv_loaded = True
+        self.done_loading()                
                 
     def load_swiss(self):
         
@@ -659,6 +667,15 @@ class carp_browser:
             self.chk4.configure(bg=new_color)
             self.khv_icon_label.configure(bg=new_color)
             self.khv_highlight_band.configure(bg=new_color)
+     
+    def loading(self):       
+        self.info_label.configure(text="LOADING...", bg=window_text_red)
+        self.info_frame.configure(bg=window_text_red)
+        self.info_label.update()        
+        
+    def done_loading(self):
+        self.info_label.config(text="DONE!", bg=side_bar_header)
+        self.info_frame.configure(bg=side_bar_header)
             
 if __name__ == "__main__":
     root = Tkinter.Tk()
