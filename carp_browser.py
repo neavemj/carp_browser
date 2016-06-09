@@ -36,7 +36,7 @@ entry_background = "#dce0e0"
 clouds = "#ecf0f1"
 
 ## other globals
-figure_size = (6, 3)
+figure_size = (5, 3)
 widget_padx = 10
 widget_pady = 10
 large_text = 10
