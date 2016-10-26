@@ -1,18 +1,58 @@
 CLUSTAL 2.1 multiple sequence alignment
 
 
-cycg035130      ----------MVCAQGDDTVAQCRRVDCKTDCCSFVEGFPVRLKELRSAYREIQNFYESN
-cycg006102      MIFTGVILSALVMLLLTDS-AQCRRVDCKSDCCTFVEGFPVRLKELRSAYREIQRFYESN
-                          :*     *: *********:***:********************.*****
+ORF8_1          ------------------------------------------------------------
+ORF7_1          MSSSEYDSETEQQRQQQVKAARKFASSTPRSARPPTAGTSSARVPVAKKSVRATDLSDYE
+                                                                            
 
-cycg035130      DDMEPLLDENVEQNINSPYGCHVMNEILRFYLDTILPTAVQKDHLHSKTPINSIGNIFQD
-cycg006102      DDLEPLLNENVQQNINSPYGCNVMNEILHFYLDTILPTAVQKNHLRSTTPIDSIGNIFQD
-                **:****:***:*********:******:*************:**:*.***:********
+ORF8_1          ------------------------------------------------------------
+ORF7_1          PDEIERLHEQMRQRYRETDLQGPLEHDNQPLTHGKTLVVLSGGEETEEEVVEEALAVEEE
+                                                                            
 
-cycg035130      LKRDILKCRNYFFCQNPFEFASIKNSYEKMKEKGVYKAMGELDMLFKYIEQYLASKRGKH
-cycg006102      LKRDMRKCRNYFSCQNPFEIASIKNSYEKMKEKGVSKAMGELDILFKYIEQYLASKRVKH
-                ****: ****** ******:*************** *******:************* **
+ORF8_1          ------------------------------------------------------------
+ORF7_1          EDSEDVVVRRKSSKHGEKEKKKSKSKSKDKRERREKEKRDKKKKDKSKHKSKKHVVEEEE
+                                                                            
 
-cycg035130      -
-cycg006102      L
-                 
+ORF8_1          ------------------------------------------------------------
+ORF7_1          DDVSVSGPSQPTPPPKHKPKRVRVELDESEIEQSDEEPRKRPESDSEFAPPLTEPERRSK
+                                                                            
+
+ORF8_1          -------------MANNAVLVMAGLRDIIPEMFRPVRTTCATVIKATRLVLGVTDHG--R
+ORF7_1          WYKARRDRHYRARLKAKEQAAAAEMDMTVPDYRQYIKEHGTRRARPKQKPKTVRKDSRSR
+                             :  :   . * :   :*:  : ::   :   :..:    * ...  *
+
+ORF8_1          TLCTP----------ETMFELRLRLKSVFSIHRDARGSP---------------------
+ORF7_1          SRSTPPNSSGQQRLGESRTPVVMLDRSEVEMVPEERSPPRAKEGGKRKRKRSPSPSEPKS
+                : .**          *:   : :  :* ..:  : *..*                     
+
+ORF8_1          --------------------------AWQVDDRLKCEVRQAACTVFR--VVRELFGFNLT
+ORF7_1          KQHKHSDKSDKGADKPWKQSADRWAADWKPQESSDEDAPGPSRRKHRRQERREKLGPYAA
+                                           *: ::  . :.  .:   .*    ** :*   :
+
+ORF8_1          LTTLKMLCLTIYTECFRTTHVDTFRLVG-LRLDELPRHLKDLVTGETSSWRRTIAVDAP-
+ORF7_1          RESIPITHCKKAFMCLAMEMCYRFGSMGEMNKTGSMQKVCDLAAKRWDTVRRGFAPYDPS
+                  :: :   .    *:       *  :* :.     ::: **.: . .: ** :*   * 
+
+ORF8_1          ---------LQDNTVSDTSVRSMSMADVHTWSDEDECAPDSTTS-----------YDGDN
+ORF7_1          SLLLKKVKQYADNVTSSSDDEETAAAEVQQQTAPEPAPRTPTPPPPPPQHQVAQLSDGEG
+                           **..*.:. .. : *:*:  :  : ..  .*..            **:.
+
+ORF8_1          ---------SSHVRVTEQSSLTMNRVINGVECEVESTS---YATPYSLLCDVKR------
+ORF7_1          EEESAPAPVTVTVPKQEQEDLYFSRLASREQRRAAKSTPPPQQTETILISDSDDDDEPAA
+                         :  *   **..* :.*: .  : .. .::     *   *:.* .       
+
+ORF8_1          ---RKESMERAYREHQERQARRRTRDSDEEGNEAEAAPQARRRRIE--------------
+ORF7_1          DAGEEEVMSTADRDPQETADDAETADDAEEGEDAEEGEVPQDATAEPETPEPETETQVTH
+                   .:* *. * *: **     .* *. ***::** .  .:    *              
+
+ORF8_1          ------------------------------------------------------------
+ORF7_1          VPETQRSSADADAGEPSTPNSTLLTPSLHQQLAVLAFIKQEPRGEEADDEEDEDADESDG
+                                                                            
+
+ORF8_1          ------------------------------------------------------------
+ORF7_1          DEDACMFVRVVSEPLDPALLEAERVRRRSDREQRAERARESGLPEPEEPDAEEEEAAVVA
+                                                                            
+
+ORF8_1          ----------------------------
+ORF7_1          AVAAQVAKRGPGRPVGSKNKKRGRRARK
+                                            

@@ -6,6 +6,7 @@ Matthew J. Neave
 """
 
 import Tkinter
+import os
 import re
 from pyfaidx import Fasta
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -589,8 +590,10 @@ class carp_browser:
                 tmp_amino_output.write(amino_acids)  
                 tmp_amino_output.close()
             
-            align_file = ClustalwCommandline(r".\dependencies\clustalw2.exe",
-                                             infile="./tmp_files/tmp_amino_acids.txt")
+            # had to do all this os.path stuff for windows/linux compatability
+            clustal_path = os.path.normpath(os.path.join(os.getcwd(), "./dependencies/clustalw2.exe"))
+            amino_path = os.path.normpath(os.path.join(os.getcwd(), "./tmp_files/tmp_amino_acids.txt"))
+            align_file = ClustalwCommandline(clustal_path, infile=amino_path)
             stdout, stderr = align_file()
             
             self.align_text.delete(1.0, "end")
